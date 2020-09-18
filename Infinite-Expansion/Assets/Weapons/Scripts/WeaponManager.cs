@@ -21,6 +21,8 @@ public class WeaponManager : MonoBehaviour
     private RaycastHit shootHit;
     public float maxLength = 100f; // 射线最长长度
 
+    public GameObject gunLine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,11 @@ public class WeaponManager : MonoBehaviour
         // 播放声音
         gunAudio.Play();
         // 画线
+        if (gunLine != null)
+        {
+            GameObject gunLineInstance = Instantiate(gunLine, transform.position, new Quaternion(0, 180, 0, 1), transform);
+            Destroy(gunLineInstance, 2f);
+        }
 
         // 开启粒子系统
         gunParticles.Stop();
