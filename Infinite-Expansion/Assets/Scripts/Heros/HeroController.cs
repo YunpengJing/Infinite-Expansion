@@ -4,35 +4,45 @@ using UnityEngine;
 
 public class HeroController : MonoBehaviour
 {
-	public float speed;
-	Vector3 movement;
-	// Start is called before the first frame update
-	void Start()
+    [SerializeField]
+    private float heroSpeed = 5.0f;
+
+    private CharacterController controller;
+    private HeroInputManager heroInput;
+    private Transform cameraMain;
+
+    void Start()
     {
-        
+        cameraMain = Camera.main.transform;
     }
-	
-	// Update is called once per frame
-	void Update()
-	{
-		ProcessInputs();
-		Move();
-	}
 
-	private void ProcessInputs()
-	{
-		//movement = new Vector3(SimpleInput.GetAxis("Horizontal"), SimpleInput.GetAxis("Vertical"), 0.0f);
-		movement = new Vector3(SimpleInput.GetAxis("Horizontal"), 0.0f, SimpleInput.GetAxis("Vertical"));
-		if (movement.magnitude > 1.0f)
-		{
-			movement.Normalize();
-		}
-	}
+    private void Awake()
+    {
+        heroInput = new HeroInputManager();
+        controller = GetComponent<CharacterController>();
+    }
 
-	private void Move()
-	{
-		transform.position = transform.position + movement * speed * Time.deltaTime;
-	}
+    private void OnEnable()
+    {
+        heroInput.Enable();
+    }
 
-	
+    private void OnDisable()
+    {
+        heroInput.Disable();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Vector2 moveInput = heroInput.HeroAction.Move.ReadValue<Vector2>();
+        Vector3 move = (cameraMain.forward * moveInput.y + cameraMain.right * moveInput.x);
+        move.y = 0f;
+        controller.Move(move * Time.deltaTime * heroSpeed);
+
+        if (move != Vector3.zero)
+        {
+            gameObject.transform.forward = move;
+        }
+    }
 }
