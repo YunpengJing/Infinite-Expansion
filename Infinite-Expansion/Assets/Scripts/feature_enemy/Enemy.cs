@@ -27,8 +27,13 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-        transform.Translate((positions[index].position - transform.position).normalized * Time.deltaTime * speed);
-        if (Vector3.Distance(positions[index].position, transform.position) < 0.2f)
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        transform.forward = positions[index].position - transform.position;
+        if(Time.deltaTime * speed >= Vector3.Distance (transform.position, positions[index].position)){
+            index++;
+        }
+        //transform.Translate((positions[index].position - transform.position).normalized * Time.deltaTime * speed);
+        else if (Vector3.Distance(positions[index].position, transform.position) < 0.2f)
         {
             index++;
         }
