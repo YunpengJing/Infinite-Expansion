@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/feature_enemy/Enemy.unity
+    guid: da15827625799e445bdc225bd18ecdc0
   m_configObjects: {}
