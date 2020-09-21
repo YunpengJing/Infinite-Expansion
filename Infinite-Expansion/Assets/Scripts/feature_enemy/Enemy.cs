@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private Slider hpSlider;
     private Transform[] positions;
     private int index = 0;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
         positions = Waypoints.positions;
         hpSlider = GetComponentInChildren<Slider>();
         totalHp = hp;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class Enemy : MonoBehaviour
         }
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
         //TODO 调用前进动画
+        anim.SetBool("walkf",true);
         transform.forward = positions[index].position - transform.position;
         if(Time.deltaTime * speed >= Vector3.Distance (transform.position, positions[index].position)){
             index++;
@@ -75,6 +78,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         //TODO 调用死亡动画
+        anim.SetTrigger("death");
         Destroy(this.gameObject);
     }
 }
