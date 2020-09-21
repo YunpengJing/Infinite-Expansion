@@ -34,7 +34,7 @@ public class WeaponManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (Input.GetButton("Fire1") && timer >= timeBetweenBullet)
+        if (Input.GetButton("Fire2") && timer >= timeBetweenBullet)
         {
             Shoot();
         }

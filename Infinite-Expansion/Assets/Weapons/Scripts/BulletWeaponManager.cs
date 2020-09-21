@@ -56,15 +56,20 @@ public class BulletWeaponManager : MonoBehaviour
         //生成子弹
         if(update==0)
         {
-            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles));
+            GameObject bulletInstance=Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles));
+            Destroy(bulletInstance, 2f);
         }
         else if(update==1)
         {
             Vector3 angle1 = new Vector3(0, -30, 0);
             Vector3 angle2 = new Vector3(0, 30, 0);
-            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles));
-            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles+angle1));
-            Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles+angle2));
+            GameObject bulletInstance1 = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles));
+            GameObject bulletInstance2 = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles+angle1));
+            GameObject bulletInstance3 = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(transform.eulerAngles+angle2));
+
+            Destroy(bulletInstance1, 2f);
+            Destroy(bulletInstance2, 2f);
+            Destroy(bulletInstance3, 2f);
         }
        
 
