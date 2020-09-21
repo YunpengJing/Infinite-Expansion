@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour
     {
         //TODO 调用死亡动画
         anim.SetTrigger("death");
-        float time = 0.933f;//延时f秒
-        Destroy(this.gameObject,time);
+        float dieTime = 1.8f;//延时f秒
+        Destroy(this.gameObject, dieTime);
     }
 }
