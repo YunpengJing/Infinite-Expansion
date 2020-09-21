@@ -6,11 +6,15 @@ public class Bullet : MonoBehaviour
 {
     public int damage = 50;
     public float speed = 20;
+    private Turret sourceTurret;
     private Transform target;
-    public GameObject explosionEffectPrefab;
     public void SetTarget(Transform _target)
     {
         this.target = _target;
+    }
+    public void SetSourceTurret(Turret _sourceTurret)
+    {
+        this.sourceTurret = _sourceTurret;
     }
     // Start is called before the first frame update
     void Start()
@@ -35,7 +39,7 @@ public class Bullet : MonoBehaviour
     {
         if (col.tag == "Enemy")
         {
-            col.GetComponent<Enemy>().TakeDamage(damage);
+            col.GetComponent<Enemy>().TakeDamage(damage, sourceTurret.gameObject);
             Destroy(this.gameObject);
         }
     }

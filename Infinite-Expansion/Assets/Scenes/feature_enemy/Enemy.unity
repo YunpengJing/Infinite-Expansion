@@ -2652,7 +2652,7 @@ GameObject:
   - component: {fileID: 329759420}
   m_Layer: 9
   m_Name: Simple_Turrent (1)
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16069,7 +16069,7 @@ GameObject:
   - component: {fileID: 2044054302}
   m_Layer: 9
   m_Name: Simple_Turrent
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

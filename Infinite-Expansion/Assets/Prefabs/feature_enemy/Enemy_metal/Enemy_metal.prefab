@@ -421,7 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   hp: 150
-  hpSlider: {fileID: 7726083606000373348}
+  attackDistance: 1
 --- !u!135 &230336418029188369
 SphereCollider:
   m_ObjectHideFlags: 0

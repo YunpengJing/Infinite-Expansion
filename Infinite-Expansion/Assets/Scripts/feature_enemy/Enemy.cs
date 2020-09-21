@@ -8,8 +8,11 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 10;
     public int hp = 150;
+    public int attackDistance = 2;
     private int totalHp;
     private Slider hpSlider;
+    private GameObject target;
+    private string status = "forward";
     private Transform[] positions;
     private int index = 0;
     private Animator anim;
@@ -26,7 +29,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (status == "forward")
+        {
+            Move();
+        }
+        else if (status == "fight")
+        {
+            Fight();
+        }
     }
 
     private void Move()
@@ -36,7 +46,6 @@ public class Enemy : MonoBehaviour
             return;
         }
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
-        //TODO 调用前进动画
         anim.SetBool("walkf",true);
         transform.forward = positions[index].position - transform.position;
         if(Time.deltaTime * speed >= Vector3.Distance (transform.position, positions[index].position)){
@@ -54,7 +63,7 @@ public class Enemy : MonoBehaviour
 
     void ReachDestination()
     {
-        GameObject.Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 
     void OnDestroy()
@@ -62,7 +71,7 @@ public class Enemy : MonoBehaviour
         EnemySpawner.CountEnemyAlive--;    
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, GameObject source)
     {
         if (hp <= 0)
         {
@@ -74,12 +83,38 @@ public class Enemy : MonoBehaviour
         {
             Die();
         }
+        if (source != null)
+        {
+            if (source.tag == "Turret")
+            {
+                this.status = "fight";
+                target = source;
+            }
+        }
     }
     void Die()
     {
-        //TODO 调用死亡动画
         anim.SetTrigger("death");
         float dieTime = 1.8f;//延时f秒
         Destroy(this.gameObject, dieTime);
+    }
+    void Fight()
+    {
+        if (target == null)
+        {
+            this.status = "forward";
+            return;
+        }
+        if (Vector3.Distance(target.transform.position, transform.position) <= attackDistance)
+        {
+            //TODO 调用攻击动画
+            Debug.Log("attack");
+        }
+        else
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            //TODO 调用前进动画
+            transform.forward = target.transform.position - transform.position;
+        }
     }
 }
