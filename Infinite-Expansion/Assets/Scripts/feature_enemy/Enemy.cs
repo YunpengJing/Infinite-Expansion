@@ -7,9 +7,9 @@ using UnityEngine.Scripting.APIUpdating;
 public class Enemy : MonoBehaviour
 {
     public float speed = 10;
-    public int hp = 150;
+    public float hp = 150;
     public int attackDistance = 2;
-    private int totalHp;
+    private float totalHp;
     private Slider hpSlider;
     private GameObject target;
     private string status = "forward";
@@ -71,14 +71,14 @@ public class Enemy : MonoBehaviour
         EnemySpawner.CountEnemyAlive--;    
     }
 
-    public void TakeDamage(int damage, GameObject source)
+    public void TakeDamage(float damage, GameObject source)
     {
         if (hp <= 0)
         {
             return;
         }
         hp -= damage;
-        hpSlider.value = (float)hp / totalHp;
+        hpSlider.value = hp / totalHp;
         if (hp <= 0)
         {
             Die();
@@ -108,12 +108,13 @@ public class Enemy : MonoBehaviour
         if (Vector3.Distance(target.transform.position, transform.position) <= attackDistance)
         {
             //TODO 调用攻击动画
+            transform.Translate(new Vector3(0, 0, 0));
             Debug.Log("attack");
         }
         else
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speed);
-            //TODO 调用前进动画
+            //TODO 调用奔跑动画
             transform.forward = target.transform.position - transform.position;
         }
     }
