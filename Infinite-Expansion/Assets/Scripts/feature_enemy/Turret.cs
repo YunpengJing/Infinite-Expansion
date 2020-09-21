@@ -74,4 +74,14 @@ public class Turret : MonoBehaviour
             enemys.RemoveAt(emptyIndex[i]-i);
         }
     }
+
+    private int hp = 2;
+    public void TakeDamage(int damage)
+    {
+        hp -= 1;
+        if (hp <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
