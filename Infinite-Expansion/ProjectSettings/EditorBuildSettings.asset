@@ -8,12 +8,6 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/Demo.unity
-    guid: 6c670b1d0bb64f6459f3d897487ab7d6
-  - enabled: 0
-    path: Assets/Scenes/ThirdPersonView.unity
-    guid: 56954acc281c81b41b1fbeac3afd87f2
   - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: 51cd7ab51d2d7f946a9bda8bd35b77e8

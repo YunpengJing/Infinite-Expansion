@@ -556,6 +556,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 7409563956256804566, guid: fea33e470ac2b90439da4e4200f6f71a,
+        type: 3}
+      propertyPath: Pan2D
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fea33e470ac2b90439da4e4200f6f71a, type: 3}
 --- !u!1 &1085489886
