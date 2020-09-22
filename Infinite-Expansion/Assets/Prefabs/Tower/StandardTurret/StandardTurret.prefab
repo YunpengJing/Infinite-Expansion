@@ -131,8 +131,11 @@ MonoBehaviour:
     type: 3}
   firePosition: {fileID: 6523816471990467395}
   head: {fileID: 6159149380780681733}
+  laserRenderer: {fileID: 0}
   enemys: []
   attackRateTime: 1
+  useLaser: 0
+  damageRate: 70
 --- !u!135 &616582064961820486
 SphereCollider:
   m_ObjectHideFlags: 0

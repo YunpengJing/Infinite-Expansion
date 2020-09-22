@@ -1,0 +1,67 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+namespace Manager
+{
+    public class GameOverManager : MonoBehaviour
+    {
+        public Text WinText;
+        public Text FailText;
+
+        // 单例
+        private static GameOverManager instance;
+
+        public static GameOverManager Instance
+        {
+            get
+            {
+                return instance;
+            }
+
+            set
+            {
+                instance = value;
+            }
+        }
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            WinText.gameObject.SetActive(false);
+            FailText.gameObject.SetActive(false);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        public void Win()
+        {
+            WinText.gameObject.SetActive(true);
+            ReturnToMainMenu();
+        }
+
+        public void Fail()
+        {
+            FailText.gameObject.SetActive(true);
+            ReturnToMainMenu();
+        }
+
+        // 回到主菜单
+        private void ReturnToMainMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+}
+

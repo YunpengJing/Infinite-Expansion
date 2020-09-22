@@ -302,5 +302,8 @@ MonoBehaviour:
     type: 3}
   firePosition: {fileID: 200166371789556869}
   head: {fileID: 1943586124047576182}
+  laserRenderer: {fileID: 0}
   enemys: []
   attackRateTime: 1
+  useLaser: 0
+  damageRate: 70

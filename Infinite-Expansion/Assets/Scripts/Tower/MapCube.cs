@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MapCube : MonoBehaviour
 {
@@ -10,18 +11,22 @@ public class MapCube : MonoBehaviour
     public GameObject turretGo; // 保存当前cube身上的炮台
     public GameObject buildEffectPrefab;
     private Renderer renderer;
+    public Slider hpSlider;
 
     // attr
     public int hp = 200;
+    private int totalHp;
+    public float height = 1.5f;
 
     private void Start()
     {
-        this.renderer = GetComponent<Renderer>();
+        renderer = GetComponent<Renderer>();
+        totalHp = hp;
     }
 
     public void BuildTurret(GameObject turretPrefab)
     {
-        turretGo = GameObject.Instantiate(turretPrefab, transform.position, Quaternion.identity);
+        turretGo = GameObject.Instantiate(turretPrefab, transform.position + new Vector3(0, height, 0), Quaternion.identity);
         turretGo.GetComponent<Turret>().SetMapCubeGo(gameObject);
         GameObject.Instantiate(buildEffectPrefab, transform.position, transform.rotation);
     }
@@ -46,6 +51,8 @@ public class MapCube : MonoBehaviour
     {
         if (hp <= 0) return;
         hp -= damage;
+        hpSlider.value = (float)hp / totalHp;
+
         if (hp <= 0)
         {
             Destroy(gameObject);
