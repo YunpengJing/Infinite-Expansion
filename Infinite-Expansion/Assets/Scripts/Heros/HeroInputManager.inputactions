@@ -1,5 +1,5 @@
 {
-    "name": "HeroController",
+    "name": "HeroInputManager",
     "maps": [
         {
             "name": "HeroAction",
@@ -18,6 +18,14 @@
                     "type": "Value",
                     "id": "9e9510f4-4536-4a48-ac50-a6dcfe57c601",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "1fba306c-214a-478c-82bf-78d7f85f3388",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -42,6 +50,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "545a19d6-e9a7-4451-a2c2-3465b41c95b4",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
