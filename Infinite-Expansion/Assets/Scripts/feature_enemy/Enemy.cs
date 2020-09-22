@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
             {
                 transform.Translate(Vector3.forward * Time.deltaTime * speed);
                 //TODO 调用奔跑动画
+                anim.SetBool("run",true);
                 transform.forward = target.transform.position - transform.position;
             }
             else
@@ -124,6 +125,11 @@ public class Enemy : MonoBehaviour
     void Fight()
     {
         //TODO 调用攻击动画
+        
+        anim.SetBool("attack0",true);
+
+        anim.SetBool("attack1",true);
+       
         transform.Translate(new Vector3(0, 0, 0));
         target.GetComponent<Turret>().TakeDamage(attackPower);
     }
