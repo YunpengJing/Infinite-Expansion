@@ -41,6 +41,14 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Build"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd621183-aaa9-4a93-8168-6228c4f644b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -76,6 +84,17 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d270eff-d2ad-44d9-9bc3-3ca2e4625391"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Build"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -87,6 +106,7 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
         m_HeroAction_Move = m_HeroAction.FindAction("Move", throwIfNotFound: true);
         m_HeroAction_Look = m_HeroAction.FindAction("Look", throwIfNotFound: true);
         m_HeroAction_Shoot = m_HeroAction.FindAction("Shoot", throwIfNotFound: true);
+        m_HeroAction_Build = m_HeroAction.FindAction("Build", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,6 +159,7 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_HeroAction_Move;
     private readonly InputAction m_HeroAction_Look;
     private readonly InputAction m_HeroAction_Shoot;
+    private readonly InputAction m_HeroAction_Build;
     public struct HeroActionActions
     {
         private @HeroInputManager m_Wrapper;
@@ -146,6 +167,7 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_HeroAction_Move;
         public InputAction @Look => m_Wrapper.m_HeroAction_Look;
         public InputAction @Shoot => m_Wrapper.m_HeroAction_Shoot;
+        public InputAction @Build => m_Wrapper.m_HeroAction_Build;
         public InputActionMap Get() { return m_Wrapper.m_HeroAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -164,6 +186,9 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
                 @Shoot.started -= m_Wrapper.m_HeroActionActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_HeroActionActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_HeroActionActionsCallbackInterface.OnShoot;
+                @Build.started -= m_Wrapper.m_HeroActionActionsCallbackInterface.OnBuild;
+                @Build.performed -= m_Wrapper.m_HeroActionActionsCallbackInterface.OnBuild;
+                @Build.canceled -= m_Wrapper.m_HeroActionActionsCallbackInterface.OnBuild;
             }
             m_Wrapper.m_HeroActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -177,6 +202,9 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @Build.started += instance.OnBuild;
+                @Build.performed += instance.OnBuild;
+                @Build.canceled += instance.OnBuild;
             }
         }
     }
@@ -186,5 +214,6 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnBuild(InputAction.CallbackContext context);
     }
 }

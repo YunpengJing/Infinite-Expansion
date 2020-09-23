@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Home
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - MapCube
+  - Enemy
+  - Turret
   - 
   - 
   - 
