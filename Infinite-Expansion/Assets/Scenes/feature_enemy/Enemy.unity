@@ -15596,7 +15596,7 @@ MonoBehaviour:
   waves:
   - enemyPrefab: {fileID: 4556034567386493322, guid: bb690e004c12d4c41ad1bf44d0e8c670,
       type: 3}
-    count: 1
+    count: 3
     rate: 0.5
   - enemyPrefab: {fileID: 4556034567386493322, guid: bb690e004c12d4c41ad1bf44d0e8c670,
       type: 3}

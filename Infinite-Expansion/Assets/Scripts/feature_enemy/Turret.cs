@@ -75,7 +75,7 @@ public class Turret : MonoBehaviour
         }
     }
 
-    private int hp = 2;
+    private int hp = 3;
     public void TakeDamage(int damage)
     {
         hp -= 1;

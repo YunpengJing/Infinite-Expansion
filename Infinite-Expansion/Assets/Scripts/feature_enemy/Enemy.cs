@@ -49,8 +49,6 @@ public class Enemy : MonoBehaviour
             if (Vector3.Distance(target.transform.position, transform.position) > attackDistance)
             {
                 transform.Translate(Vector3.forward * Time.deltaTime * speed);
-                //TODO 调用奔跑动画
-                anim.Play("Run");
                 transform.forward = target.transform.position - transform.position;
             }
             else
@@ -59,7 +57,10 @@ public class Enemy : MonoBehaviour
                 if (timer >= attackRate)
                 {
                     timer = 0;
-                    Fight();
+                    if (hp > 0)
+                    {
+                        Fight();
+                    }
                 }
             }
         }
@@ -72,7 +73,6 @@ public class Enemy : MonoBehaviour
             return;
         }
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
-        //walk forward 动画
         anim.Play("WalkFWD");
         transform.forward = positions[index].position - transform.position;
         if(Time.deltaTime * speed >= Vector3.Distance (transform.position, positions[index].position)){
@@ -105,6 +105,7 @@ public class Enemy : MonoBehaviour
             return;
         }
         hp -= damage;
+        anim.Play("GetHit");
         hpSlider.value = hp / totalHp;
         if (hp <= 0)
         {
@@ -121,17 +122,14 @@ public class Enemy : MonoBehaviour
     } 
     void Die()
     {
-        anim.Play("GetHit");
         anim.Play("Die");
         float dieTime = 1.8f;
         Destroy(this.gameObject, dieTime);
     }
     void Fight()
     {
-        //TODO 调用攻击动画,改完触发器
         anim.Play("Attack01");
         transform.Translate(new Vector3(0, 0, 0));
-         
         target.GetComponent<Turret>().TakeDamage(attackPower);
     }
 }
