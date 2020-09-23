@@ -420,9 +420,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  hp: 150
+  hp: 300
   attackDistance: 5
   attackPower: 1
+  attackRate: 1
 --- !u!135 &230336418029188369
 SphereCollider:
   m_ObjectHideFlags: 0

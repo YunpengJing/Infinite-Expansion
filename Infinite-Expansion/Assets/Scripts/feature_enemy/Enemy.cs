@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(anim.GetBool("attack0"));
         if (status == "forward")
         {
             Move();
@@ -42,6 +43,7 @@ public class Enemy : MonoBehaviour
             if (target == null)
             {
                 this.status = "forward";
+                timer = attackRate;
                 return;
             }
             if (Vector3.Distance(target.transform.position, transform.position) > attackDistance)
@@ -124,12 +126,8 @@ public class Enemy : MonoBehaviour
     }
     void Fight()
     {
-        //TODO 调用攻击动画
-        
+        //TODO 调用攻击动画,改完触发器
         anim.SetBool("attack0",true);
-
-        anim.SetBool("attack1",true);
-       
         transform.Translate(new Vector3(0, 0, 0));
         target.GetComponent<Turret>().TakeDamage(attackPower);
     }
