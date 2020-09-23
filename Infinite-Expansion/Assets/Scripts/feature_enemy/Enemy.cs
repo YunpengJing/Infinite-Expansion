@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(anim.GetBool("attack0"));
+        //Debug.Log(anim.SetTrigger("attack"));
         if (status == "forward")
         {
             Move();
@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
             {
                 transform.Translate(Vector3.forward * Time.deltaTime * speed);
                 //TODO 调用奔跑动画
-                anim.SetBool("run",true);
+                anim.Play("Run");
                 transform.forward = target.transform.position - transform.position;
             }
             else
@@ -72,7 +72,8 @@ public class Enemy : MonoBehaviour
             return;
         }
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
-        anim.SetBool("walkf",true);
+        //walk forward 动画
+        anim.Play("WalkFWD");
         transform.forward = positions[index].position - transform.position;
         if(Time.deltaTime * speed >= Vector3.Distance (transform.position, positions[index].position)){
             index++;
@@ -107,7 +108,7 @@ public class Enemy : MonoBehaviour
         hpSlider.value = hp / totalHp;
         if (hp <= 0)
         {
-            Die();
+            Die(); 
         }
         if (source != null)
         {
@@ -117,18 +118,20 @@ public class Enemy : MonoBehaviour
                 target = source;
             }
         }
-    }
+    } 
     void Die()
     {
-        anim.SetTrigger("death");
+        anim.Play("GetHit");
+        anim.Play("Die");
         float dieTime = 1.8f;
         Destroy(this.gameObject, dieTime);
     }
     void Fight()
     {
         //TODO 调用攻击动画,改完触发器
-        anim.SetBool("attack0",true);
+        anim.Play("Attack01");
         transform.Translate(new Vector3(0, 0, 0));
+         
         target.GetComponent<Turret>().TakeDamage(attackPower);
     }
 }
