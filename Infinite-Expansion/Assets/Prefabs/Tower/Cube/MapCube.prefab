@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: -8332611577332454288}
   m_Layer: 8
   m_Name: MapCube
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,5 +406,6 @@ MonoBehaviour:
   turretGo: {fileID: 0}
   buildEffectPrefab: {fileID: 3348924154530962694, guid: f01a7270043934ab682c60d74c3bb0e9,
     type: 3}
+  hpSlider: {fileID: 0}
   hp: 200
   height: 1.5
