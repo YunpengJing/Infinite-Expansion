@@ -70,7 +70,7 @@ public class TopDownController : MonoBehaviour
         {
             Ray ray = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(0f, -1f, 0f));
             RaycastHit hit;
-            bool isCollider = Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("MapCube"));
+            bool isCollider = Physics.Raycast(ray, out hit, 1000f, LayerMask.GetMask("MapCube"));
             if (isCollider)
             {
                 MapCube mapCube = hit.collider.GetComponent<MapCube>();   // 得到点击的 mapCube
