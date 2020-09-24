@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Turret
+  - Home
   layers:
   - Default
   - TransparentFX
@@ -15,9 +16,10 @@ TagManager:
   - UI
   - 
   - 
+  - 
+  - MapCube
   - Enemy
   - Turret
-  - 
   - 
   - 
   - 
