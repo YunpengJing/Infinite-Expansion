@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Turret
   - Home
   layers:
   - Default
@@ -13,6 +14,7 @@ TagManager:
   - 
   - Water
   - UI
+  - 
   - 
   - 
   - MapCube
