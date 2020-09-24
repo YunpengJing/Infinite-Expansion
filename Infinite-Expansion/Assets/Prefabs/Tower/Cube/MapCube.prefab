@@ -406,5 +406,6 @@ MonoBehaviour:
   turretGo: {fileID: 0}
   buildEffectPrefab: {fileID: 3348924154530962694, guid: f01a7270043934ab682c60d74c3bb0e9,
     type: 3}
+  hpSlider: {fileID: 666799919}
   hp: 200
   height: 1.5
