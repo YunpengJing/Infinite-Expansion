@@ -2613,7 +2613,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 354478658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b306597510b0416e805176a0804c41e, type: 3}
+  m_Script: {fileID: 11500000, guid: 85f161802b50bb14cb6a76d56d304eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &354478660
@@ -8176,9 +8176,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1085489886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a0c3004411f7449b85940526f99161, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fd328e4d4a2343439d229f07379d9af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waves:
+  - enemyPrefab: {fileID: 4556034567386493322, guid: bb690e004c12d4c41ad1bf44d0e8c670,
+      type: 3}
+    count: 3
+    rate: 0.5
+  - enemyPrefab: {fileID: 4556034567386493322, guid: bb690e004c12d4c41ad1bf44d0e8c670,
+      type: 3}
+    count: 3
+    rate: 0.5
+  START: {fileID: 1240339334}
+  waveRate: 2
 --- !u!4 &1085489888
 Transform:
   m_ObjectHideFlags: 0

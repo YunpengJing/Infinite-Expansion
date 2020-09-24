@@ -130,6 +130,6 @@ public class Enemy : MonoBehaviour
     {
         anim.Play("Attack01");
         transform.Translate(new Vector3(0, 0, 0));
-        target.GetComponent<Turret>().TakeDamage(attackPower);
+        target.GetComponent<MapCube>().TakeDamage(attackPower);
     }
 }
