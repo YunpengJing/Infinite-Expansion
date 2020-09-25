@@ -7,6 +7,8 @@ public class PhysicalBullet : MonoBehaviour
 
     public float moveSpeed = 100f;
 
+    public float damage = 30f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +24,12 @@ public class PhysicalBullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // 碰撞到物体
         if (other.tag == "Enemy")
         {
-            // 碰撞到物体
+            //获取Hero
+            GameObject hero = GameObject.FindWithTag("Hero");
+            other.GetComponent<Enemy>().TakeDamage(damage,hero);
             Destroy(gameObject);
             Debug.Log("hit enemy");
         }
