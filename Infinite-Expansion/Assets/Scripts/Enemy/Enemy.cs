@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public float attackRate = 1;
     private float totalHp;
     private Slider hpSlider;
-    private GameObject target;
+    public GameObject target;
     private string status = "forward";
     private Transform[] positions;
     private int index = 0;
@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour
         if(Time.deltaTime * speed >= Vector3.Distance (transform.position, positions[index].position)){
             index++;
         }
-        else if (Vector3.Distance(positions[index].position, transform.position) < 0.2f)
+        else if (Vector3.Distance(positions[index].position, transform.position) < 0.02f)
         {
             index++;
         }
@@ -114,6 +114,7 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
+        //update hp and slider
         hp -= damage;
         anim.Play("GetHit");
         hpSlider.value = hp / totalHp;
@@ -121,6 +122,7 @@ public class Enemy : MonoBehaviour
         {
             Die(); 
         }
+        //set attack target
         if (source != null && target == null)
         {
             if (source.tag == "Turret")
@@ -132,20 +134,24 @@ public class Enemy : MonoBehaviour
     } 
     void Die()
     {
+        //call die animation and destroy the object
         anim.Play("Die");
         float dieTime = 1.8f;
         Destroy(this.gameObject, dieTime);
     }
     void Fight()
     {
-        anim.Play("Attack01");
+        //stop and call attack animation
         transform.Translate(new Vector3(0, 0, 0));
         if (target.tag == "Turret")
         {
+            anim.Play("Attack01");
             target.GetComponent<MapCube>().TakeDamage(attackPower);
         }
         else if (target.tag == "Home")
         {
+            anim.Play("Attack01");
+            anim.Play("IdleBattle");
             target.GetComponent<HomeCube>().TakeDamage(attackPower);
         }
     }

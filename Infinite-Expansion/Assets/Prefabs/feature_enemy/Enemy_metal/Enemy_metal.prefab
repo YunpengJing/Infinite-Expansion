@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  hp: 150
+  hp: 200
   attackDistance: 5
   attackPower: 50
   attackRate: 1

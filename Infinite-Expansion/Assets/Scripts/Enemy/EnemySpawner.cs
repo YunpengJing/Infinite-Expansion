@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Manager;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -8,10 +9,19 @@ public class EnemySpawner : MonoBehaviour
     public Transform START;
     public float waveRate = 2;
     public static int CountEnemyAlive = 0;
+    private int waveCount = 0;
 
     private void Start()
     {
         StartCoroutine(SpawnEnemy());
+    }
+
+    private void Update()
+    {
+        if (waves.Length == waveCount && CountEnemyAlive == 0)
+        {
+            GameOverManager.Instance.Win();
+        }
     }
     IEnumerator SpawnEnemy()
     {
@@ -26,7 +36,8 @@ public class EnemySpawner : MonoBehaviour
                     yield return new WaitForSeconds(wave.rate);
                 }
             }
-            while(CountEnemyAlive > 0)
+            waveCount ++;
+            while (CountEnemyAlive > 0)
             {
                 yield return 0;
             }
