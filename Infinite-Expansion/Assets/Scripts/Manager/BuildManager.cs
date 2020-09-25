@@ -27,7 +27,6 @@ public class BuildManager : MonoBehaviour
 
     private void Update()
     {
-
         // 检测鼠标左键，
         if (Input.GetMouseButtonDown(0))
         {
