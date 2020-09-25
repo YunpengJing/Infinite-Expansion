@@ -16,12 +16,6 @@ public class HomeCube : MonoBehaviour
         totalHp = hp;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        TakeDamage(10);
-    }
-
     public void TakeDamage(int damage)
     {
         if (hp <= 0) return;
