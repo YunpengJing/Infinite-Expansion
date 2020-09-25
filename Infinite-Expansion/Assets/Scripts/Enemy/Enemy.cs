@@ -93,6 +93,16 @@ public class Enemy : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    private void OnTriggerEnter(Collider col)
+    {
+        //attack home
+        if (col.tag == "Home" && target == null)
+        {
+            this.status = "fight";
+            target = col.gameObject;
+        }
+    }
+
     void OnDestroy()
     {
         EnemySpawner.CountEnemyAlive--;    
@@ -111,7 +121,7 @@ public class Enemy : MonoBehaviour
         {
             Die(); 
         }
-        if (source != null)
+        if (source != null && target == null)
         {
             if (source.tag == "Turret")
             {
@@ -130,6 +140,13 @@ public class Enemy : MonoBehaviour
     {
         anim.Play("Attack01");
         transform.Translate(new Vector3(0, 0, 0));
-        target.GetComponent<MapCube>().TakeDamage(attackPower);
+        if (target.tag == "Turret")
+        {
+            target.GetComponent<MapCube>().TakeDamage(attackPower);
+        }
+        else if (target.tag == "Home")
+        {
+            target.GetComponent<HomeCube>().TakeDamage(attackPower);
+        }
     }
 }

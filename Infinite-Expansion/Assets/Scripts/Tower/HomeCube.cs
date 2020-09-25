@@ -7,7 +7,7 @@ using Manager;
 public class HomeCube : MonoBehaviour
 {
     public int hp = 1000;
-    public int totalHp;
+    private int totalHp;
     public Slider hpSlider;
 
     // Start is called before the first frame update
