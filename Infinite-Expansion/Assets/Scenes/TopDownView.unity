@@ -4945,6 +4945,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeroDemo
       objectReference: {fileID: 0}
+    - target: {fileID: 4424783893883605917, guid: 821cb924575713f448007fe406db9f31,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hero
+      objectReference: {fileID: 0}
     - target: {fileID: 4424783893883605918, guid: 821cb924575713f448007fe406db9f31,
         type: 3}
       propertyPath: m_Center.x
