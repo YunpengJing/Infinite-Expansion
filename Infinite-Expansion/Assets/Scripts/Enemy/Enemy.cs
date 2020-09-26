@@ -135,7 +135,9 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         //call die animation and destroy the object
+        transform.Translate(new Vector3(0, 0, 0));
         anim.Play("Die");
+        status = "die";
         float dieTime = 1.8f;
         Destroy(this.gameObject, dieTime);
     }
