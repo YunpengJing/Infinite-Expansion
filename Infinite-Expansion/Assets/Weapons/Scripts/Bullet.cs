@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
 
     public float moveSpeed = 100f;
 
+    public float damage = 60f;
+
     private ParticleSystem bulletSFX;
 
     private GameObject enemy;
@@ -29,11 +31,13 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // 碰撞到物体
         if (other.gameObject == enemy)
         {
             // SFX播放
             bulletSFX.Play();
-            // 碰撞到物体
+            GameObject hero = GameObject.FindWithTag("Hero");
+            other.GetComponent<Enemy>().TakeDamage(damage, hero);
             Destroy(gameObject);
             Debug.Log("hit enemy");
         }

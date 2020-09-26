@@ -7,19 +7,13 @@ using Manager;
 public class HomeCube : MonoBehaviour
 {
     public int hp = 1000;
-    public int totalHp;
+    private int totalHp;
     public Slider hpSlider;
 
     // Start is called before the first frame update
     void Start()
     {
         totalHp = hp;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        TakeDamage(10);
     }
 
     public void TakeDamage(int damage)

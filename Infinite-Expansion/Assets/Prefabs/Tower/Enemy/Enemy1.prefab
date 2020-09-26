@@ -308,7 +308,6 @@ GameObject:
   - component: {fileID: 2131833979662045445}
   - component: {fileID: 2097591344235737604}
   - component: {fileID: 9106630776458912641}
-  - component: {fileID: 1508932939}
   m_Layer: 9
   m_Name: Enemy1
   m_TagString: Enemy
@@ -391,20 +390,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1508932939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618733196757528875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84e5df823b41d4419afb9b86300cd3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  hp: 100
-  explosionEffectPrefab: {fileID: 6021433364056508609, guid: 9093a23fc68624a4982869b68ed6863c,
-    type: 3}
-  hpSlider: {fileID: 188356229}
