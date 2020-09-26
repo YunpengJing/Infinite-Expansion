@@ -420,11 +420,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54aeeda8c60c5004dbf539d3a8fac254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   hp: 200
   attackDistance: 5
   attackPower: 50
   attackRate: 1
+  target: {fileID: 0}
 --- !u!135 &230336418029188369
 SphereCollider:
   m_ObjectHideFlags: 0
