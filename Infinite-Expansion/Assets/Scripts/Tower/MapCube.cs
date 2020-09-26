@@ -29,7 +29,8 @@ public class MapCube : MonoBehaviour
     {
         turretGo = GameObject.Instantiate(turretPrefab, transform.position + new Vector3(0, height, 0), Quaternion.identity);
         turretGo.GetComponent<Turret>().SetMapCubeGo(gameObject);
-        GameObject.Instantiate(buildEffectPrefab, transform.position, transform.rotation);
+        GameObject effect = GameObject.Instantiate(buildEffectPrefab, transform.position + new Vector3(0, height, 0), transform.rotation);
+        Destroy(effect, 1.5f);
     }
 
     private void OnMouseEnter()
