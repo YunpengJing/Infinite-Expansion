@@ -11,7 +11,7 @@ public class TopDownController : MonoBehaviour
     private CharacterController controller;
     private HeroInputManager heroInput;
     
-    private Transform cameraMain;
+    //private Transform cameraMain;
     public float dampTime = 0.15f;
     private Vector3 velocity = Vector3.zero;
 
@@ -24,7 +24,7 @@ public class TopDownController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cameraMain = Camera.main.transform;
+        //cameraMain = Camera.main.transform;
         selectedTurretData = standardTurretData;
     }
 
@@ -57,12 +57,12 @@ public class TopDownController : MonoBehaviour
             gameObject.transform.forward = move;
         }
 
-        // camera follow
-        if (cameraMain)
-        {
-            Vector3 destionation = new Vector3(transform.position.x, cameraMain.position.y, transform.position.z);
-            cameraMain.position = Vector3.SmoothDamp(cameraMain.position, destionation, ref velocity, dampTime);
-        }
+        //// camera follow
+        //if (cameraMain)
+        //{
+        //    Vector3 destionation = new Vector3(transform.position.x, cameraMain.position.y, transform.position.z);
+        //    cameraMain.position = Vector3.SmoothDamp(cameraMain.position, destionation, ref velocity, dampTime);
+        //}
 
         // tower build
         float BuildButton = heroInput.HeroAction.Build.ReadValue<float>();

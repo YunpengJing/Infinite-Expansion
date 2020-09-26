@@ -16,12 +16,13 @@ public class MapCube : MonoBehaviour
     // attr
     public int hp = 200;
     private int totalHp;
-    public float height = 1.5f;
+    public float height;
 
     private void Start()
     {
         renderer = GetComponent<Renderer>();
         totalHp = hp;
+        height = transform.localScale.y / 2 - 0.5f;
     }
 
     public void BuildTurret(GameObject turretPrefab)
