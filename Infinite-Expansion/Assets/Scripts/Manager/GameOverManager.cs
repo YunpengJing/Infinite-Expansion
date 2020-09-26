@@ -48,13 +48,13 @@ namespace Manager
         public void Win()
         {
             WinText.gameObject.SetActive(true);
-            ReturnToMainMenu();
+            Invoke("ReturnToMainMenu", 3);
         }
 
         public void Fail()
         {
             FailText.gameObject.SetActive(true);
-            ReturnToMainMenu();
+            Invoke("ReturnToMainMenu", 3);
         }
 
         // 回到主菜单
