@@ -16,19 +16,21 @@ public class MapCube : MonoBehaviour
     // attr
     public int hp = 200;
     private int totalHp;
-    public float height = 1.5f;
+    public float height;
 
     private void Start()
     {
         renderer = GetComponent<Renderer>();
         totalHp = hp;
+        height = transform.localScale.y / 2 - 0.5f;
     }
 
     public void BuildTurret(GameObject turretPrefab)
     {
         turretGo = GameObject.Instantiate(turretPrefab, transform.position + new Vector3(0, height, 0), Quaternion.identity);
         turretGo.GetComponent<Turret>().SetMapCubeGo(gameObject);
-        GameObject.Instantiate(buildEffectPrefab, transform.position, transform.rotation);
+        GameObject effect = GameObject.Instantiate(buildEffectPrefab, transform.position + new Vector3(0, height, 0), transform.rotation);
+        Destroy(effect, 1.5f);
     }
 
     private void OnMouseEnter()
