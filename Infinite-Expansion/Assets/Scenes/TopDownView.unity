@@ -5030,6 +5030,10 @@ MonoBehaviour:
       type: 3}
     count: 5
     rate: 0.8
+  - enemyPrefab: {fileID: 9207249416024979610, guid: 302d2e60ba1f8844b9dfee87d2cc942d,
+      type: 3}
+    count: 1
+    rate: 0.8
   START: {fileID: 1240339334}
   waveRate: 2
 --- !u!4 &1085489888
