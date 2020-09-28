@@ -4837,6 +4837,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   timeBetweenBullet: 0.15
+  maxLength: 100
+  gunLine: {fileID: 3659995153115176983, guid: 3c6b27d949cdda749892906e1f1d1b27, type: 3}
 --- !u!82 &4609989910610685894
 AudioSource:
   m_ObjectHideFlags: 0

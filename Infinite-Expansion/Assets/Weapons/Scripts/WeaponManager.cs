@@ -12,7 +12,7 @@ public class WeaponManager : MonoBehaviour
 
     private float timer;
 
-    private ParticleSystem gunParticles;
+    public ParticleSystem gunParticlesss;
 
     private AudioSource gunAudio;
 
@@ -23,18 +23,38 @@ public class WeaponManager : MonoBehaviour
 
     public GameObject gunLine;
 
+    private HeroInputManager heroInput;
+
+    private bool playOnlyOnce = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        gunParticles = GetComponent<ParticleSystem>();
+        // gunParticles = GetComponent<ParticleSystem>();
         gunAudio = GetComponent<AudioSource>();
+    }
+
+    void Awake()
+    {
+        heroInput = new HeroInputManager();
+    }
+
+    void OnEnable()
+    {
+        heroInput.Enable();
+    }
+
+    void OnDisable()
+    {
+        heroInput.Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-        if (Input.GetButton("Fire2") && timer >= timeBetweenBullet)
+        float shootButton = heroInput.HeroAction.Shoot.ReadValue<float>();
+        if (shootButton > 0 && timer >= timeBetweenBullet)
         {
             Shoot();
         }
@@ -48,40 +68,16 @@ public class WeaponManager : MonoBehaviour
 
         // 播放声音
         gunAudio.Play();
+        
         // 画线
         if (gunLine != null)
         {
-            GameObject gunLineInstance = Instantiate(gunLine, transform.position, new Quaternion(0, 180, 0, 1), transform);
+            GameObject gunLineInstance = Instantiate(gunLine, transform.position, new Quaternion(0, 0, 0, 1), transform);
             Destroy(gunLineInstance, 2f);
         }
-
         // 开启粒子系统
-        gunParticles.Stop();
-        gunParticles.Play();
-
-        // 检测射击是否击中怪物
-        shootRay.origin = transform.position;
-        shootRay.direction = transform.forward;
-
-        if (Physics.Raycast(shootRay, out shootHit, maxLength, shootableMask))
-        {
-            // 击中物体(击中物体由shootHit检测)
-            // 终点位置 = 射线击中的物体的位置
-            // gunLine.SetPosition(1, shootHit.point);
-            // 怪物扣血
-            // EnemyHealth enemyHealth = shootHit.collider.gameObject.GetComponent<EnemyHealth>();
-            //if (enemyHealth != null)
-            //{
-            //    enemyHealth.TakeDamage(damagePerShot, shootHit.point);
-            //}
-        }
-        else
-        {
-            // 未击中任何物体
-            // 终点位置 = 枪口位置 + 枪口方向向量 * 长度
-            // gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
-        }
-
+        gunParticlesss.Stop();
+        gunParticlesss.Play();
         // 测试
         Debug.Log("aaaa");
     }

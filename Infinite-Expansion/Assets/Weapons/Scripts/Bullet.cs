@@ -13,6 +13,8 @@ public class Bullet : MonoBehaviour
 
     private GameObject enemy;
 
+    //private bool playOnlyOnce = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,7 @@ public class Bullet : MonoBehaviour
         if (other.gameObject == enemy)
         {
             // SFX播放
-            bulletSFX.Play();
+            // bulletSFX.Play();
             GameObject hero = GameObject.FindWithTag("Hero");
             other.GetComponent<Enemy>().TakeDamage(damage, hero);
             Destroy(gameObject);
