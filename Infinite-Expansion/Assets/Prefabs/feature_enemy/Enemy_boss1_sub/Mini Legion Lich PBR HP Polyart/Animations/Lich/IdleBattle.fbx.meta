@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ce43f40fc2027a949a58e385c6a2cd1f
+guid: d01821c0731788843bdef98c31b20722
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
@@ -11,25 +11,25 @@ ModelImporter:
     second: Armor_R
   - first:
       1: 100004
-    second: //RootNode
-  - first:
-      1: 100006
     second: Foot_L
   - first:
-      1: 100008
+      1: 100006
     second: Foot_R
   - first:
-      1: 100010
+      1: 100008
     second: Hand_L
   - first:
-      1: 100012
+      1: 100010
     second: Hand_R
   - first:
-      1: 100014
+      1: 100012
     second: Head
   - first:
-      1: 100016
+      1: 100014
     second: Hips
+  - first:
+      1: 100016
+    second: //RootNode
   - first:
       1: 100018
     second: Index_Proximal_L
@@ -83,25 +83,25 @@ ModelImporter:
     second: Armor_R
   - first:
       4: 400004
-    second: //RootNode
-  - first:
-      4: 400006
     second: Foot_L
   - first:
-      4: 400008
+      4: 400006
     second: Foot_R
   - first:
-      4: 400010
+      4: 400008
     second: Hand_L
   - first:
-      4: 400012
+      4: 400010
     second: Hand_R
   - first:
-      4: 400014
+      4: 400012
     second: Head
   - first:
-      4: 400016
+      4: 400014
     second: Hips
+  - first:
+      4: 400016
+    second: //RootNode
   - first:
       4: 400018
     second: Index_Proximal_L
@@ -152,7 +152,7 @@ ModelImporter:
     second: LichMesh
   - first:
       74: 7400000
-    second: Attack01
+    second: IdleBattle
   - first:
       95: 9500000
     second: //RootNode
@@ -188,7 +188,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Attack01
+      name: IdleBattle
       takeName: Take 001
       internalID: 0
       firstFrame: 0
@@ -443,7 +443,7 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: attack01(Clone)
+    - name: idle(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}

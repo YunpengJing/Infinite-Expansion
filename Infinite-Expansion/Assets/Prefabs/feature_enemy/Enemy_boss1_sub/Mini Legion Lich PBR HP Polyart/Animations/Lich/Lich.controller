@@ -281,7 +281,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: walk
+  m_Name: WalkFWD
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -453,7 +453,7 @@ AnimatorStateMachine:
     m_Position: {x: 228, y: -108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110255229}
-    m_Position: {x: 348, y: -36, z: 0}
+    m_Position: {x: 350, y: -40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110253850}
     m_Position: {x: 348, y: 36, z: 0}
@@ -465,7 +465,7 @@ AnimatorStateMachine:
     m_Position: {x: 348, y: 96, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110224361}
-    m_Position: {x: 348, y: 156, z: 0}
+    m_Position: {x: 350, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110261686}
     m_Position: {x: 300, y: 216, z: 0}
