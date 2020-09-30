@@ -868,10 +868,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54aeeda8c60c5004dbf539d3a8fac254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   hp: 250
   attackDistance: 5
-  attackPower: 20
+  attackPower: 70
   attackRate: 1.5
   target: {fileID: 0}
 --- !u!54 &2566024493581560593

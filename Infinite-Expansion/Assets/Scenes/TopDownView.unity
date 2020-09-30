@@ -5022,7 +5022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemyPrefab: {fileID: 4556034567386493322, guid: bb690e004c12d4c41ad1bf44d0e8c670,
+  - enemyPrefab: {fileID: 9207249416024979610, guid: 302d2e60ba1f8844b9dfee87d2cc942d,
       type: 3}
     count: 5
     rate: 0.8
