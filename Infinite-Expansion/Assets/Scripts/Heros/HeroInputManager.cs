@@ -49,6 +49,14 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Value"",
+                    ""id"": ""15aad98e-93bb-4448-ac0d-9c0d79e44a0a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -95,6 +103,28 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
                     ""action"": ""Build"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8055128-dab6-4097-aba2-bb6c71316f22"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2400554d-1cde-405b-bd92-b2d2798b1711"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -107,6 +137,7 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
         m_HeroAction_Look = m_HeroAction.FindAction("Look", throwIfNotFound: true);
         m_HeroAction_Shoot = m_HeroAction.FindAction("Shoot", throwIfNotFound: true);
         m_HeroAction_Build = m_HeroAction.FindAction("Build", throwIfNotFound: true);
+        m_HeroAction_Select = m_HeroAction.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -160,6 +191,7 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_HeroAction_Look;
     private readonly InputAction m_HeroAction_Shoot;
     private readonly InputAction m_HeroAction_Build;
+    private readonly InputAction m_HeroAction_Select;
     public struct HeroActionActions
     {
         private @HeroInputManager m_Wrapper;
@@ -168,6 +200,7 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_HeroAction_Look;
         public InputAction @Shoot => m_Wrapper.m_HeroAction_Shoot;
         public InputAction @Build => m_Wrapper.m_HeroAction_Build;
+        public InputAction @Select => m_Wrapper.m_HeroAction_Select;
         public InputActionMap Get() { return m_Wrapper.m_HeroAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -189,6 +222,9 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
                 @Build.started -= m_Wrapper.m_HeroActionActionsCallbackInterface.OnBuild;
                 @Build.performed -= m_Wrapper.m_HeroActionActionsCallbackInterface.OnBuild;
                 @Build.canceled -= m_Wrapper.m_HeroActionActionsCallbackInterface.OnBuild;
+                @Select.started -= m_Wrapper.m_HeroActionActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_HeroActionActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_HeroActionActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_HeroActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -205,6 +241,9 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
                 @Build.started += instance.OnBuild;
                 @Build.performed += instance.OnBuild;
                 @Build.canceled += instance.OnBuild;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -215,5 +254,6 @@ public class @HeroInputManager : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnBuild(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }
