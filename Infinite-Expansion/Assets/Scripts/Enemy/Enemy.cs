@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public float attackRate = 1;
     private float totalHp;
     private Slider hpSlider;
-    public GameObject target;
+    private GameObject target;
     private string status = "forward";
     private Transform[] positions;
     private int index = 0;
@@ -63,6 +63,10 @@ public class Enemy : MonoBehaviour
                     }
                 }
             }
+        }
+        else if (status == "die")
+        {
+            Die();
         }
     }
 
