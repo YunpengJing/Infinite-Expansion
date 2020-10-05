@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eb1d80017f2b5894c8f7cbe21f60c18b
+guid: 04711c0a8a4ebee489dc6ac248c01ce5
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
@@ -17,19 +17,19 @@ ModelImporter:
     second: Foot_R
   - first:
       1: 100008
-    second: //RootNode
-  - first:
-      1: 100010
     second: Hand_L
   - first:
-      1: 100012
+      1: 100010
     second: Hand_R
   - first:
-      1: 100014
+      1: 100012
     second: Head
   - first:
-      1: 100016
+      1: 100014
     second: Hips
+  - first:
+      1: 100016
+    second: //RootNode
   - first:
       1: 100018
     second: Index_Proximal_L
@@ -89,19 +89,19 @@ ModelImporter:
     second: Foot_R
   - first:
       4: 400008
-    second: //RootNode
-  - first:
-      4: 400010
     second: Hand_L
   - first:
-      4: 400012
+      4: 400010
     second: Hand_R
   - first:
-      4: 400014
+      4: 400012
     second: Head
   - first:
-      4: 400016
+      4: 400014
     second: Hips
+  - first:
+      4: 400016
+    second: //RootNode
   - first:
       4: 400018
     second: Index_Proximal_L
@@ -152,7 +152,7 @@ ModelImporter:
     second: LichMesh
   - first:
       74: 7400000
-    second: GetHit
+    second: IdleBattle
   - first:
       95: 9500000
     second: //RootNode
@@ -188,11 +188,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: GetHit
+      name: IdleBattle
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 18
+      lastFrame: 3
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -443,7 +443,7 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: GetHit(Clone)
+    - name: idle(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
@@ -502,12 +502,12 @@ ModelImporter:
       parentName: 
       position: {x: -30.305365, y: -2.842171e-14, z: 1.7763568e-15}
       rotation: {x: -0.038784135, y: 0.033871707, z: 0.0024660027, w: 0.9986704}
-      scale: {x: 0.9999999, y: 1, z: 0.9999998}
+      scale: {x: 0.9999999, y: 1.0000001, z: 0.9999997}
     - name: Index_Proximal_R
       parentName: 
       position: {x: -20.03508, y: -8.526513e-14, z: 2.2343238e-14}
       rotation: {x: 0.007203791, y: -0.000000039131617, z: 0.99997413, w: 0.000000016681657}
-      scale: {x: 0.9999998, y: 0.9999998, z: 0.99999994}
+      scale: {x: 0.9999998, y: 0.9999998, z: 1}
     - name: Armor_L
       parentName: 
       position: {x: -24.040743, y: -4.678337, z: 63.996086}
