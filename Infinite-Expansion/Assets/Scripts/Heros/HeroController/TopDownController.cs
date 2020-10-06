@@ -133,6 +133,9 @@ public class TopDownController : MonoBehaviour
         {
             if (selectedTurretData != null && mapCube.turretGo == null)
             {
+                bool flag = MoneyManager.Instance.UpdateMoney(-selectedTurretData.cost);
+                if (!flag) return;
+
                 Debug.Log(mapCube.name);
                 mapCube.BuildTurret(selectedTurretData.turretPrefab);
             }
