@@ -7,7 +7,8 @@ public class Bullet : MonoBehaviour
 
     public float moveSpeed = 100f;
 
-    public float damage = 60f;
+    public float maxDamage = 150f; // 最大伤害
+    public float currentDamage; // 当前伤害
 
     private ParticleSystem bulletSFX;
 
@@ -39,7 +40,7 @@ public class Bullet : MonoBehaviour
             // SFX播放
             // bulletSFX.Play();
             GameObject hero = GameObject.FindWithTag("Hero");
-            other.GetComponent<Enemy>().TakeDamage(damage, hero);
+            other.GetComponent<Enemy>().TakeDamage(currentDamage, hero);
             Destroy(gameObject);
             Debug.Log("hit enemy");
         }
