@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -30,12 +31,15 @@ public class WeaponManager : MonoBehaviour
     private float charingTimer; // 当前充能时间
     public float maxScale; // 子弹最大放大比例
 
+    public Slider bulletSlider; // 当前子弹数量UI
+
     // Start is called before the first frame update
     void Start()
     {
         // gunParticles = GetComponent<ParticleSystem>();
         gunAudio = GetComponent<AudioSource>();
         currentNumberOfBullet = maxNumberOfBullet;
+        bulletSlider.value = 1f;
     }
 
     void Awake()
@@ -80,10 +84,11 @@ public class WeaponManager : MonoBehaviour
             {
                 Reloaded();
             }
-            else
+            else if(isCoolingDown && timer < coolingTimer)
             {
-                // 正在充能
-                //Debug.Log("charging");
+                // 正在冷却
+                // 更新UI
+                bulletSlider.value = timer / coolingTimer;
             }
         }
         else
@@ -92,6 +97,14 @@ public class WeaponManager : MonoBehaviour
             if (isCharging && currentNumberOfBullet > 0 && !isCoolingDown)
             {
                 Charged();
+            } else if (isCoolingDown && timer < coolingTimer)
+            {
+                // 更新UI
+                bulletSlider.value = timer / coolingTimer;
+            } else if (isCoolingDown && timer >= coolingTimer)
+            {
+                // 冷却完毕
+                Reloaded();
             }
         }
     }
@@ -126,6 +139,7 @@ public class WeaponManager : MonoBehaviour
             float newDamege = maxDamege * currentDemageRatio;
             Vector3 newScale = new Vector3(this.currentDemageRatio * maxScale, this.currentDemageRatio * maxScale, 10);
             gunLine.transform.localScale = newScale;
+            gunLine.GetComponent<Bullet>().currentDamage = newDamege;
             GameObject gunLineInstance = Instantiate(gunLine, transform.position, new Quaternion(0, 0, 0, 1), transform);
             Debug.Log("current demage is :" + newDamege);
             Destroy(gunLineInstance, 2f);
@@ -135,6 +149,8 @@ public class WeaponManager : MonoBehaviour
         gunParticlesss.Play();
         // 子弹减1
         currentNumberOfBullet--;
+        // 更新子弹UI
+        bulletSlider.value = (float)currentNumberOfBullet / maxNumberOfBullet;
         // 测试
         // Debug.Log("aaaa");
     }
@@ -153,6 +169,7 @@ public class WeaponManager : MonoBehaviour
     {
         // 充能完毕
         currentNumberOfBullet = maxNumberOfBullet;
+        bulletSlider.value = 1.0f;
         isCoolingDown = false;
         Debug.Log("reload finished");
         coolingAudio.Stop();

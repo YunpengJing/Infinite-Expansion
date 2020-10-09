@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 30
   maxDamage: 500
-  currentDamage: 0
+  currentDamage: 500
 --- !u!54 &2304768308728598423
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3659995153115176983}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.12
   m_Height: 1.19

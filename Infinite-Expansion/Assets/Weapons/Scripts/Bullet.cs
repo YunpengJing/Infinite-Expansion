@@ -40,6 +40,7 @@ public class Bullet : MonoBehaviour
             // SFX播放
             // bulletSFX.Play();
             GameObject hero = GameObject.FindWithTag("Hero");
+            Debug.Log("当前伤害：" + currentDamage);
             other.GetComponent<Enemy>().TakeDamage(currentDamage, hero);
             Destroy(gameObject);
             Debug.Log("hit enemy");
