@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Manager;
 
 public class Turret : MonoBehaviour
 {
@@ -96,6 +97,9 @@ public class Turret : MonoBehaviour
                 // 有敌人，进行攻击
                 laserRenderer.SetPositions(new Vector3[] { firePosition.position, enemys[0].transform.position });
                 enemys[0].GetComponent<Enemy>().TakeDamage(damageRate * Time.deltaTime, mapCubeGo);
+
+                // 统计来自 turret 激光的伤害
+                GameOverManager.Instance.AddDamageFromTurret(damageRate * Time.deltaTime);
             }
         }
     }
