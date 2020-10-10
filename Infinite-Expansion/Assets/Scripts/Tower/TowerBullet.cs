@@ -44,6 +44,9 @@ public class TowerBullet : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            // 如果怪物没血了，直接穿过
+            if (other.gameObject.GetComponent<Enemy>().hp == 0) return;
+
             other.GetComponent<Enemy>().TakeDamage(damage, mapCubeGo);
             Die();
         }
