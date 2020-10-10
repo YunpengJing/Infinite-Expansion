@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Manager;
 
 public class TowerBullet : MonoBehaviour
 {
@@ -49,6 +50,9 @@ public class TowerBullet : MonoBehaviour
 
             other.GetComponent<Enemy>().TakeDamage(damage, mapCubeGo);
             Die();
+
+            // 统计来自 turret 子弹的伤害
+            GameOverManager.Instance.AddDamageFromTurret(damage);
         }
     }
 
