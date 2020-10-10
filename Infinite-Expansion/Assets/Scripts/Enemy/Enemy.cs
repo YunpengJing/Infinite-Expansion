@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     private int index = 0;
     private Animator anim;
     private float timer = 0;
+    public int money = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -63,10 +64,6 @@ public class Enemy : MonoBehaviour
                     }
                 }
             }
-        }
-        else if (status == "die")
-        {
-            Die();
         }
     }
 
@@ -141,8 +138,9 @@ public class Enemy : MonoBehaviour
         //call die animation and destroy the object
         transform.Translate(new Vector3(0, 0, 0));
         anim.Play("Die");
+        MoneyManager.Instance.UpdateMoney(this.money);
         status = "die";
-        float dieTime = 1.8f;
+        float dieTime = 1.0f;
         Destroy(this.gameObject, dieTime);
     }
     void Fight()
