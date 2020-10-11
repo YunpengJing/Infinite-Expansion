@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Scripting.APIUpdating;
-
+using UnityEngine.Analytics;
 public class Enemy : MonoBehaviour
 {
+    public string name = "anonymous";
     public float speed = 10;
     public float hp = 150;
     public int attackDistance = 2;
@@ -13,12 +14,13 @@ public class Enemy : MonoBehaviour
     public float attackRate = 1;
     private float totalHp;
     private Slider hpSlider;
-    public GameObject target;
+    private GameObject target;
     private string status = "forward";
     private Transform[] positions;
     private int index = 0;
     private Animator anim;
     private float timer = 0;
+    public int money = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -108,12 +110,37 @@ public class Enemy : MonoBehaviour
         EnemySpawner.CountEnemyAlive--;    
     }
 
+    public void TrackDamage(string tag, float damage)
+    {
+        if (tag == "Turret")
+        {
+            Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
+        {
+            { "DamageFromTurret", damage}
+        });
+        }
+        else if (tag == "Hero")
+        {
+            Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
+        {
+            { "DamageFromHero", damage}
+        });
+        }
+        else
+        {
+            Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
+        {
+            { "DamageFromOther", damage}
+        });
+        }
+    }
     public void TakeDamage(float damage, GameObject source)
     {
         if (hp <= 0)
         {
             return;
         }
+        TrackDamage(source.tag, damage);
         //update hp and slider
         hp -= damage;
         anim.Play("GetHit");
@@ -137,9 +164,14 @@ public class Enemy : MonoBehaviour
         //call die animation and destroy the object
         transform.Translate(new Vector3(0, 0, 0));
         anim.Play("Die");
+        MoneyManager.Instance.UpdateMoney(this.money);
         status = "die";
-        float dieTime = 1.8f;
+        float dieTime = 1.0f;
         Destroy(this.gameObject, dieTime);
+        Analytics.CustomEvent("EnemyDeath", new Dictionary<string, object>
+        {
+            {"EnemyName", this.name}
+        });
     }
     void Fight()
     {

@@ -11,6 +11,8 @@ namespace Manager
         public Text WinText;
         public Text FailText;
 
+        private float damageFromTurret;
+
         // 单例
         private static GameOverManager instance;
 
@@ -30,6 +32,12 @@ namespace Manager
         private void Awake()
         {
             Instance = this;
+            damageFromTurret = 0;
+        }
+
+        public void AddDamageFromTurret(float damage)
+        {
+            damageFromTurret += damage;
         }
 
         // Start is called before the first frame update

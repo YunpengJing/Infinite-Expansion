@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Manager;
 
 public class Turret : MonoBehaviour
 {
@@ -54,6 +55,12 @@ public class Turret : MonoBehaviour
             head.LookAt(targetPosition);
         }
 
+        // 判断第一个敌人是否被销毁或死亡，如果是更新 enemys
+        if (enemys[0] == null || enemys[0].GetComponent<Enemy>().hp == 0)
+        {
+            UpdateEnemys();
+        }
+
         // 如果敌人人数等于 0，那 timer 不会增加，也不会攻击
         if (enemys.Count == 0)
         {
@@ -80,26 +87,30 @@ public class Turret : MonoBehaviour
                 laserRenderer.enabled = true;
             }
 
-            if (enemys[0] == null)
-            {
-                UpdateEnemys();
-            }
+            //if (enemys[0] == null || enemys[0].GetComponent<Enemy>().hp == 0)
+            //{
+            //    UpdateEnemys();
+            //}
 
             if (enemys.Count > 0)
             {
                 // 有敌人，进行攻击
                 laserRenderer.SetPositions(new Vector3[] { firePosition.position, enemys[0].transform.position });
                 enemys[0].GetComponent<Enemy>().TakeDamage(damageRate * Time.deltaTime, mapCubeGo);
+
+                // 统计来自 turret 激光的伤害
+                GameOverManager.Instance.AddDamageFromTurret(damageRate * Time.deltaTime);
             }
         }
     }
 
     void Attack()
     {
-        if (enemys[0] == null)
-        {
-            UpdateEnemys();
-        }
+        //// 如果 enemys[0] 为空，或 enemys[0] 的 hp 为 0，更新 enemy
+        //if (enemys[0] == null || enemys[0].GetComponent<Enemy>().hp == 0)
+        //{
+        //    UpdateEnemys();
+        //}
 
         if (enemys.Count > 0)
         {
@@ -119,7 +130,8 @@ public class Turret : MonoBehaviour
 
         foreach (GameObject enemy in enemys)
         {
-            if (enemy != null)
+            // 把 enemy 不为 null 且 hp 不为 0 的放进 list
+            if (enemy != null && enemy.GetComponent<Enemy>().hp != 0)
             {
                 newEnemys.Add(enemy);
             }

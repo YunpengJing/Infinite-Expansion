@@ -147,10 +147,10 @@ MonoBehaviour:
   standardTurretData:
     turretPrefab: {fileID: 5011084768636318852, guid: 62973a92207a34eb4a242d2ecdc7d23f,
       type: 3}
-    cost: 0
+    cost: 10
     turretUpgradePrefab: {fileID: 6233999983654070973, guid: 1239637b898c84189a2bcf46755d0475,
       type: 3}
-    costUpgraded: 0
+    costUpgraded: 10
     type: 2
 --- !u!1001 &1491027837
 PrefabInstance:

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Manager;
 
 public class TowerBullet : MonoBehaviour
 {
@@ -44,8 +45,14 @@ public class TowerBullet : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            // 如果怪物没血了，直接穿过
+            if (other.gameObject.GetComponent<Enemy>().hp == 0) return;
+
             other.GetComponent<Enemy>().TakeDamage(damage, mapCubeGo);
             Die();
+
+            // 统计来自 turret 子弹的伤害
+            GameOverManager.Instance.AddDamageFromTurret(damage);
         }
     }
 
