@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Manager;
-
+using UnityEngine.Analytics;
 public class EnemySpawner : MonoBehaviour
 {
     public Wave[] waves;
@@ -37,6 +37,10 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
             waveCount ++;
+            Analytics.CustomEvent("AliveWaveNumber", new Dictionary<string, object>
+            {
+                { "AliveWaveNumber", waveCount}
+            });
             while (CountEnemyAlive > 0)
             {
                 yield return 0;
