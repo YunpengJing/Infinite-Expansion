@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Scripting.APIUpdating;
-
+using UnityEngine.Analytics;
 public class Enemy : MonoBehaviour
 {
+    public string name = "anonymous";
     public float speed = 10;
     public float hp = 150;
     public int attackDistance = 2;
@@ -109,12 +110,37 @@ public class Enemy : MonoBehaviour
         EnemySpawner.CountEnemyAlive--;    
     }
 
+    public void TrackDamage(string tag, float damage)
+    {
+        if (tag == "Turret")
+        {
+            Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
+        {
+            { "DamageFromTurret", damage}
+        });
+        }
+        else if (tag == "Hero")
+        {
+            Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
+        {
+            { "DamageFromHero", damage}
+        });
+        }
+        else
+        {
+            Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
+        {
+            { "DamageFromOther", damage}
+        });
+        }
+    }
     public void TakeDamage(float damage, GameObject source)
     {
         if (hp <= 0)
         {
             return;
         }
+        TrackDamage(source.tag, damage);
         //update hp and slider
         hp -= damage;
         anim.Play("GetHit");
@@ -142,6 +168,10 @@ public class Enemy : MonoBehaviour
         status = "die";
         float dieTime = 1.0f;
         Destroy(this.gameObject, dieTime);
+        Analytics.CustomEvent("EnemyDeath", new Dictionary<string, object>
+        {
+            {"EnemyName", this.name}
+        });
     }
     void Fight()
     {
