@@ -47,18 +47,23 @@ public class Turret : MonoBehaviour
 
     private void Update()
     {
-        // 炮口朝向敌人
-        if (enemys.Count > 0 && enemys[0] != null)
-        {
-            Vector3 targetPosition = enemys[0].transform.position;
-            targetPosition.y = head.position.y;
-            head.LookAt(targetPosition);
-        }
+        if (enemys.Count == 0) return;
 
         // 判断第一个敌人是否被销毁或死亡，如果是更新 enemys
         if (enemys[0] == null || enemys[0].GetComponent<Enemy>().hp == 0)
         {
             UpdateEnemys();
+        }
+
+        // 更新敌人后再判断一次
+        if (enemys.Count == 0) return;
+
+        // 炮口朝向敌人
+        if (enemys[0] != null)
+        {
+            Vector3 targetPosition = enemys[0].transform.position;
+            targetPosition.y = head.position.y;
+            head.LookAt(targetPosition);
         }
 
         // 如果敌人人数等于 0，那 timer 不会增加，也不会攻击
