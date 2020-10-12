@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // 碰撞到物体
-        if (other.gameObject == enemy)
+        if (other.tag == "Enemy")
         {
             // SFX播放
             // bulletSFX.Play();
