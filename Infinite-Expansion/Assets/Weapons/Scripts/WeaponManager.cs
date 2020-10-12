@@ -23,6 +23,23 @@ public class WeaponManager : MonoBehaviour
 
     public GameObject gunLine;
 
+    private HeroInputManager heroInput;
+
+    private void Awake()
+    {
+        heroInput = new HeroInputManager();
+    }
+
+    private void OnEnable()
+    {
+        heroInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        heroInput.Disable();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +51,9 @@ public class WeaponManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (Input.GetButton("Fire2") && timer >= timeBetweenBullet)
+        //if (Input.GetButton("Fire2") && timer >= timeBetweenBullet)
+        float shootButton = heroInput.HeroAction.Shoot.ReadValue<float>();
+        if (shootButton > 0 && timer >= timeBetweenBullet)
         {
             Shoot();
         }

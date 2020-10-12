@@ -16,17 +16,19 @@ public class TopDownController : MonoBehaviour
     public float dampTime = 0.15f;
     private Vector3 velocity = Vector3.zero;
 
-    public static TurretData selectedTurretData;
-    public TurretData laserTurretData;
-    public TurretData missileTurretData;
-    public TurretData standardTurretData;
-
-
     // Start is called before the first frame update
     void Start()
     {
         //cameraMain = Camera.main.transform;
-        selectedTurretData = standardTurretData;
+        selectedTurretData = new TurretData[selectableTurretCount];
+        selectedTurretData[0] = turretData1;
+        selectedTurretData[1] = turretData2;
+        selectedTurretData[2] = turretData3;
+        selectedTurrentIndex = 0;
+
+        selectedWeapon = new GameObject[selectableWeaponCount];
+        selectedWeapon[0] = weapon1;
+        selectedWeapon[1] = weapon2;
     }
 
     private void Awake()
@@ -68,8 +70,7 @@ public class TopDownController : MonoBehaviour
                 MapCube mapCube = hit.collider.GetComponent<MapCube>();   // 得到点击的 mapCube
                 if (selectedTurretData != null && mapCube.turretGo == null)
                 {
-                    Debug.Log(mapCube.name);
-                    mapCube.BuildTurret(selectedTurretData.turretPrefab);
+                    mapCube.BuildTurret(selectedTurretData[selectedTurrentIndex].turretPrefab);
                 }
                 else
                 {
@@ -98,53 +99,110 @@ public class TopDownController : MonoBehaviour
 
     #endregion
 
+    #region Tower
+
+    public static TurretData[] selectedTurretData;
+    public TurretData turretData1;
+    public TurretData turretData2;
+    public TurretData turretData3;
+    public int selectableTurretCount = 3;
+    private static int selectedTurrentIndex = 0;
 
     #region Tower Build
 
-    public void SelectAndBuild()
-    {
-        MapCube mapCube = Select();
-        Build(mapCube);
-    }
-
-    private MapCube Select()
-    {
-        Debug.Log("selected triggered");
-        Vector2 mousePosition = heroInput.HeroAction.Select.ReadValue<Vector2>();
-        Debug.Log(mousePosition);
-
-        // ray detection
-        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
-        RaycastHit hit;
-        bool isCollider = Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("MapCube"));
-        if (isCollider)
+        public void SelectAndBuild()
         {
-            return hit.collider.GetComponent<MapCube>();
+            MapCube mapCube = Select();
+            Build(mapCube);
         }
-        else
-        {
-            return null;
-        }
-    }
 
-    private void Build(MapCube mapCube)
-    {
-        if (mapCube)
+        private MapCube Select()
         {
-            if (selectedTurretData != null && mapCube.turretGo == null)
+            Debug.Log("selected triggered");
+            Vector2 mousePosition = heroInput.HeroAction.Select.ReadValue<Vector2>();
+            Debug.Log(mousePosition);
+
+            // ray detection
+            Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+            RaycastHit hit;
+            bool isCollider = Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("MapCube"));
+            if (isCollider)
             {
-                bool flag = MoneyManager.Instance.UpdateMoney(-selectedTurretData.cost);
-                if (!flag) return;
-
-                Debug.Log(mapCube.name);
-                mapCube.BuildTurret(selectedTurretData.turretPrefab);
+                return hit.collider.GetComponent<MapCube>();
             }
             else
             {
-                // TODO: 升级处理
+                return null;
             }
         }
+
+        private void Build(MapCube mapCube)
+        {
+            if (mapCube)
+            {
+                if (selectedTurretData != null && mapCube.turretGo == null)
+                {
+                    bool flag = MoneyManager.Instance.UpdateMoney(-selectedTurretData[selectedTurrentIndex].cost);
+                    if (!flag) return;
+
+                    Debug.Log(selectedTurrentIndex);
+                    mapCube.BuildTurret(selectedTurretData[selectedTurrentIndex].turretPrefab);
+                }
+                else
+                {
+                    // TODO: 升级处理
+                }
+            }
+        }
+
+    #endregion
+
+    #region Tower Switch
+
+    public void TowerSwitch()
+    {
+        selectedTurrentIndex = selectedTurrentIndex + 1;
+        if (selectedTurrentIndex > selectableTurretCount)
+        {
+            selectedTurrentIndex = 1;
+        }
     }
+
+    #endregion
+
+    #endregion
+
+    #region Weapon
+
+    public static GameObject[] selectedWeapon;
+    public GameObject weapon1;
+    public GameObject weapon2;
+    public int selectableWeaponCount = 2;
+    private static int selectedWeaponIndex = 0;
+
+    #region Weapon Switch
+
+    public void WeaponSwitch()
+    {
+        int from = selectedWeaponIndex;
+        int to = from + 1;
+        if (to == selectableWeaponCount)
+            to = 0;
+        selectedWeaponIndex = to;
+        
+
+
+        GameObject oldWeapon = transform.Find("Weapon").gameObject;
+        GameObject newWeapon = GameObject.Instantiate(selectedWeapon[to]);
+        newWeapon.transform.parent = transform;
+        newWeapon.transform.localPosition = oldWeapon.transform.localPosition;
+        newWeapon.transform.rotation = oldWeapon.transform.rotation;
+        Destroy(oldWeapon);
+        newWeapon.name = "Weapon";
+
+    }
+
+    #endregion
 
     #endregion
 }
