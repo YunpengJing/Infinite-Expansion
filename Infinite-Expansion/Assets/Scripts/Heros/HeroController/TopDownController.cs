@@ -21,14 +21,10 @@ public class TopDownController : MonoBehaviour
     {
         //cameraMain = Camera.main.transform;
         selectedTurretData = new TurretData[selectableTurretCount];
-        selectedTurretData[0] = turretData1;
-        selectedTurretData[1] = turretData2;
-        selectedTurretData[2] = turretData3;
         selectedTurrentIndex = 0;
 
         selectedWeapon = new GameObject[selectableWeaponCount];
-        selectedWeapon[0] = weapon1;
-        selectedWeapon[1] = weapon2;
+        selectedWeaponIndex = 0;
     }
 
     private void Awake()
@@ -50,6 +46,13 @@ public class TopDownController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        selectedTurretData[0] = turretData1;
+        selectedTurretData[1] = turretData2;
+        selectedTurretData[2] = turretData3;
+
+        selectedWeapon[0] = weapon1;
+        selectedWeapon[1] = weapon2;
+
         HeroMove();
         //// camera follow
         //if (cameraMain)
@@ -118,7 +121,6 @@ public class TopDownController : MonoBehaviour
 
         private MapCube Select()
         {
-            Debug.Log("selected triggered");
             Vector2 mousePosition = heroInput.HeroAction.Select.ReadValue<Vector2>();
             Debug.Log(mousePosition);
 
@@ -161,11 +163,12 @@ public class TopDownController : MonoBehaviour
 
     public void TowerSwitch()
     {
+
         selectedTurrentIndex = selectedTurrentIndex + 1;
-        if (selectedTurrentIndex > selectableTurretCount)
-        {
-            selectedTurrentIndex = 1;
-        }
+        if (selectedTurrentIndex == selectableTurretCount)
+            selectedTurrentIndex = 0;
+        if (selectedTurretData[selectedTurrentIndex] == null)
+            selectedTurrentIndex = 0;
     }
 
     #endregion
@@ -188,10 +191,12 @@ public class TopDownController : MonoBehaviour
         int to = from + 1;
         if (to == selectableWeaponCount)
             to = 0;
+        if (selectedWeapon[to] == null)
+            to = 0;
+        if (from == to)
+            return;
         selectedWeaponIndex = to;
         
-
-
         GameObject oldWeapon = transform.Find("Weapon").gameObject;
         GameObject newWeapon = GameObject.Instantiate(selectedWeapon[to]);
         newWeapon.transform.parent = transform;
