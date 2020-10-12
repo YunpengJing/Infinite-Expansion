@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
 
 namespace Manager
 {
@@ -57,12 +58,26 @@ namespace Manager
         {
             WinText.gameObject.SetActive(true);
             Invoke("ReturnToMainMenu", 3);
+
+            AnalyticsResult res = Analytics.CustomEvent("win", new Dictionary<string, object>
+            {
+                { "damageFromTurret", damageFromTurret }
+            });
+
+            print("win analytics res: " + res);
         }
 
         public void Fail()
         {
             FailText.gameObject.SetActive(true);
             Invoke("ReturnToMainMenu", 3);
+
+            AnalyticsResult res = Analytics.CustomEvent("fail", new Dictionary<string, object>
+            {
+                { "damageFromTurret", damageFromTurret }
+            });
+
+            print("fail analytics res: " + res);
         }
 
         // 回到主菜单
