@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
   - component: {fileID: 6500000}
-  - component: {fileID: 7831102354832588962}
   m_Layer: 0
   m_Name: House_3_YELLOW
   m_TagString: Untagged
@@ -94,15 +93,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.450006, y: 8.89227, z: 4.0615788}
   m_Center: {x: -0.000000059604645, y: 4.446135, z: -0.00000011920929}
---- !u!114 &7831102354832588962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5726dafd28e5d494cafe7c49a0020480, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

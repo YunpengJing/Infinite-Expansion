@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
         timer = attackRate;
         destination = HomeCube.homeTransform;
         m_Agent = GetComponent<NavMeshAgent>();
+        m_Agent.speed = speed;
     }
 
     // Update is called once per frame
@@ -51,6 +52,7 @@ public class Enemy : MonoBehaviour
             }
             if (Vector3.Distance(target.transform.position, transform.position) > attackDistance)
             {
+                m_Agent.ResetPath();
                 m_Agent.destination = target.transform.position;
             }
             else

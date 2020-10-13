@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
   - component: {fileID: 6500000}
-  - component: {fileID: -7584655750113526218}
+  - component: {fileID: 2437158279910973537}
   m_Layer: 0
   m_Name: House_5_YELLOW
   m_TagString: Untagged
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.3113315, y: 5.612645, z: 6.9814796}
   m_Center: {x: 0.00000011920929, y: 2.8063226, z: 0.00000059604645}
---- !u!114 &-7584655750113526218
+--- !u!114 &2437158279910973537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
