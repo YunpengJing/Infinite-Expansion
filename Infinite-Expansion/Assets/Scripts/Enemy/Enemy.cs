@@ -169,7 +169,12 @@ public class Enemy : MonoBehaviour
         }
         else if (target.tag == "Home")
         {
-            anim.Play("Attack01");
+            int num=Random.Range(0,2);
+            if(num==0)
+                anim.Play("Attack01");
+            else
+                anim.Play("Attack02");
+
             anim.Play("IdleBattle");
             target.GetComponent<HomeCube>().TakeDamage(attackPower);
             TrackTakingDamage("Home", attackPower);
