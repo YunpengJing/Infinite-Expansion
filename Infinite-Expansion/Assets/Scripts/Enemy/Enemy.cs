@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
     {
         if (status == "forward")
         {
-            Move();
+            Forward();
         }
         else if (status == "fight")
         {
@@ -51,11 +51,11 @@ public class Enemy : MonoBehaviour
             }
             if (Vector3.Distance(target.transform.position, transform.position) > attackDistance)
             {
-                transform.Translate(Vector3.forward * Time.deltaTime * speed);
-                transform.forward = target.transform.position - transform.position;
+                m_Agent.destination = target.transform.position;
             }
             else
             {
+                m_Agent.ResetPath();
                 timer += Time.deltaTime;
                 if (timer >= attackRate)
                 {
@@ -69,20 +69,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Move()
+    private void Forward()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        m_Agent.destination = destination.position;
         anim.Play("WalkFWD");
-        transform.forward = destination.position - transform.position;
-        if (Vector3.Distance(destination.position, transform.position) < 0.02f)
-        {
-            ReachDestination();
-        }
-    }
-
-    void ReachDestination()
-    {
-        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider col)
@@ -169,7 +159,6 @@ public class Enemy : MonoBehaviour
     void Fight()
     {
         //stop and call attack animation
-        transform.Translate(new Vector3(0, 0, 0));
         if (target.tag == "Turret")
         {
             anim.Play("Attack01");

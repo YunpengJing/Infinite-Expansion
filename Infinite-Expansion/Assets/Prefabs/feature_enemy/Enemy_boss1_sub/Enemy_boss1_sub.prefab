@@ -875,7 +875,6 @@ MonoBehaviour:
   attackDistance: 8
   attackPower: 70
   attackRate: 1.5
-  destination: {fileID: 0}
   money: 10
 --- !u!54 &2566024493581560593
 Rigidbody:
@@ -916,7 +915,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
