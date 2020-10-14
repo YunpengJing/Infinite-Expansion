@@ -33,22 +33,6 @@ public class MapCube : MonoBehaviour
         Destroy(effect, 1.5f);
     }
 
-    private void OnMouseEnter()
-    {
-        // 只有有选中炮塔，才高亮方块
-        if (BuildManager.selectedTurretData == null) return;
-
-        if (turretGo == null && !EventSystem.current.IsPointerOverGameObject())
-        {
-            renderer.material.color = Color.red;
-        }
-    }
-
-    private void OnMouseExit()
-    {
-        renderer.material.color = Color.white;
-    }
-
     public void TakeDamage(int damage)
     {
         if (hp <= 0) return;

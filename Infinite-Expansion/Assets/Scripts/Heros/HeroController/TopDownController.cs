@@ -104,7 +104,8 @@ public class TopDownController : MonoBehaviour
     public void SelectAndBuild()
     {
         MapCube mapCube = Select();
-        Build(mapCube);
+        //Build(mapCube);
+        BuildManager.Instance.Build(mapCube);
     }
 
     private MapCube Select()
