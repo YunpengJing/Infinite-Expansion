@@ -13,6 +13,7 @@ public class BuildManager : MonoBehaviour
     // 当前选择的炮台（要建造的炮台）
     public TurretData selectedTurretData;
 
+    public GameObject mapCubePrefab;
     private int buildTurretCount;
 
     // 单例
@@ -39,7 +40,14 @@ public class BuildManager : MonoBehaviour
         buildTurretCount = 0;
     }
 
-    public void Build(MapCube mapCube)
+    // 建造 mapcube （墙）
+    public void BuildMapCube(Vector3 v)
+    {
+        GameObject.Instantiate(mapCubePrefab, v, Quaternion.identity);
+    }
+
+    // 在 mapcube 上造塔
+    public void BuildTurret(MapCube mapCube)
     {
         if (mapCube)
         {
