@@ -67,7 +67,7 @@ namespace Manager
 
             AnalyticsResult res = Analytics.CustomEvent("win", new Dictionary<string, object>
             {
-                { "damageFromTurret", damageFromTurret }
+                { "leftMoney", MoneyManager.Instance.getCurrentMoney() },
             });
 
             print("win analytics res: " + res);
@@ -83,7 +83,7 @@ namespace Manager
 
             AnalyticsResult res = Analytics.CustomEvent("fail", new Dictionary<string, object>
             {
-                { "damageFromTurret", damageFromTurret }
+                { "leftMoney", MoneyManager.Instance.getCurrentMoney() },
             });
 
             print("fail analytics res: " + res);
