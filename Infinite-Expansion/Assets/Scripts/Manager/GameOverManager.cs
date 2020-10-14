@@ -11,8 +11,9 @@ namespace Manager
     {
         public Text WinText;
         public Text FailText;
-
-        private float damageFromTurret;
+        public bool hasWin;
+        public bool hasFail;
+        public float damageFromTurret;
 
         // 单例
         private static GameOverManager instance;
@@ -34,6 +35,8 @@ namespace Manager
         {
             Instance = this;
             damageFromTurret = 0;
+            hasWin = false;
+            hasFail = false;
         }
 
         public void AddDamageFromTurret(float damage)
@@ -56,6 +59,9 @@ namespace Manager
 
         public void Win()
         {
+            if (hasWin) return;
+            hasWin = true;
+
             WinText.gameObject.SetActive(true);
             Invoke("ReturnToMainMenu", 3);
 
@@ -69,6 +75,9 @@ namespace Manager
 
         public void Fail()
         {
+            if (hasFail) return;
+            hasFail = true;
+
             FailText.gameObject.SetActive(true);
             Invoke("ReturnToMainMenu", 3);
 
