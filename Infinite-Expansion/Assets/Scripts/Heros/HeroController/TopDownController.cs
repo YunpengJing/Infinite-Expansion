@@ -77,14 +77,53 @@ public class TopDownController : MonoBehaviour
     #region Tower Build
     public void SelectAndBuild()
     {
-        MapCube mapCube = Select();
-        BuildManager.Instance.BuildTurret(mapCube);
+        if (BuildManager.Instance.buildCube)
+        {
+            Vector3 hitPlanePoint = SelectPlane();
+            if (hitPlanePoint.x == 0 && hitPlanePoint.y == 0 && hitPlanePoint.z == 0) return;
+
+            LayerMask mask = LayerMask.GetMask("MapCube") | LayerMask.GetMask("Water") | LayerMask.GetMask("Enemy");
+            RaycastHit hit;
+            Debug.Log((int)mask);
+            float[] x = { -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f};
+            float[] z = { -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f};
+            foreach(float i in x)
+            {
+                foreach(float j in z)
+                {
+                    Ray ray = new Ray(new Vector3(hitPlanePoint.x+i, hitPlanePoint.y+100f, hitPlanePoint.z+j), new Vector3(0f, -1f, 0f));
+                    bool isCollider = Physics.Raycast(ray, out hit, 1000f, mask);
+                    if (isCollider)
+                    {
+                        Debug.Log(hit.point);
+                        Debug.Log(hit.collider.name);
+                        return;
+                    }
+                }
+            }
+            BuildManager.Instance.BuildMapCube(hitPlanePoint);
+        }
+        else
+        {
+            MapCube mapCube = SelectCube();
+            BuildManager.Instance.BuildTurret(mapCube);
+        }
     }
 
-    private MapCube Select()
+    private Vector3 SelectPlane()
     {
         Vector2 mousePosition = heroInput.HeroAction.Select.ReadValue<Vector2>();
-        Debug.Log(mousePosition);
+
+        // ray detection
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        RaycastHit hit;
+        bool isCollider = Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Plane"));
+        return hit.point;
+    }
+
+    private MapCube SelectCube()
+    {
+        Vector2 mousePosition = heroInput.HeroAction.Select.ReadValue<Vector2>();
 
         // ray detection
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
@@ -123,6 +162,11 @@ public class TopDownController : MonoBehaviour
                 BuildManager.Instance.switchBuildTurret(BuildManager.Instance.selectedTurretIndex[p]);
             }
         }
+    }
+
+    public void TowerCubeSwitch()
+    {
+        BuildManager.Instance.buildCube = !BuildManager.Instance.buildCube;
     }
 
     #endregion

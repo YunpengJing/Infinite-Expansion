@@ -21,6 +21,9 @@ public class BuildManager : MonoBehaviour
     public GameObject mapCubePrefab;
     private int buildTurretCount;
 
+    // Ture: build cube; Flase: build Tower
+    public bool buildCube = false;
+
     // 单例
     private static BuildManager instance;
 
@@ -53,7 +56,7 @@ public class BuildManager : MonoBehaviour
     // 建造 mapcube （墙）
     public void BuildMapCube(Vector3 v)
     {
-        GameObject.Instantiate(mapCubePrefab, v, Quaternion.identity);
+        GameObject newCube = GameObject.Instantiate(mapCubePrefab, v, Quaternion.identity);
     }
 
     // 在 mapcube 上造塔
