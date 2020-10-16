@@ -10,8 +10,13 @@ public class BuildManager : MonoBehaviour
     public TurretData missileTurretData;
     public TurretData standardTurretData;
 
+    public int totalTurretNumber = 3;
+    public int bagTurretMaximumNummer = 2;
+    public List<int> selectedTurretIndex;
+
     // 当前选择的炮台（要建造的炮台）
     public TurretData selectedTurretData;
+    public int currentTurretIndex;
 
     public GameObject mapCubePrefab;
     private int buildTurretCount;
@@ -37,7 +42,12 @@ public class BuildManager : MonoBehaviour
         Instance = this;
         // 初始化为普通炮台
         selectedTurretData = standardTurretData;
+        currentTurretIndex = 0;
         buildTurretCount = 0;
+
+        selectedTurretIndex = new List<int>();
+        selectedTurretIndex.Add(0);
+        selectedTurretIndex.Add(1);
     }
 
     // 建造 mapcube （墙）
@@ -49,6 +59,7 @@ public class BuildManager : MonoBehaviour
     // 在 mapcube 上造塔
     public void BuildTurret(MapCube mapCube)
     {
+        Debug.Log(selectedTurretData.type);
         if (mapCube)
         {
             if (selectedTurretData != null && mapCube.turretGo == null)
@@ -75,18 +86,23 @@ public class BuildManager : MonoBehaviour
     // 1. 普通炮塔 2. 导弹塔 3. 激光塔
     public void switchBuildTurret(int flag)
     {
-        if (flag == 1)
+        if (flag == 0)
         {
             selectedTurretData = standardTurretData;
         }
-        else if (flag == 2)
+        else if (flag == 1)
         {
             selectedTurretData = missileTurretData;
         }
-        else if (flag == 3)
+        else if (flag == 2)
         {
             selectedTurretData = laserTurretData;
         }
+        else if (flag < 0)
+        {
+            selectedTurretData = null;
+        }
+        currentTurretIndex = flag;
     }
 
     //private void Update()

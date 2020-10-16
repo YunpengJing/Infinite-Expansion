@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     public void HideHeroMenu()
     {
         GameObject menu = GameObject.Find("HeroMenu");
-        Debug.Log(menu);
         Destroy(menu);
         Time.timeScale = 1;
     }

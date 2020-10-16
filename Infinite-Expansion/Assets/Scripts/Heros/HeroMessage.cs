@@ -5,79 +5,79 @@ using UnityEngine.UI;
 
 public class HeroMessage : MonoBehaviour
 {
-    public TurretData turretData1;
-    public TurretData turretData2;
-    public TurretData turretData3;
-
-    private bool[] turretSelected;
-    private TurretData[] turretAvailable;
-    public int towerMaximum = 3;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        turretSelected = new bool[3];
-        turretAvailable = new TurretData[3];
-        turretAvailable[0] = turretData1;
-        turretAvailable[1] = turretData2;
-        turretAvailable[2] = turretData3;
-    }
-
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < turretSelected.Length; i++)
-        {
-            turretSelected[i] = false;
-        }
-        for (int i = 0; i < TopDownController.selectedTurretData.Length; i++)
-        {
-            TurretData td = TopDownController.selectedTurretData[i];
-            if (td == null)
-                break;
-            if (td.type == turretData1.type)
-            {
-                turretSelected[i] = true;
-            }
-        }
+        TowerSelectedShow();
+    }
 
-        for (int i = 0; i < turretSelected.Length; i++)
-        {
-            if (turretSelected[0])
-            {
-                GameObject.Find("Tower" + i.ToString()).GetComponent<Image>().color = Color.red;
-            }
-            else
-            {
-                GameObject.Find("Tower" + i.ToString()).GetComponent<Image>().color = Color.white;
-            }
-        }
 
-            
+
+
+
+    #region Tower
+    private void TowerSelectedShow()
+    {
+        // show the selected tower
+        for (int i = 0; i < BuildManager.Instance.totalTurretNumber; i++)
+        {
+            GameObject.Find("Tower" + i.ToString()).GetComponent<Image>().color = Color.white;
+        }
+        foreach (int i in BuildManager.Instance.selectedTurretIndex)
+        {
+            GameObject.Find("Tower" + i.ToString()).GetComponent<Image>().color = Color.red;
+        }
     }
 
     public void TowerSwap(int k)
     {
-        for (int i = 0; i < TopDownController.selectedTurretData.Length; i++)
+        if (BuildManager.Instance.selectedTurretIndex.Contains(k))
         {
-            if (TopDownController.selectedTurretData[i] == null)
+            // cancal a tower from the bag
+            if (BuildManager.Instance.currentTurretIndex == k)
             {
-                TopDownController.selectedTurretData[i] = turretAvailable[k];
-                return;
-            }
-            if (turretAvailable[k].type == TopDownController.selectedTurretData[i].type)
-            {
-                while (i < TopDownController.selectedTurretData.Length - 1)
+                // the tower to cancel is the current tower
+                int p = BuildManager.Instance.selectedTurretIndex.IndexOf(k);
+                BuildManager.Instance.selectedTurretIndex.RemoveAt(p);
+                // cancel the last one
+                if (BuildManager.Instance.selectedTurretIndex.Count == p)
                 {
-                    TopDownController.selectedTurretData[i] = TopDownController.selectedTurretData[i + 1];
-                    i++;
+                    if (p == 0)
+                    {
+                        BuildManager.Instance.switchBuildTurret(-1);
+                    }
+                    else
+                    {
+                        BuildManager.Instance.switchBuildTurret(BuildManager.Instance.selectedTurretIndex[0]);
+                    }
                 }
-                TopDownController.selectedTurretData[i] = null;
-                Debug.Log(TopDownController.selectedTurretData[0]);
-                GameObject.Find("Tower" + k.ToString()).GetComponent<Image>().color = Color.white;
+                else
+                {
+                    BuildManager.Instance.switchBuildTurret(BuildManager.Instance.selectedTurretIndex[p]);
+                }
+            }
+            else
+            {
+                BuildManager.Instance.selectedTurretIndex.Remove(k);
+            }
+        }
+        else
+        {
+            if (BuildManager.Instance.selectedTurretIndex.Count >= BuildManager.Instance.bagTurretMaximumNummer)
+            {
+                // bag is full, can not select 
                 return;
             }
-
+            else
+            {
+                // still space in bag, do select
+                if (BuildManager.Instance.selectedTurretIndex.Count == 0)
+                {
+                    BuildManager.Instance.switchBuildTurret(k);
+                }
+                BuildManager.Instance.selectedTurretIndex.Add(k);
+            }
         }
     }
+    #endregion
 }
