@@ -7,11 +7,14 @@ public class Bullet : MonoBehaviour
 
     public float moveSpeed = 100f;
 
-    public float damage = 60f;
+    public float maxDamage = 150f; // 最大伤害
+    public float currentDamage; // 当前伤害
 
     private ParticleSystem bulletSFX;
 
     private GameObject enemy;
+
+    //private bool playOnlyOnce = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,12 +35,13 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // 碰撞到物体
-        if (other.gameObject == enemy)
+        if (other.tag == "Enemy")
         {
             // SFX播放
-            bulletSFX.Play();
+            // bulletSFX.Play();
             GameObject hero = GameObject.FindWithTag("Hero");
-            other.GetComponent<Enemy>().TakeDamage(damage, hero);
+            Debug.Log("当前伤害：" + currentDamage);
+            other.GetComponent<Enemy>().TakeDamage(currentDamage, hero);
             Destroy(gameObject);
             Debug.Log("hit enemy");
         }
