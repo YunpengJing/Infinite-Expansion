@@ -112,12 +112,18 @@ public class TopDownController : MonoBehaviour
     private static int selectedTurrentIndex = 0;
 
     #region Tower Build
+    public void SelectAndBuild()
+    {
+        MapCube mapCube = Select();
+        //Build(mapCube);
+        BuildManager.Instance.BuildTurret(mapCube);
+    }
 
-        public void SelectAndBuild()
-        {
-            MapCube mapCube = Select();
-            Build(mapCube);
-        }
+        //public void SelectAndBuild()
+       // {
+        //    MapCube mapCube = Select();
+        //    Build(mapCube);
+       // }
 
         private MapCube Select()
         {
