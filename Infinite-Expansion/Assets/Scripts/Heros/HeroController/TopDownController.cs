@@ -106,7 +106,23 @@ public class TopDownController : MonoBehaviour
 
     public void TowerSwitch()
     {
-        BuildManager.Instance.switchBuildTurret(2);
+        if (BuildManager.Instance.selectedTurretIndex.Count < 2)
+        {
+            return;
+        }
+        else
+        {
+            int p = BuildManager.Instance.selectedTurretIndex.IndexOf(BuildManager.Instance.currentTurretIndex);
+            p += 1;
+            if (p == BuildManager.Instance.selectedTurretIndex.Count)
+            {
+                BuildManager.Instance.switchBuildTurret(BuildManager.Instance.selectedTurretIndex[0]);
+            }
+            else
+            {
+                BuildManager.Instance.switchBuildTurret(BuildManager.Instance.selectedTurretIndex[p]);
+            }
+        }
     }
 
     #endregion
