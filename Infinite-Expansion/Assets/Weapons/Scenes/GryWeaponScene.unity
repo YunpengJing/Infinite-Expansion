@@ -42111,6 +42111,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4424783894402650074}
     m_Modifications:
+    - target: {fileID: 50152502619574043, guid: d7120295894ee164cbab2c69c9061a70,
+        type: 3}
+      propertyPath: fireStormPrefab
+      value: 
+      objectReference: {fileID: 1871062845390441481, guid: 97e56fe55aae07d43ba3191f5839e4f6,
+        type: 3}
+    - target: {fileID: 50152502619574043, guid: d7120295894ee164cbab2c69c9061a70,
+        type: 3}
+      propertyPath: update
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2883593441376459792, guid: d7120295894ee164cbab2c69c9061a70,
         type: 3}
       propertyPath: m_Name

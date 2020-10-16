@@ -19,6 +19,8 @@ public class FireWeaponManager : MonoBehaviour
     //引用
     public GameObject firePrefab;
 
+    public GameObject fireStormPrefab;
+
     private HeroInputManager heroInput;
 
     private void Awake()
@@ -47,9 +49,16 @@ public class FireWeaponManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        //if (Input.GetButton("Fire2") && timer >= timeBetweenBullet)
+
         float shootButton = heroInput.HeroAction.Shoot.ReadValue<float>();
-        if (shootButton > 0 && fireInstance==null)
+
+        if(update==1 && shootButton>0 && timer>1f)
+        {
+            Shoot();
+            timer = 0f;
+        }
+
+        if (update==0 && shootButton > 0 && fireInstance==null)
         {
             Shoot();
         }
@@ -78,10 +87,20 @@ public class FireWeaponManager : MonoBehaviour
         gunParticles.Play();
 
         //生成子弹
-        Vector3 facing = transform.rotation * Vector3.right;
         
-        fireInstance = Instantiate(firePrefab,transform);
-        fireInstance.transform.position = transform.position + facing*(-2);
+        Vector3 facing = transform.rotation * Vector3.right;
+
+        if (update == 0)
+        {
+            fireInstance = Instantiate(firePrefab, transform);
+            fireInstance.transform.position = transform.position + facing * (-2);
+        }
+        else if(update==1)
+        {
+            GameObject fireStormIns = Instantiate(fireStormPrefab, transform.position, Quaternion.Euler(transform.eulerAngles));
+        }
+
+        
         
         
     }
