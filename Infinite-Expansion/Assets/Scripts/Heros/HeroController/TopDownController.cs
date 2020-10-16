@@ -16,13 +16,6 @@ public class TopDownController : MonoBehaviour
     public float dampTime = 0.15f;
     private Vector3 velocity = Vector3.zero;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        selectedWeapon = new GameObject[selectableWeaponCount];
-        selectedWeaponIndex = 0;
-    }
-
     private void Awake()
     {
         heroInput = new HeroInputManager();
@@ -42,9 +35,6 @@ public class TopDownController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        selectedWeapon[0] = weapon1;
-        selectedWeapon[1] = weapon2;
-
         HeroMove();
         //// camera follow
         //if (cameraMain)
@@ -175,36 +165,28 @@ public class TopDownController : MonoBehaviour
 
     #region Weapon
 
-    public static GameObject[] selectedWeapon;
-    public GameObject weapon1;
-    public GameObject weapon2;
-    public int selectableWeaponCount = 2;
-    private static int selectedWeaponIndex = 0;
-
     #region Weapon Switch
 
     public void WeaponSwitch()
     {
-        int from = selectedWeaponIndex;
-        int to = from + 1;
-        if (to == selectableWeaponCount)
-            to = 0;
-        if (selectedWeapon[to] == null)
-            to = 0;
-        if (from == to)
+        if (WeaponSelectManager.Instance.selectedWeaponIndex.Count < 2)
+        {
             return;
-        selectedWeaponIndex = to;
-        
-        GameObject oldWeapon = transform.Find("Weapon").gameObject;
-        GameObject newWeapon = GameObject.Instantiate(selectedWeapon[to]);
-        newWeapon.transform.parent = transform;
-        newWeapon.transform.localPosition = oldWeapon.transform.localPosition;
-        newWeapon.transform.rotation = oldWeapon.transform.rotation;
-        Destroy(oldWeapon);
-        newWeapon.name = "Weapon";
-
+        }
+        else
+        {
+            int p = WeaponSelectManager.Instance.selectedWeaponIndex.IndexOf(WeaponSelectManager.Instance.currentWeaponIndex);
+            p += 1;
+            if (p == WeaponSelectManager.Instance.selectedWeaponIndex.Count)
+            {
+                WeaponSelectManager.Instance.SwitchWeapon(WeaponSelectManager.Instance.selectedWeaponIndex[0]);
+            }
+            else
+            {
+                WeaponSelectManager.Instance.SwitchWeapon(WeaponSelectManager.Instance.selectedWeaponIndex[p]);
+            }
+        }
     }
-
     #endregion
 
     #endregion
