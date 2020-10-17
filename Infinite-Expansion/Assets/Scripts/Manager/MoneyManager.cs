@@ -68,4 +68,9 @@ public class MoneyManager : MonoBehaviour
         moneyText.text = "$ " + currentMoney;
         return true;
     }
+
+    public int getCurrentMoney()
+    {
+        return currentMoney;
+    }
 }
