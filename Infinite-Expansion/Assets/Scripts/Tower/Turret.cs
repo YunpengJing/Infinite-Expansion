@@ -47,7 +47,11 @@ public class Turret : MonoBehaviour
 
     private void Update()
     {
-        if (enemys.Count == 0) return;
+        if (enemys.Count == 0)
+        {
+            if (useLaser) laserRenderer.enabled = false;
+            return;
+        }
 
         // 判断第一个敌人是否被销毁或死亡，如果是更新 enemys
         if (enemys[0] == null || enemys[0].GetComponent<Enemy>().hp <= 0)
@@ -56,7 +60,11 @@ public class Turret : MonoBehaviour
         }
 
         // 更新敌人后再判断一次
-        if (enemys.Count == 0) return;
+        if (enemys.Count == 0)
+        {
+            if (useLaser) laserRenderer.enabled = false;
+            return;
+        }
 
         // 炮口朝向敌人
         if (enemys[0] != null)
@@ -102,9 +110,6 @@ public class Turret : MonoBehaviour
                 // 有敌人，进行攻击
                 laserRenderer.SetPositions(new Vector3[] { firePosition.position, enemys[0].transform.position });
                 enemys[0].GetComponent<Enemy>().TakeDamage(damageRate * Time.deltaTime, mapCubeGo);
-
-                // 统计来自 turret 激光的伤害
-                GameOverManager.Instance.AddDamageFromTurret(damageRate * Time.deltaTime);
             }
         }
     }

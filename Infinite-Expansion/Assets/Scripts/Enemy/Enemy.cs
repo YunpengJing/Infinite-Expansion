@@ -92,30 +92,30 @@ public class Enemy : MonoBehaviour
         EnemySpawner.CountEnemyAlive--;    
     }
 
-    private void TrackDamage(string tag, float damage)
-    {
-        if (tag == "Turret")
-        {
-            Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
-        {
-            { "DamageFromTurret", damage}
-        });
-        }
-        else if (tag == "Hero")
-        {
-            Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
-        {
-            { "DamageFromHero", damage}
-        });
-        }
-        else
-        {
-            Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
-        {
-            { "DamageFromOther", damage}
-        });
-        }
-    }
+    //private void TrackDamage(string tag, float damage)
+    //{
+    //    if (tag == "Turret")
+    //    {
+    //        Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
+    //    {
+    //        { "DamageFromTurret", damage}
+    //    });
+    //    }
+    //    else if (tag == "Hero")
+    //    {
+    //        Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
+    //    {
+    //        { "DamageFromHero", damage}
+    //    });
+    //    }
+    //    else
+    //    {
+    //        Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
+    //    {
+    //        { "DamageFromOther", damage}
+    //    });
+    //    }
+    //}
     public void TakeDamage(float damage, GameObject source)
     {
         if (hp <= 0)
@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
         }
         if (source)
         {
-            TrackDamage(source.tag, damage);
+            //TrackDamage(source.tag, damage);
         }
         //update hp and slider
         hp -= damage;
@@ -153,10 +153,10 @@ public class Enemy : MonoBehaviour
         status = "die";
         float dieTime = 1.0f;
         Destroy(this.gameObject, dieTime);
-        Analytics.CustomEvent("EnemyDeath", new Dictionary<string, object>
-        {
-            {"EnemyName", this.name}
-        });
+        //Analytics.CustomEvent("EnemyDeath", new Dictionary<string, object>
+        //{
+        //    {"EnemyName", this.name}
+        //});
     }
     void Fight()
     {
@@ -165,7 +165,7 @@ public class Enemy : MonoBehaviour
         {
             anim.Play("Attack01");
             target.GetComponent<MapCube>().TakeDamage(attackPower);
-            TrackTakingDamage("Turret", attackPower);
+            //TrackTakingDamage("Turret", attackPower);
         }
         else if (target.tag == "Home")
         {
@@ -177,15 +177,15 @@ public class Enemy : MonoBehaviour
 
             anim.Play("IdleBattle");
             target.GetComponent<HomeCube>().TakeDamage(attackPower);
-            TrackTakingDamage("Home", attackPower);
+            //TrackTakingDamage("Home", attackPower);
         }
     }
 
-    private void TrackTakingDamage(string target, int damage)
-    {
-        Analytics.CustomEvent("EnemyDamageTarget", new Dictionary<string, object>
-        {
-            {target, damage}
-        });
-    }
+    //private void TrackTakingDamage(string target, int damage)
+    //{
+    //    Analytics.CustomEvent("EnemyDamageTarget", new Dictionary<string, object>
+    //    {
+    //        {target, damage}
+    //    });
+    //}
 }
