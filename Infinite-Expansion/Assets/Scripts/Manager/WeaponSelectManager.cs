@@ -43,7 +43,6 @@ public class WeaponSelectManager : MonoBehaviour
         weapons = new List<GameObject>();
         weapons.Add(weapon0);
         weapons.Add(weapon1);
-        weapons.Add(weapon2);
     }
 
     // switch the current weapon to the k weapon
