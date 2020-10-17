@@ -743,7 +743,7 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Collab: 1
+    Collab: 0
     UNet: 1
   luminIcon:
     m_Name: 
@@ -757,10 +757,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: e5f2bc0b-d077-4c36-ad92-0eea5c212a35
+  cloudProjectId: a83e0082-c1b4-4c5f-828f-2b3db59641c7
   framebufferDepthMemorylessMode: 0
   projectName: Infinite-Expansion
-  organizationId: lonely7yk
+  organizationId: bzhang80
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 1
   disableOldInputManagerSupport: 1

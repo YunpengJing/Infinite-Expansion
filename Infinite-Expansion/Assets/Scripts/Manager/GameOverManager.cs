@@ -75,7 +75,11 @@ namespace Manager
             AnalyticsResult res2 = Analytics.CustomEvent("winEnemy", new Dictionary<string, object>
             {
                 { "damageFromTurret", EnemyManager.Instance.damageFromTurret },
-                { "damageFromHero", EnemyManager.Instance.damageFromHero }
+                { "damageFromHero", EnemyManager.Instance.damageFromHero },
+                { "damageToTurret", EnemyManager.Instance.damageToTurret },
+                { "damageToHero", EnemyManager.Instance.damageToHero },
+                { "damageToHome", EnemyManager.Instance.damageToHome},
+                //{ "enemyDeathStat", EnemyManager.Instance.enemyDeathStat }
             });
 
             print("win enemy analytics res: " + res2);
@@ -106,7 +110,11 @@ namespace Manager
             AnalyticsResult res2 = Analytics.CustomEvent("failEnemy", new Dictionary<string, object>
             {
                 { "damageFromTurret", EnemyManager.Instance.damageFromTurret },
-                { "damageFromHero", EnemyManager.Instance.damageFromHero }
+                { "damageFromHero", EnemyManager.Instance.damageFromHero },
+                { "damageToTurret", EnemyManager.Instance.damageToTurret },
+                { "damageToHero", EnemyManager.Instance.damageToHero },
+                { "damageToHome", EnemyManager.Instance.damageToHome},
+                //{ "enemyDeathStat", EnemyManager.Instance.enemyDeathStat }
             });
 
             print("fail enemy analytics res: " + res2);
