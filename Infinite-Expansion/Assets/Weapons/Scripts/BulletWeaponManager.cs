@@ -42,7 +42,7 @@ public class BulletWeaponManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gunParticles = GetComponent<ParticleSystem>();
+        gunParticles = gameObject.GetComponent<ParticleSystem>();
         gunAudio = GetComponent<AudioSource>();
     }
 
