@@ -167,7 +167,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4490302565791019165}
-  m_LocalRotation: {x: -0.7059887, y: 0.03974929, z: -0.06502678, w: 0.70411044}
+  m_LocalRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
   m_LocalPosition: {x: -44.95, y: 2.285, z: 13.303247}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -176,7 +176,7 @@ Transform:
   - {fileID: 3643882368974582390}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -98.499, y: -90, z: -632.054}
+  m_LocalEulerAnglesHint: {x: -90, y: -90, z: 90}
 --- !u!33 &195002086415459714
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
   muzzlePrefab: {fileID: 450044020708499364, guid: 93a162fc463d2d842a8c25e141618684,
     type: 3}
   muzzlePosition: {fileID: 3643882368892340086}
-  autoFire: 1
+  autoFire: 0
   shotDelay: 4
   rotate: 0
   rotationSpeed: 0.25

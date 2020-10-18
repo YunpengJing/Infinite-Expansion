@@ -7,10 +7,9 @@ public class WeaponSelectManager : MonoBehaviour
     public GameObject weapon0;
     public GameObject weapon1;
     public GameObject weapon2;
+    public GameObject weapon3;
     public List<GameObject> weapons;
 
-    public int totalWeaponNumber = 3;
-    public int bagWeaponMaximumNumber = 2;
     public List<int> selectedWeaponIndex;
 
     public int currentWeaponIndex;
@@ -39,10 +38,14 @@ public class WeaponSelectManager : MonoBehaviour
         selectedWeaponIndex = new List<int>();
         selectedWeaponIndex.Add(0);
         selectedWeaponIndex.Add(1);
+        selectedWeaponIndex.Add(2);
+        selectedWeaponIndex.Add(3);
 
         weapons = new List<GameObject>();
         weapons.Add(weapon0);
         weapons.Add(weapon1);
+        weapons.Add(weapon2);
+        weapons.Add(weapon3);
     }
 
     // switch the current weapon to the k weapon
