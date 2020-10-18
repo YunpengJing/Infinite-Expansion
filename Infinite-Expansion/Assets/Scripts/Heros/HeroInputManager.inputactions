@@ -30,14 +30,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Build",
-                    "type": "Button",
-                    "id": "cd621183-aaa9-4a93-8168-6228c4f644b6",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Select",
                     "type": "Value",
                     "id": "15aad98e-93bb-4448-ac0d-9c0d79e44a0a",
@@ -132,17 +124,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1d270eff-d2ad-44d9-9bc3-3ca2e4625391",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Build",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

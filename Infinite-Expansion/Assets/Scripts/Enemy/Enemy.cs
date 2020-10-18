@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 using UnityEngine.Scripting.APIUpdating;
 using UnityEngine.Analytics;
 public class Enemy : MonoBehaviour
@@ -16,29 +17,30 @@ public class Enemy : MonoBehaviour
     private Slider hpSlider;
     private GameObject target;
     private string status = "forward";
-    private Transform[] positions;
-    private int index = 0;
+    private Transform destination;
     private Animator anim;
     private float timer = 0;
     public int money = 10;
+    NavMeshAgent m_Agent;
 
     // Start is called before the first frame update
     void Start()
     {
-        positions = Waypoints.positions;
         hpSlider = GetComponentInChildren<Slider>();
         totalHp = hp;
         anim = GetComponent<Animator>();
         timer = attackRate;
+        destination = HomeCube.homeTransform;
+        m_Agent = GetComponent<NavMeshAgent>();
+        m_Agent.speed = speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(anim.SetTrigger("attack"));
         if (status == "forward")
         {
-            Move();
+            Forward();
         }
         else if (status == "fight")
         {
@@ -50,11 +52,12 @@ public class Enemy : MonoBehaviour
             }
             if (Vector3.Distance(target.transform.position, transform.position) > attackDistance)
             {
-                transform.Translate(Vector3.forward * Time.deltaTime * speed);
-                transform.forward = target.transform.position - transform.position;
+                m_Agent.ResetPath();
+                m_Agent.destination = target.transform.position;
             }
             else
             {
+                m_Agent.ResetPath();
                 timer += Time.deltaTime;
                 if (timer >= attackRate)
                 {
@@ -68,31 +71,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Move()
+    private void Forward()
     {
-        if (index > positions.Length - 1)
-        {
-            return;
-        }
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        m_Agent.destination = destination.position;
         anim.Play("WalkFWD");
-        transform.forward = positions[index].position - transform.position;
-        if(Time.deltaTime * speed >= Vector3.Distance (transform.position, positions[index].position)){
-            index++;
-        }
-        else if (Vector3.Distance(positions[index].position, transform.position) < 0.02f)
-        {
-            index++;
-        }
-        if (index > positions.Length - 1)
-        {
-            ReachDestination();
-        }
-    }
-
-    void ReachDestination()
-    {
-        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider col)
@@ -110,7 +92,7 @@ public class Enemy : MonoBehaviour
         EnemySpawner.CountEnemyAlive--;    
     }
 
-    public void TrackDamage(string tag, float damage)
+    private void TrackDamage(string tag, float damage)
     {
         if (tag == "Turret")
         {
@@ -140,7 +122,10 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-        TrackDamage(source.tag, damage);
+        if (source)
+        {
+            TrackDamage(source.tag, damage);
+        }
         //update hp and slider
         hp -= damage;
         anim.Play("GetHit");
@@ -176,17 +161,31 @@ public class Enemy : MonoBehaviour
     void Fight()
     {
         //stop and call attack animation
-        transform.Translate(new Vector3(0, 0, 0));
         if (target.tag == "Turret")
         {
             anim.Play("Attack01");
             target.GetComponent<MapCube>().TakeDamage(attackPower);
+            TrackTakingDamage("Turret", attackPower);
         }
         else if (target.tag == "Home")
         {
-            anim.Play("Attack01");
+            int num=Random.Range(0,2);
+            if(num==0)
+                anim.Play("Attack01");
+            else
+                anim.Play("Attack02");
+
             anim.Play("IdleBattle");
             target.GetComponent<HomeCube>().TakeDamage(attackPower);
+            TrackTakingDamage("Home", attackPower);
         }
+    }
+
+    private void TrackTakingDamage(string target, int damage)
+    {
+        Analytics.CustomEvent("EnemyDamageTarget", new Dictionary<string, object>
+        {
+            {target, damage}
+        });
     }
 }
