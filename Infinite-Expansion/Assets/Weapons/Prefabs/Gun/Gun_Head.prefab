@@ -4835,9 +4835,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24f2b9fee0a4f24290ebd2ac186f8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  timeBetweenBullet: 0.15
-  maxLength: 100
+  gunParticlesss: {fileID: 0}
+  gunLines: []
+  coolingTimer: 0
+  maxNumberOfBullet: 0
+  coolingAudio: {fileID: 0}
+  maxChargingTimer: 0
+  chargeAudio: {fileID: 0}
+  maxScale: 0
+  bulletSlider: {fileID: 0}
 --- !u!82 &8066580783832004722
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4850,7 +4856,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 53d2238f4c4b2aa4f8e559c7af9e0126, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0

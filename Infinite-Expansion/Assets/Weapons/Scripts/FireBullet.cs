@@ -7,11 +7,14 @@ public class FireBullet : MonoBehaviour
 
     public float damage = 1f;
 
+    private AudioSource gunAudio;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gunAudio = GetComponent<AudioSource>();
+        gunAudio.Play();
     }
 
     // Update is called once per frame
