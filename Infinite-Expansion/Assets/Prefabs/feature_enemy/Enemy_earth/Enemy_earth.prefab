@@ -109,7 +109,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 20}
+  m_SizeDelta: {x: 170, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6931984583773421134
 MonoBehaviour:
@@ -960,7 +960,7 @@ MonoBehaviour:
   name: anonymous
   speed: 10
   hp: 150
-  attackDistance: 20
+  attackDistance: 40
   attackPower: 10
   attackRate: 1
   money: 10
