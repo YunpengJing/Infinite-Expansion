@@ -50,17 +50,16 @@ namespace BigRookGames.Weapons
         /// Explodes on contact.
         /// </summary>
         /// <param name="collision"></param>
-        private void OnTriggerEnter(Collider collision)
+        private void OnCollisionEnter(Collision collision)
         {
-            if (collision.tag == "Enemy")
-            {
-                GameObject hero = GameObject.FindWithTag("Hero");
-                collision.GetComponent<Enemy>().TakeDamage(currentDamage, hero);
-                // --- return if not enabled because OnCollision is still called if compoenent is disabled ---
-                if (!enabled) return;
+            //if (collision.tag == "Enemy")
+            //{
 
-                // --- Explode when hitting an object and disable the projectile mesh ---
-                Explode();
+            // --- return if not enabled because OnCollision is still called if compoenent is disabled ---
+            //if (!enabled) return;
+
+            // --- Explode when hitting an object and disable the projectile mesh ---
+            Explode();
                 projectileMesh.enabled = false;
                 targetHit = true;
                 inFlightAudioSource.Stop();
@@ -73,9 +72,30 @@ namespace BigRookGames.Weapons
 
                 // --- Destroy this object after 2 seconds. Using a delay because the particle system needs to finish ---
                 Destroy(gameObject, 5f);
-            }
+           // }
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            GameObject hero = GameObject.FindWithTag("Hero");
+            if (other.tag == "Enemy")
+            {
+                other.GetComponent<Enemy>().TakeDamage(currentDamage, hero);
+            }
+            Explode();
+            projectileMesh.enabled = false;
+            targetHit = true;
+            inFlightAudioSource.Stop();
+            foreach (Collider col in GetComponents<Collider>())
+            {
+                col.enabled = false;
+            }
+            disableOnHit.Stop();
+
+
+            // --- Destroy this object after 2 seconds. Using a delay because the particle system needs to finish ---
+            Destroy(gameObject, 5f);
+        }
 
         /// <summary>
         /// Instantiates an explode object.

@@ -232,7 +232,7 @@ MonoBehaviour:
   projectileMesh: {fileID: 7375337548765109680}
   inFlightAudioSource: {fileID: 136168842684345051}
   disableOnHit: {fileID: 4361980691020798282}
-  currentDamage: 100
+  currentDamage: 200
 --- !u!54 &91128310120046435
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -257,7 +257,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4092872357349286730}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

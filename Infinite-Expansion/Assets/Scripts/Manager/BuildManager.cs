@@ -19,7 +19,12 @@ public class BuildManager : MonoBehaviour
     public int currentTurretIndex;
 
     public GameObject mapCubePrefab;
-    private int buildTurretCount;
+
+    // 建造的数量
+    public int mapCubeCnt;
+    public int standardTurretCnt;
+    public int missileTurretCnt;
+    public int laserTurretCnt;
 
     // Ture: build cube; Flase: build Tower
     public bool buildCube = false;
@@ -46,7 +51,10 @@ public class BuildManager : MonoBehaviour
         // 初始化为普通炮台
         selectedTurretData = standardTurretData;
         currentTurretIndex = 0;
-        buildTurretCount = 0;
+        mapCubeCnt = 0;
+        standardTurretCnt = 0;
+        missileTurretCnt = 0;
+        laserTurretCnt = 0;
 
         selectedTurretIndex = new List<int>();
         selectedTurretIndex.Add(0);
@@ -57,6 +65,7 @@ public class BuildManager : MonoBehaviour
     public void BuildMapCube(Vector3 v)
     {
         GameObject newCube = GameObject.Instantiate(mapCubePrefab, v, Quaternion.identity);
+        mapCubeCnt += 1;
     }
 
     // 在 mapcube 上造塔
@@ -71,7 +80,19 @@ public class BuildManager : MonoBehaviour
                 if (!flag) return;
 
                 mapCube.BuildTurret(selectedTurretData.turretPrefab);
-                buildTurretCount += 1;
+
+                if (currentTurretIndex == 0)
+                {
+                    standardTurretCnt += 1;
+                }
+                else if (currentTurretIndex == 1)
+                {
+                    missileTurretCnt += 1;
+                }
+                else if (currentTurretIndex == 2)
+                {
+                    laserTurretCnt += 1;
+                }
             }
             else
             {
@@ -80,13 +101,8 @@ public class BuildManager : MonoBehaviour
         }
     }
 
-    public int getBuildTurretCount()
-    {
-        return buildTurretCount;
-    }
-
     // 切换要建造的塔类型
-    // 1. 普通炮塔 2. 导弹塔 3. 激光塔
+    // 0. 普通炮塔 1. 导弹塔 2. 激光塔
     public void switchBuildTurret(int flag)
     {
         if (flag == 0)
