@@ -12490,6 +12490,57 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 787850582}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &296991919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 296991920}
+  - component: {fileID: 296991921}
+  m_Layer: 0
+  m_Name: EnemyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &296991920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296991919}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315709608}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &296991921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296991919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5fc45b9f9054046969c1cd115ae80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageFromTurret: 0
+  damageFromHero: 0
+  damageFromOther: 0
+  damageToTurret: 0
+  damageToHome: 0
+  damageToHero: 0
+  hero1AttackBase: 0
+  hero1DeathCnt: 0
 --- !u!1001 &298525224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36525,7 +36576,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1315709608}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &854404064
 MonoBehaviour:
@@ -49748,6 +49799,7 @@ Transform:
   - {fileID: 1445559332}
   - {fileID: 464931689}
   - {fileID: 1806706921}
+  - {fileID: 296991920}
   - {fileID: 854404063}
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -60828,38 +60880,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2070618744}
     m_Modifications:
-    - target: {fileID: 423180760, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 423180760, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 666799917, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 666799917, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 681979452, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 681979452, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 960706717, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 960706717, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 960706718, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -60876,7 +60896,7 @@ PrefabInstance:
     - target: {fileID: 5548626132393836477, guid: 6cf7a0949b2ef41faaa20f6b419df5a7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.38523
       objectReference: {fileID: 0}
     - target: {fileID: 5548626132393836477, guid: 6cf7a0949b2ef41faaa20f6b419df5a7,
         type: 3}
@@ -60927,16 +60947,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MapCube (224)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8704374359171118204, guid: 6cf7a0949b2ef41faaa20f6b419df5a7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8704374359171118204, guid: 6cf7a0949b2ef41faaa20f6b419df5a7,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
