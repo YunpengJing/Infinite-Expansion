@@ -4838,7 +4838,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunParticlesss: {fileID: 8066580783832004733}
-  gunLines: []
+  gunLines:
+  - {fileID: 3659995153115176983, guid: 3c6b27d949cdda749892906e1f1d1b27, type: 3}
+  - {fileID: 3659995153115176983, guid: f05c7e6fbbfbe824388456bb4abff9d4, type: 3}
+  - {fileID: 3659995153115176983, guid: ec753d54f333bb944b8b04884ad63828, type: 3}
   coolingTimer: 3
   maxNumberOfBullet: 5
   coolingAudio: {fileID: 1934127907}
