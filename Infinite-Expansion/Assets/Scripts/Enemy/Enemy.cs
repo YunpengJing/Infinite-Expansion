@@ -158,7 +158,11 @@ public class Enemy : MonoBehaviour
         //stop and call attack animation
         if (target.tag == "Turret")
         {
-            anim.Play("Attack01");
+            int num=Random.Range(0,2);
+            if(num==0)
+                anim.Play("Attack01");
+            else
+                anim.Play("Attack02");
             target.GetComponent<MapCube>().TakeDamage(attackPower);
             TrackTakingDamage("Turret", attackPower);
         }
