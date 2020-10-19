@@ -1411,15 +1411,15 @@ RectTransform:
   m_GameObject: {fileID: 46142755}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0}
   m_Children: []
   m_Father: {fileID: 64807590}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -300, y: 150}
-  m_SizeDelta: {x: 102, y: 71}
+  m_AnchoredPosition: {x: -305.15, y: 117.3}
+  m_SizeDelta: {x: 512, y: 512}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &46142757
 MonoBehaviour:
@@ -1494,7 +1494,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 690c13cc0492a3c4184a55687c65ab44, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dc74b87909039a84d8216a1e1f4fe9c9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3673,7 +3673,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -150, y: 300}
-  m_SizeDelta: {x: 102, y: 71}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &142632825
 MonoBehaviour:
@@ -3748,7 +3748,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 690c13cc0492a3c4184a55687c65ab44, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5b56d9fa0e8bd6e409ed188db38a692c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -41177,7 +41177,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14.4, y: 0.000022888184}
+  m_AnchoredPosition: {x: 14.399994, y: 0.000030517578}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1001880868
@@ -63556,6 +63556,24 @@ PrefabInstance:
       propertyPath: mapCubePrefab
       value: 
       objectReference: {fileID: 8704374359171118204, guid: 6cf7a0949b2ef41faaa20f6b419df5a7,
+        type: 3}
+    - target: {fileID: 6513700124567995280, guid: 644e42fe895784abd9c3e49309455099,
+        type: 3}
+      propertyPath: laserTurretImg
+      value: 
+      objectReference: {fileID: 21300000, guid: a48d54caf58e38b408ad19a22cd4f76c,
+        type: 3}
+    - target: {fileID: 6513700124567995280, guid: 644e42fe895784abd9c3e49309455099,
+        type: 3}
+      propertyPath: missleTurretImg
+      value: 
+      objectReference: {fileID: 21300000, guid: 62fb25501bc41d247ab4db84b757e526,
+        type: 3}
+    - target: {fileID: 6513700124567995280, guid: 644e42fe895784abd9c3e49309455099,
+        type: 3}
+      propertyPath: standardTurretImg
+      value: 
+      objectReference: {fileID: 21300000, guid: dc74b87909039a84d8216a1e1f4fe9c9,
         type: 3}
     - target: {fileID: 6513700124567995281, guid: 644e42fe895784abd9c3e49309455099,
         type: 3}

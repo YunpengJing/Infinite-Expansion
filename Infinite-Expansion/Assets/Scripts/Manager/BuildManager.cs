@@ -10,6 +10,10 @@ public class BuildManager : MonoBehaviour
     public TurretData missileTurretData;
     public TurretData standardTurretData;
 
+    public Sprite laserTurretImg;
+    public Sprite missleTurretImg;
+    public Sprite standardTurretImg;
+
     public int totalTurretNumber = 3;
     public int bagTurretMaximumNummer = 2;
     public List<int> selectedTurretIndex;
@@ -115,21 +119,26 @@ public class BuildManager : MonoBehaviour
     // 0. 普通炮塔 1. 导弹塔 2. 激光塔
     public void switchBuildTurret(int flag)
     {
+        GameObject button = GameObject.Find("Tower Switch");
         if (flag == 0)
         {
             selectedTurretData = standardTurretData;
+            button.GetComponent<Button>().image.sprite = standardTurretImg;
         }
         else if (flag == 1)
         {
             selectedTurretData = missileTurretData;
+            button.GetComponent<Button>().image.sprite = missleTurretImg;
         }
         else if (flag == 2)
         {
             selectedTurretData = laserTurretData;
+            button.GetComponent<Button>().image.sprite = laserTurretImg;
         }
         else if (flag < 0)
         {
             selectedTurretData = null;
+            button.GetComponent<Button>().image.sprite = null;
         }
         currentTurretIndex = flag;
     }
