@@ -12535,6 +12535,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageFromTurret: 0
   damageFromHero: 0
+  damageFromOther: 0
+  damageToTurret: 0
+  damageToHome: 0
+  damageToHero: 0
   hero1AttackBase: 0
   hero1DeathCnt: 0
 --- !u!1001 &298525224
@@ -36572,7 +36576,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1315709608}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &854404064
 MonoBehaviour:
@@ -49795,6 +49799,7 @@ Transform:
   - {fileID: 1445559332}
   - {fileID: 464931689}
   - {fileID: 1806706921}
+  - {fileID: 296991920}
   - {fileID: 854404063}
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -60875,38 +60880,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2070618744}
     m_Modifications:
-    - target: {fileID: 423180760, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 423180760, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 666799917, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 666799917, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 681979452, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 681979452, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 960706717, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 960706717, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 960706718, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -60923,7 +60896,7 @@ PrefabInstance:
     - target: {fileID: 5548626132393836477, guid: 6cf7a0949b2ef41faaa20f6b419df5a7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.38523
       objectReference: {fileID: 0}
     - target: {fileID: 5548626132393836477, guid: 6cf7a0949b2ef41faaa20f6b419df5a7,
         type: 3}
@@ -60974,16 +60947,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MapCube (224)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8704374359171118204, guid: 6cf7a0949b2ef41faaa20f6b419df5a7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8704374359171118204, guid: 6cf7a0949b2ef41faaa20f6b419df5a7,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cf7a0949b2ef41faaa20f6b419df5a7, type: 3}
