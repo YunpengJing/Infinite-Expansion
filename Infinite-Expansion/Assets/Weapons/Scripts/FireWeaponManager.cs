@@ -12,8 +12,6 @@ public class FireWeaponManager : MonoBehaviour
 
     private ParticleSystem gunParticles;
 
-    private AudioSource gunAudio;
-
     private GameObject fireInstance=null;
 
     //引用
@@ -42,7 +40,6 @@ public class FireWeaponManager : MonoBehaviour
     void Start()
     {
         gunParticles = gameObject.GetComponent<ParticleSystem>();
-        gunAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -77,10 +74,6 @@ public class FireWeaponManager : MonoBehaviour
         // 计时器清0
         timer = 0;
         // 开启灯光
-
-        // 播放声音
-        gunAudio.Play();
-        // 画线
 
         // 开启粒子系统
         gunParticles.Stop();
