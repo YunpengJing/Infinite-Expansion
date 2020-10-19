@@ -38,8 +38,8 @@ public class WeaponSelectManager : MonoBehaviour
         selectedWeaponIndex = new List<int>();
         selectedWeaponIndex.Add(0);
         selectedWeaponIndex.Add(1);
-        //selectedWeaponIndex.Add(2);
-        //selectedWeaponIndex.Add(3);
+        selectedWeaponIndex.Add(2);
+        selectedWeaponIndex.Add(3);
 
         weapons = new List<GameObject>();
         weapons.Add(weapon0);
