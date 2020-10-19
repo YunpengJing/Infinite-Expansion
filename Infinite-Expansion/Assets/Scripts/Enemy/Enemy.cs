@@ -1,10 +1,6 @@
-﻿  using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
-using UnityEngine.Scripting.APIUpdating;
-using UnityEngine.Analytics;
 public class Enemy : MonoBehaviour
 {
     public string name = "anonymous";
@@ -91,31 +87,21 @@ public class Enemy : MonoBehaviour
     {
         EnemySpawner.CountEnemyAlive--;    
     }
-
-    //private void TrackDamage(string tag, float damage)
-    //{
-    //    if (tag == "Turret")
-    //    {
-    //        Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
-    //    {
-    //        { "DamageFromTurret", damage}
-    //    });
-    //    }
-    //    else if (tag == "Hero")
-    //    {
-    //        Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
-    //    {
-    //        { "DamageFromHero", damage}
-    //    });
-    //    }
-    //    else
-    //    {
-    //        Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
-    //    {
-    //        { "DamageFromOther", damage}
-    //    });
-    //    }
-    //}
+    private void TrackDamage(string tag, float damage)
+    {
+        if (tag == "Turret")
+        {
+            EnemyManager.Instance.damageFromTurret += damage;
+        }
+        else if (tag == "Hero")
+        {
+            EnemyManager.Instance.damageFromHero += damage;
+        }
+        else
+        {
+            EnemyManager.Instance.damageFromOther += damage;
+        }
+    }
     public void TakeDamage(float damage, GameObject source)
     {
         if (hp <= 0)
@@ -124,7 +110,7 @@ public class Enemy : MonoBehaviour
         }
         if (source)
         {
-            //TrackDamage(source.tag, damage);
+            TrackDamage(source.tag, damage);
         }
         //update hp and slider
         hp -= damage;
@@ -144,6 +130,18 @@ public class Enemy : MonoBehaviour
             }
         }
     } 
+
+    private void TrackeDeath()
+    {
+        if (EnemyManager.Instance.enemyDeathStat.ContainsKey(this.name))
+        {
+            EnemyManager.Instance.enemyDeathStat[this.name] = EnemyManager.Instance.enemyDeathStat[this.name] + 1;
+        } else
+        {
+            EnemyManager.Instance.enemyDeathStat.Add(this.name, 1);
+        }
+
+    }
     void Die()
     {
         //call die animation and destroy the object
@@ -152,20 +150,21 @@ public class Enemy : MonoBehaviour
         MoneyManager.Instance.UpdateMoney(this.money);
         status = "die";
         float dieTime = 1.0f;
+        TrackeDeath();
         Destroy(this.gameObject, dieTime);
-        //Analytics.CustomEvent("EnemyDeath", new Dictionary<string, object>
-        //{
-        //    {"EnemyName", this.name}
-        //});
     }
     void Fight()
     {
         //stop and call attack animation
         if (target.tag == "Turret")
         {
-            anim.Play("Attack01");
+            int num=Random.Range(0,2);
+            if(num==0)
+                anim.Play("Attack01");
+            else
+                anim.Play("Attack02");
             target.GetComponent<MapCube>().TakeDamage(attackPower);
-            //TrackTakingDamage("Turret", attackPower);
+            TrackTakingDamage("Turret", attackPower);
         }
         else if (target.tag == "Home")
         {
@@ -177,15 +176,21 @@ public class Enemy : MonoBehaviour
 
             anim.Play("IdleBattle");
             target.GetComponent<HomeCube>().TakeDamage(attackPower);
-            //TrackTakingDamage("Home", attackPower);
+            TrackTakingDamage("Home", attackPower);
         }
     }
 
-    //private void TrackTakingDamage(string target, int damage)
-    //{
-    //    Analytics.CustomEvent("EnemyDamageTarget", new Dictionary<string, object>
-    //    {
-    //        {target, damage}
-    //    });
-    //}
+    private void TrackTakingDamage(string target, int damage)
+    {
+        if (target == "Turret")
+        {
+            EnemyManager.Instance.damageToTurret += damage;
+        } else if (target == "Hero")
+        {
+            EnemyManager.Instance.damageToHero += damage;
+        } else if (target == "Home")
+        {
+            EnemyManager.Instance.damageToHome += damage;
+        }
+    }
 }

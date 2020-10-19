@@ -6,7 +6,11 @@ public class EnemyManager : MonoBehaviour
 {
     public float damageFromTurret;
     public float damageFromHero;
-
+    public float damageFromOther;
+    public float damageToTurret;
+    public float damageToHome;
+    public float damageToHero;
+    public Dictionary<string, int> enemyDeathStat;
     public float hero1AttackBase;
     public int hero1DeathCnt;
 
@@ -31,7 +35,11 @@ public class EnemyManager : MonoBehaviour
         Instance = this;
         damageFromTurret = 0;
         damageFromHero = 0;
-
+        damageFromOther = 0;
+        damageToTurret = 0;
+        damageToHome = 0;
+        damageToHero = 0;
+        enemyDeathStat = new Dictionary<string, int>();
         hero1AttackBase = 0;
         hero1DeathCnt = 0;
     }

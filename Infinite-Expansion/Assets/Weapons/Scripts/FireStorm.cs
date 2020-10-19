@@ -10,10 +10,13 @@ public class FireStorm : MonoBehaviour
 
     public float moveSpeed = 5;
 
+    private AudioSource gunAudio;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        gunAudio = GetComponent<AudioSource>();
+        gunAudio.Play();
     }
 
     // Update is called once per frame
