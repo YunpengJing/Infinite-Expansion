@@ -39,7 +39,8 @@ public class WeaponManager : MonoBehaviour
         // gunParticles = GetComponent<ParticleSystem>();
         gunAudio = GetComponent<AudioSource>();
         currentNumberOfBullet = maxNumberOfBullet;
-        bulletSlider.value = 1f;
+        if (bulletSlider != null)
+            bulletSlider.value = 1f;
     }
 
     void Awake()
@@ -88,7 +89,8 @@ public class WeaponManager : MonoBehaviour
             {
                 // 正在冷却
                 // 更新UI
-                bulletSlider.value = timer / coolingTimer;
+                if (bulletSlider != null)
+                    bulletSlider.value = timer / coolingTimer;
             }
         }
         else
@@ -100,7 +102,8 @@ public class WeaponManager : MonoBehaviour
             } else if (isCoolingDown && timer < coolingTimer)
             {
                 // 更新UI
-                bulletSlider.value = timer / coolingTimer;
+                if (bulletSlider != null)
+                    bulletSlider.value = timer / coolingTimer;
             } else if (isCoolingDown && timer >= coolingTimer)
             {
                 // 冷却完毕
@@ -151,7 +154,8 @@ public class WeaponManager : MonoBehaviour
         // 子弹减1
         currentNumberOfBullet--;
         // 更新子弹UI
-        bulletSlider.value = (float)currentNumberOfBullet / maxNumberOfBullet;
+        if (bulletSlider != null)
+            bulletSlider.value = (float)currentNumberOfBullet / maxNumberOfBullet;
         // 测试
         // Debug.Log("aaaa");
     }
@@ -170,7 +174,8 @@ public class WeaponManager : MonoBehaviour
     {
         // 充能完毕
         currentNumberOfBullet = maxNumberOfBullet;
-        bulletSlider.value = 1.0f;
+        if (bulletSlider != null)
+            bulletSlider.value = 1.0f;
         isCoolingDown = false;
         Debug.Log("reload finished");
         coolingAudio.Stop();
@@ -187,7 +192,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (charingTimer > maxChargingTimer)
         {
-            Charged();
+            //Charged();
         }
         else
         {
