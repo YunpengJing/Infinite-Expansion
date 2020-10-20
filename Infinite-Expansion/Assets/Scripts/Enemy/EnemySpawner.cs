@@ -6,7 +6,7 @@ using UnityEngine.Analytics;
 public class EnemySpawner : MonoBehaviour
 {
     public Wave[] waves;
-    public Transform START;
+    public Transform[] START;
     public float waveRate = 2;
     public static int CountEnemyAlive = 0;
     private int waveCount = 0;
@@ -29,8 +29,11 @@ public class EnemySpawner : MonoBehaviour
         {
             for (int i = 0; i < wave.count; i++)
             {
-                GameObject.Instantiate(wave.enemyPrefab, START.position, Quaternion.identity);
-                CountEnemyAlive++;
+                for (int j = 0; j < START.Length; j ++)
+                {
+                    GameObject.Instantiate(wave.enemyPrefab, START[j].position, Quaternion.identity);
+                    CountEnemyAlive++;
+                }
                 if (i!=wave.count - 1)
                 {
                     yield return new WaitForSeconds(wave.rate);
