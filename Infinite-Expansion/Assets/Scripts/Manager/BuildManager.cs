@@ -10,6 +10,10 @@ public class BuildManager : MonoBehaviour
     public TurretData missileTurretData;
     public TurretData standardTurretData;
 
+    public Sprite laserTurretImg;
+    public Sprite missleTurretImg;
+    public Sprite standardTurretImg;
+
     public int totalTurretNumber = 3;
     public int bagTurretMaximumNummer = 2;
     public List<int> selectedTurretIndex;
@@ -26,8 +30,10 @@ public class BuildManager : MonoBehaviour
     public int missileTurretCnt;
     public int laserTurretCnt;
 
-    // Ture: build cube; Flase: build Tower
-    public bool buildCube = false;
+    private int mapCubeMoney;
+
+    // Ture: show the range of build; Flase: donot show
+    private bool showBuildRange;
 
     // 单例
     private static BuildManager instance;
@@ -56,14 +62,21 @@ public class BuildManager : MonoBehaviour
         missileTurretCnt = 0;
         laserTurretCnt = 0;
 
+        showBuildRange = true;
+
         selectedTurretIndex = new List<int>();
         selectedTurretIndex.Add(0);
         selectedTurretIndex.Add(1);
+
+        mapCubeMoney = 20;
     }
 
     // 建造 mapcube （墙）
     public void BuildMapCube(Vector3 v)
     {
+        bool flag = MoneyManager.Instance.UpdateMoney(-mapCubeMoney);
+        if (!flag) return;
+
         GameObject newCube = GameObject.Instantiate(mapCubePrefab, v, Quaternion.identity);
         mapCubeCnt += 1;
     }
@@ -101,25 +114,38 @@ public class BuildManager : MonoBehaviour
         }
     }
 
+    // Swith the show of build range
+    public void SwitchBuildRange()
+    {
+        showBuildRange = !showBuildRange;
+        GameObject buildRange = GameObject.Find("Range");
+        buildRange.GetComponent<Image>().enabled = showBuildRange;
+    }
+
     // 切换要建造的塔类型
     // 0. 普通炮塔 1. 导弹塔 2. 激光塔
     public void switchBuildTurret(int flag)
     {
+        GameObject button = GameObject.Find("Tower Switch");
         if (flag == 0)
         {
             selectedTurretData = standardTurretData;
+            button.GetComponent<Button>().image.sprite = standardTurretImg;
         }
         else if (flag == 1)
         {
             selectedTurretData = missileTurretData;
+            button.GetComponent<Button>().image.sprite = missleTurretImg;
         }
         else if (flag == 2)
         {
             selectedTurretData = laserTurretData;
+            button.GetComponent<Button>().image.sprite = laserTurretImg;
         }
         else if (flag < 0)
         {
             selectedTurretData = null;
+            button.GetComponent<Button>().image.sprite = null;
         }
         currentTurretIndex = flag;
     }
