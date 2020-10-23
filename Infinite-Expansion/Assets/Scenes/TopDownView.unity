@@ -1256,7 +1256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -305.15, y: 117.3}
+  m_AnchoredPosition: {x: -305.1504, y: 117.299805}
   m_SizeDelta: {x: 512, y: 512}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &46142757
@@ -2444,7 +2444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -128.93, y: 300}
+  m_AnchoredPosition: {x: -128.92969, y: 300}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &142632825
@@ -34389,7 +34389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemyPrefab: {fileID: 4798166833680389388, guid: 572e82078640a044d99ed14e294447c1,
+  - enemyPrefab: {fileID: 9207249416024979610, guid: 302d2e60ba1f8844b9dfee87d2cc942d,
       type: 3}
     count: 1
     rate: 0.8
@@ -61948,6 +61948,8 @@ MonoBehaviour:
   weapon3Img: {fileID: 21300000, guid: a891e54f1a43b6c43adc60965eec36fd, type: 3}
   weaponImgs: []
   selectedWeaponIndex: 
+  totalWeaponNumber: 4
+  bagWeaponMaximumNummer: 3
   currentWeaponIndex: 0
 --- !u!1001 &1811313004
 PrefabInstance:
