@@ -52,7 +52,8 @@ public class TopDownController : MonoBehaviour
         // hero move
         Vector2 moveInput = heroInput.HeroAction.Move.ReadValue<Vector2>();
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
-        controller.Move(move * Time.deltaTime * heroSpeed);
+        //controller.Move(move * Time.deltaTime * heroSpeed);
+        transform.Translate(move * Time.deltaTime * heroSpeed, Space.World);
 
         if (move != Vector3.zero)
         {
