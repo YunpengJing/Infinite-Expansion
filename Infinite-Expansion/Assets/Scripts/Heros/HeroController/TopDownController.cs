@@ -52,7 +52,8 @@ public class TopDownController : MonoBehaviour
         // hero move
         Vector2 moveInput = heroInput.HeroAction.Move.ReadValue<Vector2>();
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
-        controller.Move(move * Time.deltaTime * heroSpeed);
+        //controller.Move(move * Time.deltaTime * heroSpeed);
+        transform.Translate(move * Time.deltaTime * heroSpeed, Space.World);
 
         if (move != Vector3.zero)
         {
@@ -67,35 +68,40 @@ public class TopDownController : MonoBehaviour
     #region Tower Build
     public void SelectAndBuild()
     {
-        if (BuildManager.Instance.buildCube)
+        MapCube mapCube = SelectCube();
+
+        // did not hit the cube, build a cube
+        if (mapCube == null)
         {
             Vector3 hitPlanePoint = SelectPlane();
-            if (hitPlanePoint.x == 0 && hitPlanePoint.y == 0 && hitPlanePoint.z == 0) return;
-
-            LayerMask mask = LayerMask.GetMask("MapCube") | LayerMask.GetMask("Water") | LayerMask.GetMask("Enemy");
-            RaycastHit hit;
-            Debug.Log((int)mask);
-            float[] x = { -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f};
-            float[] z = { -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f};
-            foreach(float i in x)
+            if (hitPlanePoint.x == 0 && hitPlanePoint.y == 0 && hitPlanePoint.z == 0) 
             {
-                foreach(float j in z)
+                return; 
+            }
+
+            LayerMask mask = LayerMask.GetMask("MapCube") | LayerMask.GetMask("Water") | LayerMask.GetMask("Tree");
+            RaycastHit hit;
+            float[] x = { -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f };
+            float[] z = { -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f };
+            foreach (float i in x)
+            {
+                foreach (float j in z)
                 {
-                    Ray ray = new Ray(new Vector3(hitPlanePoint.x+i, hitPlanePoint.y+100f, hitPlanePoint.z+j), new Vector3(0f, -1f, 0f));
-                    bool isCollider = Physics.Raycast(ray, out hit, 1000f, mask);
+                    Ray ray = new Ray(new Vector3(hitPlanePoint.x + i, hitPlanePoint.y + 100f, hitPlanePoint.z + j), new Vector3(0f, -1f, 0f));
+                    bool isCollider = Physics.Raycast(ray, out hit, 1000f, mask, QueryTriggerInteraction.Collide);
                     if (isCollider)
                     {
-                        Debug.Log(hit.point);
-                        Debug.Log(hit.collider.name);
+                        //Debug.Log(hit.point);
+                        //Debug.Log(hit.collider.name);
                         return;
                     }
                 }
             }
             BuildManager.Instance.BuildMapCube(hitPlanePoint);
         }
+        // hit a cube, build a tower on the cube
         else
         {
-            MapCube mapCube = SelectCube();
             BuildManager.Instance.BuildTurret(mapCube);
         }
     }
@@ -107,7 +113,7 @@ public class TopDownController : MonoBehaviour
         // ray detection
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit hit;
-        bool isCollider = Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Plane"));
+        bool isCollider = Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Plane"), QueryTriggerInteraction.Collide);
         return hit.point;
     }
 
@@ -118,7 +124,7 @@ public class TopDownController : MonoBehaviour
         // ray detection
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit hit;
-        bool isCollider = Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("MapCube"));
+        bool isCollider = Physics.Raycast(ray, out hit, 2000, LayerMask.GetMask("MapCube"), QueryTriggerInteraction.Collide);
         if (isCollider)
         {
             return hit.collider.GetComponent<MapCube>();
@@ -154,9 +160,9 @@ public class TopDownController : MonoBehaviour
         }
     }
 
-    public void TowerCubeSwitch()
+    public void SwtichBuildRange()
     {
-        BuildManager.Instance.buildCube = !BuildManager.Instance.buildCube;
+        BuildManager.Instance.SwitchBuildRange();
     }
 
     #endregion

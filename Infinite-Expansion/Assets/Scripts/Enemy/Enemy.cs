@@ -1,10 +1,7 @@
-﻿  using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
-using UnityEngine.Scripting.APIUpdating;
-using UnityEngine.Analytics;
+
 public class Enemy : MonoBehaviour
 {
     public string name = "anonymous";
@@ -53,7 +50,8 @@ public class Enemy : MonoBehaviour
             if (Vector3.Distance(target.transform.position, transform.position) > attackDistance)
             {
                 m_Agent.ResetPath();
-                m_Agent.destination = target.transform.position;
+                Vector3 newDestination = (transform.position - target.transform.position).normalized * 3 + target.transform.position;
+                m_Agent.destination = newDestination;
             }
             else
             {
@@ -91,29 +89,19 @@ public class Enemy : MonoBehaviour
     {
         EnemySpawner.CountEnemyAlive--;    
     }
-
     private void TrackDamage(string tag, float damage)
     {
         if (tag == "Turret")
         {
-            Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
-        {
-            { "DamageFromTurret", damage}
-        });
+            EnemyManager.Instance.damageFromTurret += damage;
         }
         else if (tag == "Hero")
         {
-            Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
-        {
-            { "DamageFromHero", damage}
-        });
+            EnemyManager.Instance.damageFromHero += damage;
         }
         else
         {
-            Analytics.CustomEvent("EnemyDamageSource", new Dictionary<string, object>
-        {
-            { "DamageFromOther", damage}
-        });
+            EnemyManager.Instance.damageFromOther += damage;
         }
     }
     public void TakeDamage(float damage, GameObject source)
@@ -144,6 +132,18 @@ public class Enemy : MonoBehaviour
             }
         }
     } 
+
+    private void TrackeDeath()
+    {
+        if (EnemyManager.Instance.enemyDeathStat.ContainsKey(this.name))
+        {
+            EnemyManager.Instance.enemyDeathStat[this.name] = EnemyManager.Instance.enemyDeathStat[this.name] + 1;
+        } else
+        {
+            EnemyManager.Instance.enemyDeathStat.Add(this.name, 1);
+        }
+
+    }
     void Die()
     {
         //call die animation and destroy the object
@@ -152,18 +152,19 @@ public class Enemy : MonoBehaviour
         MoneyManager.Instance.UpdateMoney(this.money);
         status = "die";
         float dieTime = 1.0f;
+        TrackeDeath();
         Destroy(this.gameObject, dieTime);
-        Analytics.CustomEvent("EnemyDeath", new Dictionary<string, object>
-        {
-            {"EnemyName", this.name}
-        });
     }
     void Fight()
     {
         //stop and call attack animation
         if (target.tag == "Turret")
         {
-            anim.Play("Attack01");
+            int num=Random.Range(0,2);
+            if(num==0)
+                anim.Play("Attack01");
+            else
+                anim.Play("Attack02");
             target.GetComponent<MapCube>().TakeDamage(attackPower);
             TrackTakingDamage("Turret", attackPower);
         }
@@ -183,9 +184,15 @@ public class Enemy : MonoBehaviour
 
     private void TrackTakingDamage(string target, int damage)
     {
-        Analytics.CustomEvent("EnemyDamageTarget", new Dictionary<string, object>
+        if (target == "Turret")
         {
-            {target, damage}
-        });
+            EnemyManager.Instance.damageToTurret += damage;
+        } else if (target == "Hero")
+        {
+            EnemyManager.Instance.damageToHero += damage;
+        } else if (target == "Home")
+        {
+            EnemyManager.Instance.damageToHome += damage;
+        }
     }
 }

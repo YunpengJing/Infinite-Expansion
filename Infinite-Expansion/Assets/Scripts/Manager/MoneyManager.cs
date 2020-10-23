@@ -57,7 +57,7 @@ public class MoneyManager : MonoBehaviour
      */
     public bool UpdateMoney(int offset)
     {
-        print("currentMoney:" + currentMoney);
+        //print("currentMoney:" + currentMoney);
         if (currentMoney + offset < 0)
         {
             moneyAnimator.SetTrigger("Flicker");
