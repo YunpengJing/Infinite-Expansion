@@ -14,7 +14,7 @@ public class MapCube : MonoBehaviour
     public Slider hpSlider;
 
     // attr
-    public int hp = 200;
+    public int hp = 400;
     private int totalHp;
     public float height;
 
