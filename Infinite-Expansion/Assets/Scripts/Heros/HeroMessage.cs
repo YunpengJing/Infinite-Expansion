@@ -37,8 +37,9 @@ public class HeroMessage : MonoBehaviour
             // cancal a tower from the bag
             if (BuildManager.Instance.currentTurretIndex == k)
             {
-                // the tower to cancel is the current tower
-                int p = BuildManager.Instance.selectedTurretIndex.IndexOf(k);
+                if (BuildManager.Instance.selectedTurretIndex.Count == 1) return;
+                    // the tower to cancel is the current tower
+                    int p = BuildManager.Instance.selectedTurretIndex.IndexOf(k);
                 BuildManager.Instance.selectedTurretIndex.RemoveAt(p);
                 // cancel the last one
                 if (BuildManager.Instance.selectedTurretIndex.Count == p)
@@ -115,10 +116,12 @@ public class HeroMessage : MonoBehaviour
                 if (WeaponSelectManager.Instance.selectedWeaponIndex.Count == p)
                 {
                     WeaponSelectManager.Instance.SwitchWeapon(WeaponSelectManager.Instance.selectedWeaponIndex[0]);
+                    WeaponSelectManager.Instance.currentWeaponIndex = WeaponSelectManager.Instance.selectedWeaponIndex[0];
                 }
                 else
                 {
                     WeaponSelectManager.Instance.SwitchWeapon(WeaponSelectManager.Instance.selectedWeaponIndex[p]);
+                    WeaponSelectManager.Instance.currentWeaponIndex = WeaponSelectManager.Instance.selectedWeaponIndex[p];
                 }
             }
             else
@@ -131,6 +134,8 @@ public class HeroMessage : MonoBehaviour
             // bag is full, can not select 
             if (WeaponSelectManager.Instance.selectedWeaponIndex.Count >= WeaponSelectManager.Instance.bagWeaponMaximumNummer)
             {
+                Debug.LogError(WeaponSelectManager.Instance.bagWeaponMaximumNummer);
+                Debug.LogError(WeaponSelectManager.Instance.selectedWeaponIndex);
                 return;
             }
             // still space in bag, do select

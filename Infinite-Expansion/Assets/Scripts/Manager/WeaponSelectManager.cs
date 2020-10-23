@@ -60,6 +60,8 @@ public class WeaponSelectManager : MonoBehaviour
         weaponImgs.Add(weapon1Img);
         weaponImgs.Add(weapon2Img);
         weaponImgs.Add(weapon3Img);
+
+        bagWeaponMaximumNummer = 3;
     }
 
     // switch the current weapon to the k weapon
