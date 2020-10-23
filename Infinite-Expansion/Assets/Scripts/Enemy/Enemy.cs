@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+
 public class Enemy : MonoBehaviour
 {
     public string name = "anonymous";
@@ -49,7 +50,8 @@ public class Enemy : MonoBehaviour
             if (Vector3.Distance(target.transform.position, transform.position) > attackDistance)
             {
                 m_Agent.ResetPath();
-                m_Agent.destination = target.transform.position;
+                Vector3 newDestination = (transform.position - target.transform.position).normalized * 3 + target.transform.position;
+                m_Agent.destination = newDestination;
             }
             else
             {
