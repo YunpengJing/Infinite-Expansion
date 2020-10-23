@@ -10,6 +10,7 @@ TagManager:
   - Hero
   - loweffect
   - effect
+  - Weapon
   layers:
   - Default
   - TransparentFX
