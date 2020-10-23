@@ -90,8 +90,8 @@ public class TopDownController : MonoBehaviour
                     bool isCollider = Physics.Raycast(ray, out hit, 1000f, mask, QueryTriggerInteraction.Collide);
                     if (isCollider)
                     {
-                        Debug.Log(hit.point);
-                        Debug.Log(hit.collider.name);
+                        //Debug.Log(hit.point);
+                        //Debug.Log(hit.collider.name);
                         return;
                     }
                 }
