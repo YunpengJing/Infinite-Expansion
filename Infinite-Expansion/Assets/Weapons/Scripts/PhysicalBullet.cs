@@ -32,8 +32,10 @@ public class PhysicalBullet : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
+        Debug.Log("On Trigger");
+
         // 碰撞到物体
         if (other.tag == "Enemy")
         {
