@@ -19,6 +19,8 @@ public class WeaponSelectManager : MonoBehaviour
 
     public List<int> selectedWeaponIndex;
 
+    public int totalWeaponNumber = 4;
+    public int bagWeaponMaximumNummer = 3;
     public int currentWeaponIndex;
 
     private static WeaponSelectManager instance;
@@ -46,7 +48,7 @@ public class WeaponSelectManager : MonoBehaviour
         selectedWeaponIndex.Add(0);
         selectedWeaponIndex.Add(1);
         selectedWeaponIndex.Add(2);
-        selectedWeaponIndex.Add(3);
+        //selectedWeaponIndex.Add(3);
 
         weapons = new List<GameObject>();
         weapons.Add(weapon0);

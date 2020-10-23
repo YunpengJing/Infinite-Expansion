@@ -9,6 +9,7 @@ public class HeroMessage : MonoBehaviour
     void Update()
     {
         TowerSelectedShow();
+        WeaponSelectedShow();
     }
 
 
@@ -25,7 +26,7 @@ public class HeroMessage : MonoBehaviour
         }
         foreach (int i in BuildManager.Instance.selectedTurretIndex)
         {
-            GameObject.Find("Tower" + i.ToString()).GetComponent<Image>().color = Color.red;
+            GameObject.Find("Tower" + i.ToString()).GetComponent<Image>().color = Color.Lerp( Color.green, Color.yellow, 0.3f);
         }
     }
 
@@ -76,6 +77,66 @@ public class HeroMessage : MonoBehaviour
                     BuildManager.Instance.switchBuildTurret(k);
                 }
                 BuildManager.Instance.selectedTurretIndex.Add(k);
+            }
+        }
+    }
+    #endregion
+
+    #region Weapon
+    private void WeaponSelectedShow()
+    {
+        for (int i = 0; i < WeaponSelectManager.Instance.totalWeaponNumber; i++)
+        {
+            GameObject.Find("Weapon" + i.ToString()).GetComponent<Image>().color = Color.white;
+        }
+        foreach (int i in WeaponSelectManager.Instance.selectedWeaponIndex)
+        {
+            GameObject.Find("Weapon" + i.ToString()).GetComponent<Image>().color = Color.green;
+        }
+    }
+
+    public void WeaponSwap(int k)
+    {
+        // cancal a weapon from the bag
+        if (WeaponSelectManager.Instance.selectedWeaponIndex.Contains(k))
+        {
+            // the tower to cancel is the current tower
+            if (WeaponSelectManager.Instance.currentWeaponIndex == k)
+            {
+                // select only one weapon
+                if (WeaponSelectManager.Instance.selectedWeaponIndex.Count == 1)
+                {
+                    // need to select at least one weapon
+                    return;
+                }
+                int p = WeaponSelectManager.Instance.selectedWeaponIndex.IndexOf(k);
+                WeaponSelectManager.Instance.selectedWeaponIndex.RemoveAt(p);
+                // cancel the last one
+                if (WeaponSelectManager.Instance.selectedWeaponIndex.Count == p)
+                {
+                    WeaponSelectManager.Instance.SwitchWeapon(WeaponSelectManager.Instance.selectedWeaponIndex[0]);
+                }
+                else
+                {
+                    WeaponSelectManager.Instance.SwitchWeapon(WeaponSelectManager.Instance.selectedWeaponIndex[p]);
+                }
+            }
+            else
+            {
+                WeaponSelectManager.Instance.selectedWeaponIndex.Remove(k);
+            }
+        }
+        else
+        {
+            // bag is full, can not select 
+            if (WeaponSelectManager.Instance.selectedWeaponIndex.Count >= WeaponSelectManager.Instance.bagWeaponMaximumNummer)
+            {
+                return;
+            }
+            // still space in bag, do select
+            else
+            { 
+                WeaponSelectManager.Instance.selectedWeaponIndex.Add(k);
             }
         }
     }
