@@ -30,6 +30,8 @@ public class BuildManager : MonoBehaviour
     public int missileTurretCnt;
     public int laserTurretCnt;
 
+    private int mapCubeMoney;
+
     // Ture: show the range of build; Flase: donot show
     private bool showBuildRange;
 
@@ -65,11 +67,16 @@ public class BuildManager : MonoBehaviour
         selectedTurretIndex = new List<int>();
         selectedTurretIndex.Add(0);
         selectedTurretIndex.Add(1);
+
+        mapCubeMoney = 20;
     }
 
     // 建造 mapcube （墙）
     public void BuildMapCube(Vector3 v)
     {
+        bool flag = MoneyManager.Instance.UpdateMoney(-mapCubeMoney);
+        if (!flag) return;
+
         GameObject newCube = GameObject.Instantiate(mapCubePrefab, v, Quaternion.identity);
         mapCubeCnt += 1;
     }
