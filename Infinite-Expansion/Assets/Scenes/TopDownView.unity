@@ -64904,7 +64904,7 @@ PrefabInstance:
     - target: {fileID: 6513700124567995280, guid: 644e42fe895784abd9c3e49309455099,
         type: 3}
       propertyPath: standardTurretData.cost
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6513700124567995280, guid: 644e42fe895784abd9c3e49309455099,
         type: 3}
@@ -64930,6 +64930,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: dc74b87909039a84d8216a1e1f4fe9c9,
         type: 3}
+    - target: {fileID: 6513700124567995280, guid: 644e42fe895784abd9c3e49309455099,
+        type: 3}
+      propertyPath: laserTurretData.cost
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513700124567995280, guid: 644e42fe895784abd9c3e49309455099,
+        type: 3}
+      propertyPath: missileTurretData.cost
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6513700124567995281, guid: 644e42fe895784abd9c3e49309455099,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -80380,7 +80390,7 @@ PrefabInstance:
     - target: {fileID: 3378057835522591008, guid: 5c123a220ef5b4aae9d82a8f22db2176,
         type: 3}
       propertyPath: initialMoney
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3378057835522591009, guid: 5c123a220ef5b4aae9d82a8f22db2176,
         type: 3}
