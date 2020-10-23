@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponSelectManager : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class WeaponSelectManager : MonoBehaviour
     public GameObject weapon2;
     public GameObject weapon3;
     public List<GameObject> weapons;
+
+    public Sprite weapon0Img;
+    public Sprite weapon1Img;
+    public Sprite weapon2Img;
+    public Sprite weapon3Img;
+    public List<Sprite> weaponImgs;
 
     public List<int> selectedWeaponIndex;
 
@@ -46,6 +53,11 @@ public class WeaponSelectManager : MonoBehaviour
         weapons.Add(weapon1);
         weapons.Add(weapon2);
         weapons.Add(weapon3);
+        weaponImgs = new List<Sprite>();
+        weaponImgs.Add(weapon0Img);
+        weaponImgs.Add(weapon1Img);
+        weaponImgs.Add(weapon2Img);
+        weaponImgs.Add(weapon3Img);
     }
 
     // switch the current weapon to the k weapon
@@ -71,6 +83,9 @@ public class WeaponSelectManager : MonoBehaviour
             newWeapon.name = "Weapon";
 
             currentWeaponIndex = k;
+
+            GameObject button = GameObject.Find("Weapon Switch");
+            button.GetComponent<Button>().image.sprite = weaponImgs[k];
         }
     }
 }
