@@ -790,8 +790,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!195 &3373216097128616383
 NavMeshAgent:
   m_ObjectHideFlags: 0

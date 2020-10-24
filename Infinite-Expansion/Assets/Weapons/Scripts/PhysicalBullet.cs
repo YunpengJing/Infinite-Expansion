@@ -32,8 +32,10 @@ public class PhysicalBullet : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
+        Debug.Log("On Trigger");
+
         // 碰撞到物体
         if (other.tag == "Enemy")
         {
@@ -43,10 +45,11 @@ public class PhysicalBullet : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("hit enemy");
         }
-        else
+        else if(other.tag!="Weapon" && other.tag!="Hero")
         {
-            //撞到任何物体子弹销毁
             Destroy(gameObject);
         }
+        
+        
     }
 }
