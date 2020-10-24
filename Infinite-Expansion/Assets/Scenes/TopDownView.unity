@@ -1256,7 +1256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -305.15, y: 117.3}
+  m_AnchoredPosition: {x: -305.1504, y: 117.299805}
   m_SizeDelta: {x: 512, y: 512}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &46142757
@@ -2444,8 +2444,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -150, y: 300}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -128.92969, y: 300}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &142632825
 MonoBehaviour:
@@ -2520,7 +2520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5b56d9fa0e8bd6e409ed188db38a692c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e318fa03637cd747be6f4b6f744a425, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21667,8 +21667,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 300, y: 150}
-  m_SizeDelta: {x: 139, y: 72}
+  m_AnchoredPosition: {x: 297.75, y: 139.6}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &941773184
 MonoBehaviour:
@@ -21743,7 +21743,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ddf3334a04fdc814d837976cc9ffdaf4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b77e24b06137f524aafc947e9722c707, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -34389,7 +34389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemyPrefab: {fileID: 4798166833680389388, guid: 572e82078640a044d99ed14e294447c1,
+  - enemyPrefab: {fileID: 9207249416024979610, guid: 302d2e60ba1f8844b9dfee87d2cc942d,
       type: 3}
     count: 1
     rate: 0.8
@@ -61942,7 +61942,14 @@ MonoBehaviour:
   weapon2: {fileID: 3560134463280132175, guid: 5e6232015c737124583350eb6f3da90c, type: 3}
   weapon3: {fileID: 8406029139020401064, guid: 6f1af076c633594438ce9eb0fe9b55e0, type: 3}
   weapons: []
+  weapon0Img: {fileID: 21300000, guid: b77e24b06137f524aafc947e9722c707, type: 3}
+  weapon1Img: {fileID: 21300000, guid: edace5b572180a04a85461472c9a37e6, type: 3}
+  weapon2Img: {fileID: 21300000, guid: 3d78f651aaafe7c4cb6437e3ed0321c5, type: 3}
+  weapon3Img: {fileID: 21300000, guid: a891e54f1a43b6c43adc60965eec36fd, type: 3}
+  weaponImgs: []
   selectedWeaponIndex: 
+  totalWeaponNumber: 4
+  bagWeaponMaximumNummer: 3
   currentWeaponIndex: 0
 --- !u!1001 &1811313004
 PrefabInstance:
