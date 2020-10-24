@@ -62,7 +62,9 @@ public class BuildManager : MonoBehaviour
         missileTurretCnt = 0;
         laserTurretCnt = 0;
 
-        showBuildRange = true;
+        showBuildRange = false;
+        GameObject buildRange = GameObject.Find("Range");
+        buildRange.GetComponent<Image>().enabled = showBuildRange;
 
         selectedTurretIndex = new List<int>();
         selectedTurretIndex.Add(0);

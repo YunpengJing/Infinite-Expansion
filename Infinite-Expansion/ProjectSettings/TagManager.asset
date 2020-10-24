@@ -12,6 +12,7 @@ TagManager:
   - effect
   - Airwall
   - Wall
+  - Weapon
   layers:
   - Default
   - TransparentFX
