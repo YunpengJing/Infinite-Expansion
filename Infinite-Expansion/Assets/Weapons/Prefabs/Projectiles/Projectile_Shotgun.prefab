@@ -28,11 +28,7 @@ Transform:
   m_GameObject: {fileID: 3659995153115176983}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-  m_LocalScale: {x: 2.2878826, y: 2.2878826, z: 10}
-=======
-  m_LocalScale: {x: 1.812486, y: 1.812486, z: 10}
->>>>>>> 3cde1f2ea8b3e3965aed3971c87f6b4da585d5ec
+  m_LocalScale: {x: 3.1898472, y: 3.1898472, z: 10}
   m_Children:
   - {fileID: 8402172112652589804}
   m_Father: {fileID: 0}
@@ -52,11 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 30
   maxDamage: 500
-<<<<<<< HEAD
-  currentDamage: 228.78825
-=======
-  currentDamage: 181.24861
->>>>>>> 3cde1f2ea8b3e3965aed3971c87f6b4da585d5ec
+  currentDamage: 318.9847
 --- !u!54 &4179521169266357974
 Rigidbody:
   m_ObjectHideFlags: 0

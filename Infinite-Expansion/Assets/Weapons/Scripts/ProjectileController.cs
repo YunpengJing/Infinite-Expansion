@@ -77,6 +77,7 @@ namespace BigRookGames.Weapons
            // }
         }
 
+        
         private void OnTriggerEnter(Collider other)
         {
 
@@ -88,25 +89,24 @@ namespace BigRookGames.Weapons
                 other.GetComponent<Enemy>().TakeDamage(currentDamage, hero);
             }
 
-
-            Explode();
-            projectileMesh.enabled = false;
-            targetHit = true;
-            inFlightAudioSource.Stop();
-            foreach (Collider col in GetComponents<Collider>())
+            if (other.tag != "Airwall")
             {
-                col.enabled = false;
+                Explode();
+                projectileMesh.enabled = false;
+                targetHit = true;
+                inFlightAudioSource.Stop();
+                foreach (Collider col in GetComponents<Collider>())
+                {
+                    col.enabled = false;
+                }
+                disableOnHit.Stop();
+                Destroy(gameObject, 5f);
+
+
             }
-            disableOnHit.Stop();
-
-
             // --- Destroy this object after 2 seconds. Using a delay because the particle system needs to finish ---
-            
-            Destroy(gameObject, 5f);
-           
-            
         }
-
+        
         /// <summary>
         /// Instantiates an explode object.
         /// </summary>
