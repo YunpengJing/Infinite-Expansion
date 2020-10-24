@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace BigRookGames.Weapons
@@ -52,7 +53,8 @@ namespace BigRookGames.Weapons
         /// <param name="collision"></param>
         private void OnCollisionEnter(Collision collision)
         {
-            //if (collision.tag == "Enemy")
+
+            //if (collision.gameObject.name != "Airwall")
             //{
 
             // --- return if not enabled because OnCollision is still called if compoenent is disabled ---
@@ -77,11 +79,16 @@ namespace BigRookGames.Weapons
 
         private void OnTriggerEnter(Collider other)
         {
+
+            //UnityEngine.Debug.Log(other.tag);
+
             GameObject hero = GameObject.FindWithTag("Hero");
             if (other.tag == "Enemy")
             {
                 other.GetComponent<Enemy>().TakeDamage(currentDamage, hero);
             }
+
+
             Explode();
             projectileMesh.enabled = false;
             targetHit = true;
@@ -94,7 +101,10 @@ namespace BigRookGames.Weapons
 
 
             // --- Destroy this object after 2 seconds. Using a delay because the particle system needs to finish ---
+            
             Destroy(gameObject, 5f);
+           
+            
         }
 
         /// <summary>

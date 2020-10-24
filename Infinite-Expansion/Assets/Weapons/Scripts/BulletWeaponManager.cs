@@ -95,6 +95,6 @@ public class BulletWeaponManager : MonoBehaviour
 
 
         // 测试
-        Debug.Log("aaaa");
+        //Debug.Log("aaaa");
     }
 }

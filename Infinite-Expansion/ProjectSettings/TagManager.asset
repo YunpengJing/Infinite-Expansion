@@ -9,6 +9,10 @@ TagManager:
   - Home
   - Hero
   - loweffect
+  - effect
+  - Airwall
+  - Wall
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -22,7 +26,7 @@ TagManager:
   - MapCube
   - Enemy
   - Turret
-  - 
+  - Tree
   - 
   - 
   - 

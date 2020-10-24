@@ -4845,7 +4845,7 @@ MonoBehaviour:
   coolingTimer: 3
   maxNumberOfBullet: 5
   coolingAudio: {fileID: 1934127907}
-  maxChargingTimer: 3
+  maxChargingTimer: 1.5
   chargeAudio: {fileID: 1934127906}
   maxScale: 5
   bulletSlider: {fileID: 0}
@@ -4861,7 +4861,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 53d2238f4c4b2aa4f8e559c7af9e0126, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
