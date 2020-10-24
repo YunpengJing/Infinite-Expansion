@@ -10,6 +10,8 @@ TagManager:
   - Hero
   - loweffect
   - effect
+  - Airwall
+  - Wall
   layers:
   - Default
   - TransparentFX
