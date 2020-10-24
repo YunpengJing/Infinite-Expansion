@@ -18460,7 +18460,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9a21145f231ac684a84060576ba78b57, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.05
+  m_Volume: 0.04
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -34391,15 +34391,15 @@ MonoBehaviour:
   waves:
   - enemyPrefab: {fileID: 9207249416024979610, guid: 302d2e60ba1f8844b9dfee87d2cc942d,
       type: 3}
-    count: 1
+    count: 2
     rate: 0.8
   - enemyPrefab: {fileID: 4556034567386493322, guid: bb690e004c12d4c41ad1bf44d0e8c670,
       type: 3}
-    count: 5
+    count: 3
     rate: 0.8
   - enemyPrefab: {fileID: 2441833371962984730, guid: 73570596328e6e342bcfff9558cd83ad,
       type: 3}
-    count: 5
+    count: 4
     rate: 0.8
   - enemyPrefab: {fileID: 7554488773659694938, guid: 9d2eee8e0aaa4b144a1574b012a40ff6,
       type: 3}
@@ -34407,15 +34407,15 @@ MonoBehaviour:
     rate: 0.8
   - enemyPrefab: {fileID: 6280682895729838945, guid: 7b6a6d943e3566f4895f9e0f00bb9dc4,
       type: 3}
-    count: 2
+    count: 5
     rate: 0.8
   - enemyPrefab: {fileID: 6814633960879540448, guid: 59175cacb6afca649ab785a5d430a7da,
       type: 3}
-    count: 2
+    count: 7
     rate: 0.8
   - enemyPrefab: {fileID: 4798166833680389388, guid: 572e82078640a044d99ed14e294447c1,
       type: 3}
-    count: 2
+    count: 1
     rate: 0.8
   START:
   - {fileID: 783302845}
@@ -44664,6 +44664,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HeroDemo
+      objectReference: {fileID: 0}
+    - target: {fileID: 378686011630434575, guid: a55f4b0bdfbb18e46b4a5290b34b59d7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hero
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a55f4b0bdfbb18e46b4a5290b34b59d7, type: 3}
