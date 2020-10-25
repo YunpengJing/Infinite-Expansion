@@ -1653,7 +1653,7 @@ GameObject:
   - component: {fileID: 64807588}
   - component: {fileID: 64807587}
   m_Layer: 5
-  m_Name: Top Down UI
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77410,8 +77410,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 150, y: 150}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2012402717
 MonoBehaviour:
@@ -77561,7 +77561,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2020024591
 MonoBehaviour:
@@ -85647,10 +85647,65 @@ PrefabInstance:
       propertyPath: m_Name
       value: MoneyManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3378057835544488513, guid: 5c123a220ef5b4aae9d82a8f22db2176,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -335.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378057835544488513, guid: 5c123a220ef5b4aae9d82a8f22db2176,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378057835544488513, guid: 5c123a220ef5b4aae9d82a8f22db2176,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378057835544488513, guid: 5c123a220ef5b4aae9d82a8f22db2176,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378057835544488513, guid: 5c123a220ef5b4aae9d82a8f22db2176,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 216.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378057835544488513, guid: 5c123a220ef5b4aae9d82a8f22db2176,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378057835544488514, guid: 5c123a220ef5b4aae9d82a8f22db2176,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378057835544488514, guid: 5c123a220ef5b4aae9d82a8f22db2176,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 67
+      objectReference: {fileID: 0}
     - target: {fileID: 3378057836623779802, guid: 5c123a220ef5b4aae9d82a8f22db2176,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378057836623779804, guid: 5c123a220ef5b4aae9d82a8f22db2176,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378057836623779804, guid: 5c123a220ef5b4aae9d82a8f22db2176,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378057836623779804, guid: 5c123a220ef5b4aae9d82a8f22db2176,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c123a220ef5b4aae9d82a8f22db2176, type: 3}
