@@ -1,16 +1,3 @@
-{
-"companyName": "DefaultCompany",
-"productName": "Infinite-Expansion",
-"productVersion": "0.1",
-"dataUrl": "webgl.data.unityweb",
-"wasmCodeUrl": "webgl.wasm.code.unityweb",
-"wasmFrameworkUrl": "webgl.wasm.framework.unityweb",
-"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
-"webglContextAttributes": {"preserveDrawingBuffer": false},
-"splashScreenStyle": "Dark",
-"backgroundColor": "#231F20",
-"cacheControl": {"default": "must-revalidate"},
-"developmentBuild": false,
-"multithreading": false,
-"unityVersion": "2019.4.9f1"
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:6beca57b7d274504516779181d72e22f69351a0dbfcff7c6bbec2c545a6ef5e9
+size 518
