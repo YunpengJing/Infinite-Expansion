@@ -144,7 +144,7 @@ public class WeaponManager : MonoBehaviour
             gunLine.transform.localScale = newScale;
             gunLine.GetComponent<Bullet>().currentDamage = newDamege;
             Vector3 fixAngle = new Vector3(90f, 0f, 0f);
-            GameObject gunLineInstance = Instantiate(gunLine, transform.position, Quaternion.Euler(transform.eulerAngles + fixAngle), transform);
+            GameObject gunLineInstance = Instantiate(gunLine, transform.position, Quaternion.Euler(transform.eulerAngles + fixAngle));
             Debug.Log("current demage is :" + newDamege);
             Destroy(gunLineInstance, 2f);
         }
