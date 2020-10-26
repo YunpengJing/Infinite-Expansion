@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 51cd7ab51d2d7f946a9bda8bd35b77e8
   - enabled: 1
-    path: Assets/Scenes/TopDownView.unity
+    path: Assets/Scenes/Intro/Intro1.unity
+    guid: 50dbc8984b4acf64cae8ea600a5b1662
+  - enabled: 1
+    path: Assets/Scenes/Intro/Intro2.unity
+    guid: 89220d5a28bea6b4193584c358b1c8db
+  - enabled: 1
+    path: Assets/Scenes/Intro/Intro3.unity
+    guid: 7bdc6a995d9d2ad49ab54576097974f8
+  - enabled: 1
+    path: Assets/Scenes/InfiniteMode.unity
     guid: b03c93edc9aa01c41a6b2598180a412c
   m_configObjects: {}

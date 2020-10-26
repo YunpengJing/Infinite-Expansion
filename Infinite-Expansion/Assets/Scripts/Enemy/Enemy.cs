@@ -147,7 +147,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         //call die animation and destroy the object
-        transform.Translate(new Vector3(0, 0, 0));
+        m_Agent.ResetPath();
         anim.Play("Die");
         MoneyManager.Instance.UpdateMoney(this.money);
         status = "die";

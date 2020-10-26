@@ -134,8 +134,6 @@ public class HeroMessage : MonoBehaviour
             // bag is full, can not select 
             if (WeaponSelectManager.Instance.selectedWeaponIndex.Count >= WeaponSelectManager.Instance.bagWeaponMaximumNummer)
             {
-                Debug.LogError(WeaponSelectManager.Instance.bagWeaponMaximumNummer);
-                Debug.LogError(WeaponSelectManager.Instance.selectedWeaponIndex);
                 return;
             }
             // still space in bag, do select
