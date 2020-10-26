@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Manager;
 
 public class Turret : MonoBehaviour
 {
@@ -46,8 +47,27 @@ public class Turret : MonoBehaviour
 
     private void Update()
     {
+        if (enemys.Count == 0)
+        {
+            if (useLaser) laserRenderer.enabled = false;
+            return;
+        }
+
+        // 判断第一个敌人是否被销毁或死亡，如果是更新 enemys
+        if (enemys[0] == null || enemys[0].GetComponent<Enemy>().hp <= 0)
+        {
+            UpdateEnemys();
+        }
+
+        // 更新敌人后再判断一次
+        if (enemys.Count == 0)
+        {
+            if (useLaser) laserRenderer.enabled = false;
+            return;
+        }
+
         // 炮口朝向敌人
-        if (enemys.Count > 0 && enemys[0] != null)
+        if (enemys[0] != null)
         {
             Vector3 targetPosition = enemys[0].transform.position;
             targetPosition.y = head.position.y;
@@ -80,10 +100,10 @@ public class Turret : MonoBehaviour
                 laserRenderer.enabled = true;
             }
 
-            if (enemys[0] == null)
-            {
-                UpdateEnemys();
-            }
+            //if (enemys[0] == null || enemys[0].GetComponent<Enemy>().hp == 0)
+            //{
+            //    UpdateEnemys();
+            //}
 
             if (enemys.Count > 0)
             {
@@ -96,10 +116,11 @@ public class Turret : MonoBehaviour
 
     void Attack()
     {
-        if (enemys[0] == null)
-        {
-            UpdateEnemys();
-        }
+        //// 如果 enemys[0] 为空，或 enemys[0] 的 hp 为 0，更新 enemy
+        //if (enemys[0] == null || enemys[0].GetComponent<Enemy>().hp == 0)
+        //{
+        //    UpdateEnemys();
+        //}
 
         if (enemys.Count > 0)
         {
@@ -119,7 +140,8 @@ public class Turret : MonoBehaviour
 
         foreach (GameObject enemy in enemys)
         {
-            if (enemy != null)
+            // 把 enemy 不为 null 且 hp 不为 0 的放进 list
+            if (enemy != null && enemy.GetComponent<Enemy>().hp > 0)
             {
                 newEnemys.Add(enemy);
             }

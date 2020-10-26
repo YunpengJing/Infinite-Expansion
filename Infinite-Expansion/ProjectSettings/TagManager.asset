@@ -8,6 +8,11 @@ TagManager:
   - Turret
   - Home
   - Hero
+  - loweffect
+  - effect
+  - Airwall
+  - Wall
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -17,12 +22,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Plane
   - MapCube
   - Enemy
   - Turret
-  - 
-  - 
+  - Tree
+  - MiniMap
   - 
   - 
   - 

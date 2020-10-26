@@ -1,11 +1,10 @@
-﻿  using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public string name = "anonymous";
     public float speed = 10;
     public float hp = 150;
     public int attackDistance = 2;
@@ -13,30 +12,32 @@ public class Enemy : MonoBehaviour
     public float attackRate = 1;
     private float totalHp;
     private Slider hpSlider;
-    public GameObject target;
+    private GameObject target;
     private string status = "forward";
-    private Transform[] positions;
-    private int index = 0;
+    private Transform destination;
     private Animator anim;
     private float timer = 0;
+    public int money = 10;
+    NavMeshAgent m_Agent;
 
     // Start is called before the first frame update
     void Start()
     {
-        positions = Waypoints.positions;
         hpSlider = GetComponentInChildren<Slider>();
         totalHp = hp;
         anim = GetComponent<Animator>();
         timer = attackRate;
+        destination = HomeCube.homeTransform;
+        m_Agent = GetComponent<NavMeshAgent>();
+        m_Agent.speed = speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(anim.SetTrigger("attack"));
         if (status == "forward")
         {
-            Move();
+            Forward();
         }
         else if (status == "fight")
         {
@@ -48,11 +49,13 @@ public class Enemy : MonoBehaviour
             }
             if (Vector3.Distance(target.transform.position, transform.position) > attackDistance)
             {
-                transform.Translate(Vector3.forward * Time.deltaTime * speed);
-                transform.forward = target.transform.position - transform.position;
+                m_Agent.ResetPath();
+                Vector3 newDestination = (transform.position - target.transform.position).normalized * 3 + target.transform.position;
+                m_Agent.destination = newDestination;
             }
             else
             {
+                m_Agent.ResetPath();
                 timer += Time.deltaTime;
                 if (timer >= attackRate)
                 {
@@ -66,31 +69,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Move()
+    private void Forward()
     {
-        if (index > positions.Length - 1)
-        {
-            return;
-        }
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        m_Agent.destination = destination.position;
         anim.Play("WalkFWD");
-        transform.forward = positions[index].position - transform.position;
-        if(Time.deltaTime * speed >= Vector3.Distance (transform.position, positions[index].position)){
-            index++;
-        }
-        else if (Vector3.Distance(positions[index].position, transform.position) < 0.02f)
-        {
-            index++;
-        }
-        if (index > positions.Length - 1)
-        {
-            ReachDestination();
-        }
-    }
-
-    void ReachDestination()
-    {
-        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider col)
@@ -107,12 +89,30 @@ public class Enemy : MonoBehaviour
     {
         EnemySpawner.CountEnemyAlive--;    
     }
-
+    private void TrackDamage(string tag, float damage)
+    {
+        if (tag == "Turret")
+        {
+            EnemyManager.Instance.damageFromTurret += damage;
+        }
+        else if (tag == "Hero")
+        {
+            EnemyManager.Instance.damageFromHero += damage;
+        }
+        else
+        {
+            EnemyManager.Instance.damageFromOther += damage;
+        }
+    }
     public void TakeDamage(float damage, GameObject source)
     {
         if (hp <= 0)
         {
             return;
+        }
+        if (source)
+        {
+            TrackDamage(source.tag, damage);
         }
         //update hp and slider
         hp -= damage;
@@ -132,29 +132,67 @@ public class Enemy : MonoBehaviour
             }
         }
     } 
+
+    private void TrackeDeath()
+    {
+        if (EnemyManager.Instance.enemyDeathStat.ContainsKey(this.name))
+        {
+            EnemyManager.Instance.enemyDeathStat[this.name] = EnemyManager.Instance.enemyDeathStat[this.name] + 1;
+        } else
+        {
+            EnemyManager.Instance.enemyDeathStat.Add(this.name, 1);
+        }
+
+    }
     void Die()
     {
         //call die animation and destroy the object
-        transform.Translate(new Vector3(0, 0, 0));
+        m_Agent.ResetPath();
         anim.Play("Die");
+        MoneyManager.Instance.UpdateMoney(this.money);
         status = "die";
-        float dieTime = 1.8f;
+        float dieTime = 1.0f;
+        TrackeDeath();
         Destroy(this.gameObject, dieTime);
     }
     void Fight()
     {
         //stop and call attack animation
-        transform.Translate(new Vector3(0, 0, 0));
         if (target.tag == "Turret")
         {
-            anim.Play("Attack01");
+            int num=Random.Range(0,2);
+            if(num==0)
+                anim.Play("Attack01");
+            else
+                anim.Play("Attack02");
             target.GetComponent<MapCube>().TakeDamage(attackPower);
+            TrackTakingDamage("Turret", attackPower);
         }
         else if (target.tag == "Home")
         {
-            anim.Play("Attack01");
+            int num=Random.Range(0,2);
+            if(num==0)
+                anim.Play("Attack01");
+            else
+                anim.Play("Attack02");
+
             anim.Play("IdleBattle");
             target.GetComponent<HomeCube>().TakeDamage(attackPower);
+            TrackTakingDamage("Home", attackPower);
+        }
+    }
+
+    private void TrackTakingDamage(string target, int damage)
+    {
+        if (target == "Turret")
+        {
+            EnemyManager.Instance.damageToTurret += damage;
+        } else if (target == "Hero")
+        {
+            EnemyManager.Instance.damageToHero += damage;
+        } else if (target == "Home")
+        {
+            EnemyManager.Instance.damageToHome += damage;
         }
     }
 }
