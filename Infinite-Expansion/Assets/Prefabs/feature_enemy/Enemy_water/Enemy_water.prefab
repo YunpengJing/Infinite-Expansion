@@ -758,7 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: anonymous
-  speed: 7
+  speed: 12
   hp: 50
   attackDistance: 22
   attackPower: 10
