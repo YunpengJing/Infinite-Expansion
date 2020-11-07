@@ -31,7 +31,7 @@ public class WeaponManager : MonoBehaviour
     private float charingTimer; // 当前充能时间
     public float maxScale; // 子弹最大放大比例
 
-    public Slider bulletSlider; // 当前子弹数量UI
+    private Slider bulletSlider; // 当前子弹数量UI
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +39,7 @@ public class WeaponManager : MonoBehaviour
         // gunParticles = GetComponent<ParticleSystem>();
         gunAudio = GetComponent<AudioSource>();
         currentNumberOfBullet = maxNumberOfBullet;
+        bulletSlider = GameObject.Find("BulletSlider").GetComponent<Slider>();
         if (bulletSlider != null)
             bulletSlider.value = 1f;
     }

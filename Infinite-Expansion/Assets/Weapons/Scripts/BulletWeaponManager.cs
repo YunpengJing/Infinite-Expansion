@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Threading;
+using JetBrains.Annotations;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class BulletWeaponManager : MonoBehaviour
 {
@@ -14,6 +17,13 @@ public class BulletWeaponManager : MonoBehaviour
     public int update = 0;
 
     private float timer;
+
+    // 子弹数量
+    private BulletNumberManager bulletNumberManager;
+
+    // UI系统
+    private Text uiCurrentAmmo;
+    private Text uiTotalAmmo;
 
     private ParticleSystem gunParticles;
 
@@ -44,6 +54,11 @@ public class BulletWeaponManager : MonoBehaviour
     {
         gunParticles = gameObject.GetComponent<ParticleSystem>();
         gunAudio = GetComponent<AudioSource>();
+        bulletNumberManager = GameObject.Find("WeaponManager").GetComponent<BulletNumberManager>();
+        uiCurrentAmmo = GameObject.Find("CurrentAmmo").GetComponent<Text>();
+        uiTotalAmmo = GameObject.Find("TotalAmmo").GetComponent<Text>();
+        uiCurrentAmmo.text = bulletNumberManager.bulletGunCurrentAmmo.ToString();
+        uiTotalAmmo.text = bulletNumberManager.bulletGunTotalAmmo.ToString();
     }
 
     // Update is called once per frame
@@ -60,6 +75,21 @@ public class BulletWeaponManager : MonoBehaviour
 
     void Shoot()
     {
+        // 更新子弹数量
+        bulletNumberManager.bulletGunCurrentAmmo = update == 0 ? bulletNumberManager.bulletGunCurrentAmmo - 1 : bulletNumberManager.bulletGunCurrentAmmo - 3;
+        if (bulletNumberManager.bulletGunCurrentAmmo < 0)
+        {
+            bool hasAmmo = Reloaded();
+            if (!hasAmmo)
+            {
+                bulletNumberManager.bulletGunCurrentAmmo = 0;
+                return;
+            }
+        }
+
+        //更新UI
+        uiCurrentAmmo.text = bulletNumberManager.bulletGunCurrentAmmo.ToString();
+
         // 计时器清0
         timer = 0;
         // 开启灯光
@@ -90,11 +120,22 @@ public class BulletWeaponManager : MonoBehaviour
             Destroy(bulletInstance2, 2f);
             Destroy(bulletInstance3, 2f);
         }
-       
 
+        
 
 
         // 测试
-        //Debug.Log("aaaa");
+        //Debug.Log(currentAmmo);
+    }
+
+    bool Reloaded()
+    {
+        if (bulletNumberManager.bulletGunTotalAmmo == 0)
+            return false;
+        bulletNumberManager.bulletGunCurrentAmmo = bulletNumberManager.bulletGunTotalAmmo - bulletNumberManager.bulletCapacity >= 0 ? bulletNumberManager.bulletCapacity : bulletNumberManager.bulletGunTotalAmmo;
+        bulletNumberManager.bulletGunTotalAmmo = bulletNumberManager.bulletGunTotalAmmo - bulletNumberManager.bulletGunCurrentAmmo >= 0 ? bulletNumberManager.bulletGunTotalAmmo - bulletNumberManager.bulletGunCurrentAmmo : 0;
+        // 更新UI
+        uiTotalAmmo.text = bulletNumberManager.bulletGunTotalAmmo.ToString();
+        return true;
     }
 }

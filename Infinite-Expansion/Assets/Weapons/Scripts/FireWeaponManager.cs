@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FireWeaponManager : MonoBehaviour
 {
@@ -20,6 +21,16 @@ public class FireWeaponManager : MonoBehaviour
     public GameObject fireStormPrefab;
 
     private HeroInputManager heroInput;
+
+    // 子弹数量
+    public int currentAmmo = 30;
+    public int totalAmmo = 100;
+    public const int MagazineCapacity = 30;
+
+    // UI系统
+    private Text uiCurrentAmmo;
+    private Text uiTotalAmmo;
+
 
     private void Awake()
     {
@@ -40,6 +51,10 @@ public class FireWeaponManager : MonoBehaviour
     void Start()
     {
         gunParticles = gameObject.GetComponent<ParticleSystem>();
+        uiCurrentAmmo = GameObject.Find("CurrentAmmo").GetComponent<Text>();
+        uiTotalAmmo = GameObject.Find("TotalAmmo").GetComponent<Text>();
+        uiCurrentAmmo.text = currentAmmo.ToString();
+        uiTotalAmmo.text = totalAmmo.ToString();
     }
 
     // Update is called once per frame
@@ -49,8 +64,9 @@ public class FireWeaponManager : MonoBehaviour
 
         float shootButton = heroInput.HeroAction.Shoot.ReadValue<float>();
 
-        if(update==1 && shootButton>0 && timer>1f)
+        if (update==1 && shootButton>0 && timer>1f)
         {
+
             Shoot();
             timer = 0f;
         }
@@ -71,6 +87,21 @@ public class FireWeaponManager : MonoBehaviour
 
     void Shoot()
     {
+        // 更新子弹数量
+        currentAmmo = update == 0 ? currentAmmo - 1 : currentAmmo - 3;
+        if (currentAmmo < 0)
+        {
+            bool hasAmmo = Reloaded();
+            if (!hasAmmo)
+            {
+                currentAmmo = 0;
+                return;
+            }
+        }
+
+        //更新UI
+        uiCurrentAmmo.text = currentAmmo.ToString();
+
         // 计时器清0
         timer = 0;
         // 开启灯光
@@ -92,9 +123,16 @@ public class FireWeaponManager : MonoBehaviour
         {
             GameObject fireStormIns = Instantiate(fireStormPrefab, transform.position, Quaternion.Euler(transform.eulerAngles));
         }
+    }
 
-        
-        
-        
+    bool Reloaded()
+    {
+        if (totalAmmo == 0)
+            return false;
+        currentAmmo = totalAmmo - MagazineCapacity >= 0 ? MagazineCapacity : totalAmmo;
+        totalAmmo = totalAmmo - currentAmmo >= 0 ? totalAmmo - currentAmmo : 0;
+        // 更新UI
+        uiTotalAmmo.text = totalAmmo.ToString();
+        return true;
     }
 }

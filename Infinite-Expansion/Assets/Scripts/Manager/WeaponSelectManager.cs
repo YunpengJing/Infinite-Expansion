@@ -25,6 +25,9 @@ public class WeaponSelectManager : MonoBehaviour
 
     private static WeaponSelectManager instance;
 
+    private GameObject countable;
+    private GameObject bulletSlider;
+
     public static WeaponSelectManager Instance
     {
         get
@@ -36,6 +39,13 @@ public class WeaponSelectManager : MonoBehaviour
         {
             instance = value;
         }
+    }
+
+    public void Start()
+    {
+        countable = GameObject.Find("Countable");
+        bulletSlider = GameObject.Find("BulletSlider");
+        bulletSlider.SetActive(false);
     }
 
     public void Awake()
@@ -75,7 +85,19 @@ public class WeaponSelectManager : MonoBehaviour
         {
             int from = currentWeaponIndex;
             int to = k;
-            
+
+            if (to == 1)
+            {
+                // 切换到狙击枪
+                countable.SetActive(false);
+                bulletSlider.SetActive(true);
+            }
+            else
+            {
+                countable.SetActive(true);
+                bulletSlider.SetActive(false);
+            }
+
             //GameObject oldWeapon = transform.Find("Weapon").gameObject;
             GameObject oldWeapon = GameObject.Find("Weapon");
             GameObject newWeapon = GameObject.Instantiate(weapons[to]);
