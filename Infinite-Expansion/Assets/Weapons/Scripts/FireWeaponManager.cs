@@ -23,9 +23,7 @@ public class FireWeaponManager : MonoBehaviour
     private HeroInputManager heroInput;
 
     // 子弹数量
-    public int currentAmmo = 30;
-    public int totalAmmo = 100;
-    public const int MagazineCapacity = 30;
+    private BulletNumberManager bulletNumberManager;
 
     // UI系统
     private Text uiCurrentAmmo;
@@ -51,10 +49,11 @@ public class FireWeaponManager : MonoBehaviour
     void Start()
     {
         gunParticles = gameObject.GetComponent<ParticleSystem>();
+        bulletNumberManager = GameObject.Find("WeaponManager").GetComponent<BulletNumberManager>();
         uiCurrentAmmo = GameObject.Find("CurrentAmmo").GetComponent<Text>();
         uiTotalAmmo = GameObject.Find("TotalAmmo").GetComponent<Text>();
-        uiCurrentAmmo.text = currentAmmo.ToString();
-        uiTotalAmmo.text = totalAmmo.ToString();
+        uiCurrentAmmo.text = bulletNumberManager.FireCurrentAmmo.ToString();
+        uiTotalAmmo.text = bulletNumberManager.FireTotalAmmo.ToString();
     }
 
     // Update is called once per frame
@@ -88,19 +87,19 @@ public class FireWeaponManager : MonoBehaviour
     void Shoot()
     {
         // 更新子弹数量
-        currentAmmo = update == 0 ? currentAmmo - 1 : currentAmmo - 3;
-        if (currentAmmo < 0)
+        bulletNumberManager.FireCurrentAmmo = update == 0 ? bulletNumberManager.FireCurrentAmmo - 1 : bulletNumberManager.FireCurrentAmmo - 3;
+        if (bulletNumberManager.FireCurrentAmmo < 0)
         {
             bool hasAmmo = Reloaded();
             if (!hasAmmo)
             {
-                currentAmmo = 0;
+                bulletNumberManager.FireCurrentAmmo = 0;
                 return;
             }
         }
 
         //更新UI
-        uiCurrentAmmo.text = currentAmmo.ToString();
+        uiCurrentAmmo.text = bulletNumberManager.FireCurrentAmmo.ToString();
 
         // 计时器清0
         timer = 0;
@@ -127,12 +126,12 @@ public class FireWeaponManager : MonoBehaviour
 
     bool Reloaded()
     {
-        if (totalAmmo == 0)
+        if (bulletNumberManager.FireTotalAmmo == 0)
             return false;
-        currentAmmo = totalAmmo - MagazineCapacity >= 0 ? MagazineCapacity : totalAmmo;
-        totalAmmo = totalAmmo - currentAmmo >= 0 ? totalAmmo - currentAmmo : 0;
+        bulletNumberManager.FireCurrentAmmo = bulletNumberManager.FireTotalAmmo - bulletNumberManager.FireCapacity >= 0 ? bulletNumberManager.FireCapacity : bulletNumberManager.FireTotalAmmo;
+        bulletNumberManager.FireTotalAmmo = bulletNumberManager.FireTotalAmmo - bulletNumberManager.FireCurrentAmmo >= 0 ? bulletNumberManager.FireTotalAmmo - bulletNumberManager.FireCurrentAmmo : 0;
         // 更新UI
-        uiTotalAmmo.text = totalAmmo.ToString();
+        uiTotalAmmo.text = bulletNumberManager.FireTotalAmmo.ToString();
         return true;
     }
 }

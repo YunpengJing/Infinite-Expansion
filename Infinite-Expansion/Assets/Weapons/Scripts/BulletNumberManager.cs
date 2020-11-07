@@ -9,18 +9,17 @@ public class BulletNumberManager : MonoBehaviour
     public int bulletGunCurrentAmmo = 30;
     public int bulletCapacity = 30;
 
-    public int RPGTotalAmmo = 6;
-    public int RPGCurrentAmmo = 30;
+    public int RPGTotalAmmo = 30;
+    public int RPGCurrentAmmo = 6;
     public int RPGCapacity = 6;
 
-    public int FireTotalAmmo = 6;
-    public int FireCurrentAmmo = 30;
+    public int FireTotalAmmo = 30;
+    public int FireCurrentAmmo = 6;
     public int FireCapacity = 6;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame

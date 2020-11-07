@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Security.Cryptography;
 using UnityEngine;
 
 namespace BigRookGames.Weapons
@@ -28,6 +29,12 @@ namespace BigRookGames.Weapons
 
         private GameObject enemy;
         public float currentDamage; // 当前伤害
+
+        public GameObject explosionPrefab;
+        private GameObject explosionIns = null;
+
+        private bool firstColl = false;
+
 
 
         void Start()
@@ -86,7 +93,8 @@ namespace BigRookGames.Weapons
             GameObject hero = GameObject.FindWithTag("Hero");
             if (other.tag == "Enemy")
             {
-                other.GetComponent<Enemy>().TakeDamage(currentDamage, hero);
+                // other.GetComponent<Enemy>().TakeDamage(currentDamage, hero);
+                // explosionIns = Instantiate(explosionPrefab, transform);
             }
 
             if (other.tag != "Airwall")
@@ -112,10 +120,13 @@ namespace BigRookGames.Weapons
         /// </summary>
         private void Explode()
         {
+            if (!firstColl)
+            {
+                firstColl = true;
+                explosionIns = Instantiate(explosionPrefab, transform);
+            }
             // --- Instantiate new explosion option. I would recommend using an object pool ---
             GameObject newExplosion = Instantiate(rocketExplosion, transform.position, rocketExplosion.transform.rotation, null);
-
-
         }
     }
 }

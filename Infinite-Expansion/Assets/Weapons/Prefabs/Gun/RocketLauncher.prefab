@@ -221,13 +221,11 @@ MonoBehaviour:
   rotationSpeed: 0.25
   scope: {fileID: 0}
   scopeActive: 1
-  projectilePrefab: {fileID: 4092872357349286730, guid: 5269dd52fdc50ea429c6b6a65cc1161e,
+  projectilePrefab: {fileID: 4806559846046177659, guid: 85fb4c6a21eb69e44b5028a4da411d11,
     type: 3}
   projectileToDisableOnFire: {fileID: 523329589698191238}
   timeLastFired: 0
   timeBetweenBullet: 1
-  currentAmmo: 30
-  totalAmmo: 30
   uiCurrentAmmo: {fileID: 0}
   uiTotalAmmo: {fileID: 0}
 --- !u!82 &2312396716234573601
