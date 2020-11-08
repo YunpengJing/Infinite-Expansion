@@ -2742,12 +2742,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: anonymous
-  speed: 10
-  hp: 50
-  attackDistance: 2
-  attackPower: 10
+  speed: 20
+  hp: 500
+  attackDistance: 4
+  attackPower: 30
   attackRate: 1
-  money: 10
+  money: 200
 --- !u!195 &648571631573950862
 NavMeshAgent:
   m_ObjectHideFlags: 0

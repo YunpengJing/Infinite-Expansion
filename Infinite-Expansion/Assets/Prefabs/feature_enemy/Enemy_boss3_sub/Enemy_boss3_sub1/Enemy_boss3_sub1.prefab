@@ -1417,8 +1417,8 @@ MonoBehaviour:
   name: anonymous
   speed: 10
   hp: 250
-  attackDistance: 100
-  attackPower: 10
+  attackDistance: 5
+  attackPower: 8
   attackRate: 1
   money: 10
 --- !u!195 &9178078845749273336

@@ -226,11 +226,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: anonymous
   speed: 10
-  hp: 150
+  hp: 1000
   attackDistance: 6
-  attackPower: 10
+  attackPower: 30
   attackRate: 1
-  money: 10
+  money: 200
 --- !u!54 &6028408029344228122
 Rigidbody:
   m_ObjectHideFlags: 0

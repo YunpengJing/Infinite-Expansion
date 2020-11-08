@@ -960,9 +960,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: anonymous
   speed: 5
-  hp: 150
-  attackDistance: 40
-  attackPower: 10
+  hp: 500
+  attackDistance: 8
+  attackPower: 15
   attackRate: 1
   money: 10
 --- !u!54 &172675595399706170
