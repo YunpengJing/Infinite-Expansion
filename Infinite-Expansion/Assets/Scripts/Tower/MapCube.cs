@@ -17,6 +17,27 @@ public class MapCube : MonoBehaviour
     public int hp = 400;
     private int totalHp;
     public float height;
+    public float buildSpeed = 1.0f;
+    public bool buildAble;
+
+    private void Awake()
+    {
+        buildAble = false;
+        hpSlider.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (transform.position.y < 0)
+        {
+            transform.Translate(new Vector3(0, 1, 0) * buildSpeed * Time.deltaTime);
+        }
+        else
+        {
+            if (!hpSlider.IsActive()) hpSlider.gameObject.SetActive(true);
+            buildAble = true;
+        }
+    }
 
     private void Start()
     {
