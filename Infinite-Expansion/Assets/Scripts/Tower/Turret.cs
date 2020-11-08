@@ -18,6 +18,7 @@ public class Turret : MonoBehaviour
     private float timer = 0;    // 计时器
     public bool useLaser = false;
     public float damageRate = 70;   // 1s 造成 70 伤害
+    public bool isSlowDown = false; // 子弹是否减速
 
     private void Start()
     {
@@ -127,6 +128,7 @@ public class Turret : MonoBehaviour
             GameObject bullet = GameObject.Instantiate(bulletPrefab, firePosition.position, firePosition.rotation);
             bullet.GetComponent<TowerBullet>().SetTarget(enemys[0].transform);
             bullet.GetComponent<TowerBullet>().SetMapCubeGo(mapCubeGo);
+            bullet.GetComponent<TowerBullet>().SetIsSlowDown(isSlowDown);
         }
         else
         {

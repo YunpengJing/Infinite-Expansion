@@ -410,6 +410,8 @@ MonoBehaviour:
   hpSlider: {fileID: 666799919}
   hp: 200
   height: 1.5
+  buildSpeed: 2
+  buildAble: 0
 --- !u!114 &1802330017
 MonoBehaviour:
   m_ObjectHideFlags: 0
