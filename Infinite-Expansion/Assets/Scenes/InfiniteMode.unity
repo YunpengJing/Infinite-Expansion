@@ -20693,7 +20693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemyPrefab: {fileID: 9207249416024979610, guid: 302d2e60ba1f8844b9dfee87d2cc942d,
+  - enemyPrefab: {fileID: 8345446930998330636, guid: c7340ae6cd1785149946e31ae96a0df2,
       type: 3}
     count: 2
     rate: 0.8
@@ -20722,6 +20722,18 @@ MonoBehaviour:
     count: 1
     rate: 0.8
   - enemyPrefab: {fileID: 2118765177808093494, guid: b304498cfb1214b4eb2a3dd87856f2e2,
+      type: 3}
+    count: 2
+    rate: 0.8
+  - enemyPrefab: {fileID: 680386199210809234, guid: 5ed7f066a4ccf88499b5d4d76766cffd,
+      type: 3}
+    count: 5
+    rate: 0.8
+  - enemyPrefab: {fileID: 2892142403764833222, guid: 7f657ca69f834a74297b6739122d82de,
+      type: 3}
+    count: 2
+    rate: 0.8
+  - enemyPrefab: {fileID: 8345446930998330636, guid: c7340ae6cd1785149946e31ae96a0df2,
       type: 3}
     count: 2
     rate: 0.8
