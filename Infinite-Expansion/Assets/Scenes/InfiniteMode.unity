@@ -20693,7 +20693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - enemyPrefab: {fileID: 9207249416024979610, guid: 302d2e60ba1f8844b9dfee87d2cc942d,
+  - enemyPrefab: {fileID: 680386199210809234, guid: 5ed7f066a4ccf88499b5d4d76766cffd,
       type: 3}
     count: 0
     rate: 0.3
