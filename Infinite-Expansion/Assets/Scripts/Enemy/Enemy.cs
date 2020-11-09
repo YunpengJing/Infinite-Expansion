@@ -196,7 +196,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void SlowDown(int duration)
+    public void SlowDown(int duration)
     {
         speed /= 2;
         this.gameObject.AddComponent<Renderer>().material.color = Color.blue;

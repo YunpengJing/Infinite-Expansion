@@ -55,7 +55,7 @@ public class TowerBullet : MonoBehaviour
             if (other.gameObject.GetComponent<Enemy>().hp == 0) return;
 
             other.GetComponent<Enemy>().TakeDamage(damage, mapCubeGo);
-            //if (isSlowDown) other.GetComponent<Enemy>().SlowDown(2);
+            if (isSlowDown) other.GetComponent<Enemy>().SlowDown(2);
             Die();
         }
         else if (other.tag == "Airwall")
