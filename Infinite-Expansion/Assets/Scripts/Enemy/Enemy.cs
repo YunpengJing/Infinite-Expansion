@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour
     NavMeshAgent m_Agent;
     private string unusualStatus = "";
 
+    // 减速持续事件
+    private float slowDownDuration;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +69,16 @@ public class Enemy : MonoBehaviour
                         Fight();
                     }
                 }
+            }
+        }
+
+        if (unusualStatus == "slowDown")
+        {
+            slowDownDuration -= Time.deltaTime;
+            if (slowDownDuration < 0)
+            {
+                unusualStatus = "";
+                EndSlowDown();
             }
         }
     }
@@ -207,9 +220,15 @@ public class Enemy : MonoBehaviour
             SkinnedMeshRenderer[] smr = this.gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
             foreach (SkinnedMeshRenderer sss in smr)
             {
-                sss.material.color = Color.blue;
+                //sss.material.color = Color.blue;
+                sss.material.color = new Color(76 / 255.0f, 142 / 255.0f, 195 / 255.0f, 1.0f);
             }
-            Invoke("EndSlowDown", (float)duration);
+            //Invoke("EndSlowDown", (float)duration);
+            slowDownDuration = 2.0f;
+        }
+        else
+        {
+            slowDownDuration = 2.0f;
         }
     }
 
