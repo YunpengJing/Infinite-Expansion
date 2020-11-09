@@ -40608,6 +40608,81 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2128622547}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2129377058
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4416518943800353163, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 2163173037376451863, guid: fc2b2488ac97343cb8f05ef754abb9c6,
+        type: 3}
+    - target: {fileID: 8092644756357275240, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -41.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092644756357275240, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092644756357275240, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092644756357275240, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092644756357275240, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092644756357275240, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092644756357275240, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092644756357275240, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092644756357275240, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092644756357275240, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092644756357275240, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092644756357497416, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+      propertyPath: m_Name
+      value: SlowDownTurret
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9, type: 3}
 --- !u!1001 &2130102331
 PrefabInstance:
   m_ObjectHideFlags: 0
