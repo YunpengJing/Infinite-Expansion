@@ -41,17 +41,14 @@ public class EnemySpawner : MonoBehaviour
                 //int index=0;
                 wave = enemies[index];
             }
-            for (int i = 0; i < waveCount; i++)
+            for (int i = 0; i < waveCount / 2; i++)
             {
                 for (int j = 0; j < START.Length; j++)
                 {
                     GameObject.Instantiate(wave.enemyPrefab, START[j].position, Quaternion.identity);
                     CountEnemyAlive++;
                 }
-                if (i != wave.count - 1)
-                {
-                    yield return new WaitForSeconds(wave.rate);
-                }
+                yield return new WaitForSeconds(wave.rate);
             }
             waveCount++;
             Analytics.CustomEvent("AliveWaveNumber", new Dictionary<string, object>

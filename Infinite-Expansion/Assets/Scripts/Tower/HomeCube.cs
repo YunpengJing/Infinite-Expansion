@@ -27,7 +27,6 @@ public class HomeCube : MonoBehaviour
 
         if (hp <= 0)
         {
-            //GameOverManager.Fail();
             GameOverManager.Instance.Fail();
         }
     }
