@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Manager;
 using UnityEngine.Analytics;
 public class EnemySpawner : MonoBehaviour
 {
+    public Text waveText;
     public Wave[] enemies;
     public Wave[] bosses;
     public Transform[] START;
@@ -14,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        waveText.text = "Waves: 0";
         StartCoroutine(SpawnEnemy());
     }
 
@@ -28,6 +31,8 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
+            int showWaveCount = waveCount - 1;
+            waveText.text = "Waves: " + showWaveCount;
             Wave wave;
             if (waveCount % 10 == 0)
             {
