@@ -32,11 +32,13 @@ public class EnemySpawner : MonoBehaviour
             if (waveCount % 10 == 0)
             {
                 int index = Random.Range(0, bosses.Length);
+                //int index=0;
                 wave = bosses[index];
             }
             else
             {
                 int index = Random.Range(0, enemies.Length);
+                //int index=0;
                 wave = enemies[index];
             }
             for (int i = 0; i < waveCount; i++)
