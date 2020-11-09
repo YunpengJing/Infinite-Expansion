@@ -20692,35 +20692,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd328e4d4a2343439d229f07379d9af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves:
+  enemies:
   - enemyPrefab: {fileID: 9207249416024979610, guid: 302d2e60ba1f8844b9dfee87d2cc942d,
       type: 3}
-    count: 2
-    rate: 0.8
-  - enemyPrefab: {fileID: 4556034567386493322, guid: bb690e004c12d4c41ad1bf44d0e8c670,
-      type: 3}
-    count: 3
-    rate: 0.8
-  - enemyPrefab: {fileID: 2441833371962984730, guid: 73570596328e6e342bcfff9558cd83ad,
-      type: 3}
-    count: 4
-    rate: 0.8
-  - enemyPrefab: {fileID: 7554488773659694938, guid: 9d2eee8e0aaa4b144a1574b012a40ff6,
-      type: 3}
-    count: 5
-    rate: 0.8
+    count: 0
+    rate: 0.3
   - enemyPrefab: {fileID: 6280682895729838945, guid: 7b6a6d943e3566f4895f9e0f00bb9dc4,
       type: 3}
-    count: 5
-    rate: 0.8
+    count: 0
+    rate: 0.3
   - enemyPrefab: {fileID: 6814633960879540448, guid: 59175cacb6afca649ab785a5d430a7da,
       type: 3}
-    count: 7
-    rate: 0.8
+    count: 0
+    rate: 0.3
+  - enemyPrefab: {fileID: 2118765177808093494, guid: b304498cfb1214b4eb2a3dd87856f2e2,
+      type: 3}
+    count: 0
+    rate: 0.3
+  - enemyPrefab: {fileID: 7554488773659694938, guid: 9d2eee8e0aaa4b144a1574b012a40ff6,
+      type: 3}
+    count: 0
+    rate: 0.3
+  - enemyPrefab: {fileID: 4556034567386493322, guid: bb690e004c12d4c41ad1bf44d0e8c670,
+      type: 3}
+    count: 0
+    rate: 0.3
+  - enemyPrefab: {fileID: 2441833371962984730, guid: 73570596328e6e342bcfff9558cd83ad,
+      type: 3}
+    count: 0
+    rate: 0.3
+  - enemyPrefab: {fileID: 680386199210809234, guid: 5ed7f066a4ccf88499b5d4d76766cffd,
+      type: 3}
+    count: 0
+    rate: 0.3
+  bosses:
   - enemyPrefab: {fileID: 4798166833680389388, guid: 572e82078640a044d99ed14e294447c1,
       type: 3}
-    count: 1
-    rate: 0.8
+    count: 0
+    rate: 0
+  - enemyPrefab: {fileID: 2892142403764833222, guid: 7f657ca69f834a74297b6739122d82de,
+      type: 3}
+    count: 0
+    rate: 0
+  - enemyPrefab: {fileID: 8345446930998330636, guid: c7340ae6cd1785149946e31ae96a0df2,
+      type: 3}
+    count: 0
+    rate: 0
   START:
   - {fileID: 783302845}
   - {fileID: 2113812247}
@@ -41147,7 +41164,7 @@ PrefabInstance:
     - target: {fileID: 3378057835544488513, guid: 5c123a220ef5b4aae9d82a8f22db2176,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -335.2
+      value: -335.19922
       objectReference: {fileID: 0}
     - target: {fileID: 3378057835544488513, guid: 5c123a220ef5b4aae9d82a8f22db2176,
         type: 3}
