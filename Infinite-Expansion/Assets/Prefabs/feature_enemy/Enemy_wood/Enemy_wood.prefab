@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: anonymous
-  speed: 8
+  speed: 6
   hp: 150
   attackDistance: 4
   attackPower: 10
@@ -211,7 +211,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &-1353761423752770090
 NavMeshAgent:
