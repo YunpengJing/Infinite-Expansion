@@ -195,4 +195,11 @@ public class Enemy : MonoBehaviour
             EnemyManager.Instance.damageToHome += damage;
         }
     }
+
+    void SlowDown(int duration)
+    {
+        speed /= 2;
+        this.gameObject.AddComponent<Renderer>().material.color = Color.blue;
+        Destroy(gameObject.GetComponent<Renderer>(), (float)duration);
+    }
 }
