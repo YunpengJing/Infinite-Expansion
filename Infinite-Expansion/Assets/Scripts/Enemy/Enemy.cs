@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     private float timer = 0;
     public int money = 10;
     NavMeshAgent m_Agent;
+    private string unusualStatus = "";
 
     // Start is called before the first frame update
     void Start()
@@ -198,8 +199,30 @@ public class Enemy : MonoBehaviour
 
     public void SlowDown(int duration)
     {
-        speed /= 2;
-        this.gameObject.AddComponent<Renderer>().material.color = Color.blue;
-        Destroy(gameObject.GetComponent<Renderer>(), (float)duration);
+        if (unusualStatus != "slowDown")
+        {
+            unusualStatus = "slowDown";
+            speed /= 2;
+            m_Agent.speed = speed;
+            SkinnedMeshRenderer[] smr = this.gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (SkinnedMeshRenderer sss in smr)
+            {
+                sss.material.color = Color.blue;
+            }
+            Invoke("EndSlowDown", (float)duration);
+        }
+    }
+
+    public void EndSlowDown()
+    {
+        unusualStatus = "";
+        speed *= 2;
+        m_Agent.speed = speed;
+        SkinnedMeshRenderer[] smr = this.gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (SkinnedMeshRenderer sss in smr)
+        {
+            Debug.Log(sss.material.color);
+            sss.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        }
     }
 }
