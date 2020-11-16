@@ -94,7 +94,13 @@ public class HeroMessage : MonoBehaviour
         for (int i = 0; i < WeaponSelectManager.Instance.totalWeaponNumber; i++)
         {
             if (!WeaponSelectManager.Instance.Unlocked(i))
+            {
                 GameObject.Find("Weapon" + i.ToString()).GetComponent<Image>().color = Color.red;
+            }
+            else
+            {
+                GameObject.Find("Weapon" + i.ToString()).transform.Find("Money").GetComponent<Text>().text = "";
+            }
         }
         // show selected
         foreach (int i in WeaponSelectManager.Instance.selectedWeaponIndex)
