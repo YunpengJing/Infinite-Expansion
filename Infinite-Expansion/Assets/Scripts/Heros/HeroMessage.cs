@@ -9,7 +9,7 @@ public class HeroMessage : MonoBehaviour
     void Update()
     {
         TowerSelectedShow();
-        WeaponSelectedShow();
+        WeaponStateShow();
     }
 
 
@@ -84,12 +84,19 @@ public class HeroMessage : MonoBehaviour
     #endregion
 
     #region Weapon
-    private void WeaponSelectedShow()
+    private void WeaponStateShow()
     {
         for (int i = 0; i < WeaponSelectManager.Instance.totalWeaponNumber; i++)
         {
             GameObject.Find("Weapon" + i.ToString()).GetComponent<Image>().color = Color.white;
         }
+        // show locked
+        for (int i = 0; i < WeaponSelectManager.Instance.totalWeaponNumber; i++)
+        {
+            if (!WeaponSelectManager.Instance.Unlocked(i))
+                GameObject.Find("Weapon" + i.ToString()).GetComponent<Image>().color = Color.red;
+        }
+        // show selected
         foreach (int i in WeaponSelectManager.Instance.selectedWeaponIndex)
         {
             GameObject.Find("Weapon" + i.ToString()).GetComponent<Image>().color = Color.green;
@@ -98,6 +105,13 @@ public class HeroMessage : MonoBehaviour
 
     public void WeaponSwap(int k)
     {
+        // check if a weapon is locked first
+        if (!WeaponSelectManager.Instance.Unlocked(k))
+        {
+            WeaponSelectManager.Instance.Unlock(k);
+            return;
+        }
+        
         // cancal a weapon from the bag
         if (WeaponSelectManager.Instance.selectedWeaponIndex.Contains(k))
         {
@@ -136,10 +150,12 @@ public class HeroMessage : MonoBehaviour
             {
                 return;
             }
-            // still space in bag, do select
+            // still space in bag
             else
             { 
-                WeaponSelectManager.Instance.selectedWeaponIndex.Add(k);
+                // unlocked, switch
+                if (WeaponSelectManager.Instance.Unlocked(k))
+                    WeaponSelectManager.Instance.selectedWeaponIndex.Add(k);
             }
         }
     }

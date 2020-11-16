@@ -17,6 +17,9 @@ public class WeaponSelectManager : MonoBehaviour
     public Sprite weapon3Img;
     public List<Sprite> weaponImgs;
 
+    bool[] weaponsLocked = { false, false, false, true};
+    int[] moneyTOUnlock = { 0, 0, 0, 100 };
+
     public List<int> selectedWeaponIndex;
 
     public int totalWeaponNumber = 4;
@@ -67,6 +70,10 @@ public class WeaponSelectManager : MonoBehaviour
     // switch the current weapon to the k weapon
     public void SwitchWeapon(int k)
     {
+        if (!Unlock(k)) // not unlocked
+        {
+            return;
+        }
         if (!selectedWeaponIndex.Contains(k))
         {
             return;
@@ -90,6 +97,31 @@ public class WeaponSelectManager : MonoBehaviour
 
             GameObject button = GameObject.Find("Weapon Switch");
             button.GetComponent<Button>().image.sprite = weaponImgs[k];
+        }
+    }
+
+    public bool Unlocked(int k)
+    {
+        return !weaponsLocked[k];
+    }
+
+    // if success unlock return true
+    // else return false
+    public bool Unlock(int k)
+    {
+        if (Unlocked(k))    // already unlocked
+        {
+            return false;
+        }
+        else
+        {
+            bool flag = MoneyManager.Instance.UpdateMoney(-moneyTOUnlock[k]);
+            if (!flag) return false;
+            else
+            {
+                weaponsLocked[k] = false;
+                return true;
+            }
         }
     }
 }
