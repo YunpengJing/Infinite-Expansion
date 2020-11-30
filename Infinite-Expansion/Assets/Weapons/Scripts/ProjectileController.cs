@@ -89,6 +89,8 @@ namespace BigRookGames.Weapons
         {
 
             //UnityEngine.Debug.Log(other.tag);
+            // 如果怪物没血了，直接穿过
+            if (other.gameObject.GetComponent<Enemy>().hp == 0) return;
 
             GameObject hero = GameObject.FindWithTag("Hero");
             if (other.tag == "Enemy")
