@@ -29,7 +29,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle
+  m_Name: IdleBattle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -83,7 +83,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Get Hit
+  m_Name: GetHit
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -110,7 +110,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Walk
+  m_Name: WalkFWD
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -164,7 +164,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Basic Attack
+  m_Name: Attack01
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -218,7 +218,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Horn Attack
+  m_Name: Attack02
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -465,10 +465,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 110203552}
-    m_Position: {x: -192, y: 204, z: 0}
+    m_Position: {x: -190, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110258410}
-    m_Position: {x: -192, y: 348, z: 0}
+    m_Position: {x: -190, y: 350, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110283374}
     m_Position: {x: -192, y: 420, z: 0}
@@ -498,7 +498,7 @@ AnimatorStateMachine:
     m_Position: {x: 480, y: 276, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110258542}
-    m_Position: {x: 156, y: 276, z: 0}
+    m_Position: {x: 160, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110288600}
     m_Position: {x: 168, y: 696, z: 0}
