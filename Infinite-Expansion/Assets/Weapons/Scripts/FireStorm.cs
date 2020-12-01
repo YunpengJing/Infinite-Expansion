@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireStorm : MonoBehaviour
 {
-    public float damage = 1f;
+    public float damage = 2f;
 
     public float timer = 0f;
 
