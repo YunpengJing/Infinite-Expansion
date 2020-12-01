@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Manager;
 
 public class TowerBullet : MonoBehaviour
 {
     public int damage = 50;
     public float speed = 40;
+    private bool isSlowDown = false; // 子弹是否减速
 
     public GameObject explosionEffectPrefab;
     private Transform target;
@@ -19,6 +21,11 @@ public class TowerBullet : MonoBehaviour
     public void SetMapCubeGo(GameObject mapCubeGo)
     {
         this.mapCubeGo = mapCubeGo;
+    }
+
+    public void SetIsSlowDown(bool isSlowDown)
+    {
+        this.isSlowDown = isSlowDown;
     }
 
     // Start is called before the first frame update
@@ -44,7 +51,19 @@ public class TowerBullet : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            // 如果怪物没血了，直接穿过
+            if (other.gameObject.GetComponent<Enemy>().hp == 0) return;
+
             other.GetComponent<Enemy>().TakeDamage(damage, mapCubeGo);
+            if (isSlowDown) other.GetComponent<Enemy>().SlowDown(2);
+            Die();
+        }
+        else if (other.tag == "Airwall")
+        {
+            // 空气墙直接穿过
+        }
+        else
+        {
             Die();
         }
     }

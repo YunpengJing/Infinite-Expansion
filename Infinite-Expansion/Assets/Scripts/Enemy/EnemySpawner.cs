@@ -1,47 +1,95 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Manager;
-
+using UnityEngine.Analytics;
 public class EnemySpawner : MonoBehaviour
 {
-    public Wave[] waves;
-    public Transform START;
+    public Text waveText;
+    public Wave[] enemies;
+    public Wave[] bosses;
+    public Transform[] START;
     public float waveRate = 2;
     public static int CountEnemyAlive = 0;
-    private int waveCount = 0;
+    private int waveCount = 1;
 
     private void Start()
     {
+        waveText.text = "Waves: 0";
         StartCoroutine(SpawnEnemy());
     }
 
     private void Update()
     {
-        if (waves.Length == waveCount && CountEnemyAlive == 0)
+        /*if (enemies.Length == waveCount && CountEnemyAlive == 0)
         {
             GameOverManager.Instance.Win();
-        }
+        }*/
     }
     IEnumerator SpawnEnemy()
     {
-        foreach (Wave wave in waves)
+        while (true)
         {
-            for (int i = 0; i < wave.count; i++)
+            int showWaveCount = waveCount - 1;
+            waveText.text = "Waves: " + showWaveCount;
+            Wave wave;
+            if (waveCount % 10 == 0)
             {
-                GameObject.Instantiate(wave.enemyPrefab, START.position, Quaternion.identity);
-                CountEnemyAlive++;
-                if (i!=wave.count - 1)
-                {
-                    yield return new WaitForSeconds(wave.rate);
-                }
+                int index = Random.Range(0, bosses.Length);
+                //int index=0;
+                wave = bosses[index];
             }
-            waveCount ++;
+            else
+            {
+                int index = Random.Range(0, enemies.Length);
+                //int index=0;
+                wave = enemies[index];
+            }
+            for (int i = 0; i < waveCount / 2; i++)
+            {
+                for (int j = 0; j < START.Length; j++)
+                {
+                    GameObject.Instantiate(wave.enemyPrefab, START[j].position, Quaternion.identity);
+                    CountEnemyAlive++;
+                }
+                yield return new WaitForSeconds(wave.rate);
+            }
+            waveCount++;
+            Analytics.CustomEvent("AliveWaveNumber", new Dictionary<string, object>
+            {
+                { "AliveWaveNumber", waveCount}
+            });
             while (CountEnemyAlive > 0)
             {
                 yield return 0;
             }
             yield return new WaitForSeconds(waveRate);
         }
+        /*foreach (Wave wave in enemies)
+        {
+            for (int i = 0; i < wave.count; i++)
+            {
+                for (int j = 0; j < START.Length; j ++)
+                {
+                    GameObject.Instantiate(wave.enemyPrefab, START[j].position, Quaternion.identity);
+                    CountEnemyAlive++;
+                }
+                if (i!=wave.count - 1)
+                {
+                    yield return new WaitForSeconds(wave.rate);
+                }
+            }
+            waveCount ++;
+            Analytics.CustomEvent("AliveWaveNumber", new Dictionary<string, object>
+            {
+                { "AliveWaveNumber", waveCount}
+            });
+            while (CountEnemyAlive > 0)
+            {
+                yield return 0;
+            }
+            yield return new WaitForSeconds(waveRate);
+        }*/
     }
 }

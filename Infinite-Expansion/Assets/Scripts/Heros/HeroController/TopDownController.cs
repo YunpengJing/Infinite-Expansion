@@ -16,19 +16,6 @@ public class TopDownController : MonoBehaviour
     public float dampTime = 0.15f;
     private Vector3 velocity = Vector3.zero;
 
-    public static TurretData selectedTurretData;
-    public TurretData laserTurretData;
-    public TurretData missileTurretData;
-    public TurretData standardTurretData;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //cameraMain = Camera.main.transform;
-        selectedTurretData = standardTurretData;
-    }
-
     private void Awake()
     {
         heroInput = new HeroInputManager();
@@ -55,29 +42,6 @@ public class TopDownController : MonoBehaviour
         //    Vector3 destionation = new Vector3(transform.position.x, cameraMain.position.y, transform.position.z);
         //    cameraMain.position = Vector3.SmoothDamp(cameraMain.position, destionation, ref velocity, dampTime);
         //}
-
-        // tower build
-        float BuildButton = heroInput.HeroAction.Build.ReadValue<float>();
-        if (BuildButton > 0)
-        {
-            Ray ray = new Ray(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(0f, -1f, 0f));
-            RaycastHit hit;
-            bool isCollider = Physics.Raycast(ray, out hit, 1000f, LayerMask.GetMask("MapCube"));
-            if (isCollider)
-            {
-                MapCube mapCube = hit.collider.GetComponent<MapCube>();   // 得到点击的 mapCube
-                if (selectedTurretData != null && mapCube.turretGo == null)
-                {
-                    Debug.Log(mapCube.name);
-                    mapCube.BuildTurret(selectedTurretData.turretPrefab);
-                }
-                else
-                {
-                    // TODO: 升级处理
-                }
-            }
-        }
-
     }
 
 
@@ -88,7 +52,8 @@ public class TopDownController : MonoBehaviour
         // hero move
         Vector2 moveInput = heroInput.HeroAction.Move.ReadValue<Vector2>();
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
-        controller.Move(move * Time.deltaTime * heroSpeed);
+        //controller.Move(move * Time.deltaTime * heroSpeed);
+        transform.Translate(move * Time.deltaTime * heroSpeed, Space.World);
 
         if (move != Vector3.zero)
         {
@@ -98,25 +63,68 @@ public class TopDownController : MonoBehaviour
 
     #endregion
 
+    #region Tower
 
     #region Tower Build
-
     public void SelectAndBuild()
     {
-        MapCube mapCube = Select();
-        Build(mapCube);
+        MapCube mapCube = SelectCube();
+
+        // did not hit the cube, build a cube
+        if (mapCube == null)
+        {
+            Vector3 hitPlanePoint = SelectPlane();
+            if (hitPlanePoint.x == 0 && hitPlanePoint.y == 0 && hitPlanePoint.z == 0) 
+            {
+                return; 
+            }
+
+            LayerMask mask = LayerMask.GetMask("MapCube") | LayerMask.GetMask("Water") | LayerMask.GetMask("Tree");
+            RaycastHit hit;
+            float[] x = { -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f };
+            float[] z = { -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f };
+            foreach (float i in x)
+            {
+                foreach (float j in z)
+                {
+                    Ray ray = new Ray(new Vector3(hitPlanePoint.x + i, hitPlanePoint.y + 100f, hitPlanePoint.z + j), new Vector3(0f, -1f, 0f));
+                    bool isCollider = Physics.Raycast(ray, out hit, 1000f, mask, QueryTriggerInteraction.Collide);
+                    if (isCollider)
+                    {
+                        //Debug.Log(hit.point);
+                        //Debug.Log(hit.collider.name);
+                        return;
+                    }
+                }
+            }
+            BuildManager.Instance.BuildMapCube(hitPlanePoint);
+        }
+        // hit a cube, build a tower on the cube
+        else
+        {
+            BuildManager.Instance.BuildTurret(mapCube);
+        }
     }
 
-    private MapCube Select()
+    private Vector3 SelectPlane()
     {
-        Debug.Log("selected triggered");
         Vector2 mousePosition = heroInput.HeroAction.Select.ReadValue<Vector2>();
-        Debug.Log(mousePosition);
 
         // ray detection
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit hit;
-        bool isCollider = Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("MapCube"));
+        bool isCollider = Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Plane"), QueryTriggerInteraction.Collide);
+        return hit.point;
+    }
+
+    private MapCube SelectCube()
+    {
+        Vector2 mousePosition = heroInput.HeroAction.Select.ReadValue<Vector2>();
+
+        // ray detection
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        RaycastHit hit;
+        bool isCollider = Physics.Raycast(ray, out hit, 2000, LayerMask.GetMask("MapCube"), QueryTriggerInteraction.Collide);
         if (isCollider)
         {
             return hit.collider.GetComponent<MapCube>();
@@ -127,21 +135,65 @@ public class TopDownController : MonoBehaviour
         }
     }
 
-    private void Build(MapCube mapCube)
+    #endregion
+
+    #region Tower Switch
+
+    public void TowerSwitch()
     {
-        if (mapCube)
+        if (BuildManager.Instance.selectedTurretIndex.Count < 2)
         {
-            if (selectedTurretData != null && mapCube.turretGo == null)
+            return;
+        }
+        else
+        {
+            int p = BuildManager.Instance.selectedTurretIndex.IndexOf(BuildManager.Instance.currentTurretIndex);
+            p += 1;
+            if (p == BuildManager.Instance.selectedTurretIndex.Count)
             {
-                Debug.Log(mapCube.name);
-                mapCube.BuildTurret(selectedTurretData.turretPrefab);
+                BuildManager.Instance.switchBuildTurret(BuildManager.Instance.selectedTurretIndex[0]);
             }
             else
             {
-                // TODO: 升级处理
+                BuildManager.Instance.switchBuildTurret(BuildManager.Instance.selectedTurretIndex[p]);
             }
         }
     }
+
+    public void SwtichBuildRange()
+    {
+        BuildManager.Instance.SwitchBuildRange();
+    }
+
+    #endregion
+
+    #endregion
+
+    #region Weapon
+
+    #region Weapon Switch
+
+    public void WeaponSwitch()
+    {
+        if (WeaponSelectManager.Instance.selectedWeaponIndex.Count < 2)
+        {
+            return;
+        }
+        else
+        {
+            int p = WeaponSelectManager.Instance.selectedWeaponIndex.IndexOf(WeaponSelectManager.Instance.currentWeaponIndex);
+            p += 1;
+            if (p == WeaponSelectManager.Instance.selectedWeaponIndex.Count)
+            {
+                WeaponSelectManager.Instance.SwitchWeapon(WeaponSelectManager.Instance.selectedWeaponIndex[0]);
+            }
+            else
+            {
+                WeaponSelectManager.Instance.SwitchWeapon(WeaponSelectManager.Instance.selectedWeaponIndex[p]);
+            }
+        }
+    }
+    #endregion
 
     #endregion
 }

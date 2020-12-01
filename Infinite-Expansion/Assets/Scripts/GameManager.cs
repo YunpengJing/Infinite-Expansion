@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject HeroMenu;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +18,32 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void LoadStartMenu()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
+
+    public void LoadInfiniteMode()
+    {
+        SceneManager.LoadScene("InfiniteMode");
+    }
+
     public void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void ShowHeroMenu()
+    {
+        Time.timeScale = 0;
+        GameObject menu = Instantiate(HeroMenu);
+        menu.name = "HeroMenu";
+    }
+
+    public void HideHeroMenu()
+    {
+        GameObject menu = GameObject.Find("HeroMenu");
+        Destroy(menu);
+        Time.timeScale = 1;
     }
 }

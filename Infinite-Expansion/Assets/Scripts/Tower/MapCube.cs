@@ -14,9 +14,30 @@ public class MapCube : MonoBehaviour
     public Slider hpSlider;
 
     // attr
-    public int hp = 200;
+    public int hp = 400;
     private int totalHp;
     public float height;
+    public float buildSpeed = 1.0f;
+    public bool buildAble;
+
+    private void Awake()
+    {
+        buildAble = false;
+        hpSlider.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (transform.position.y < 0)
+        {
+            transform.Translate(new Vector3(0, 1, 0) * buildSpeed * Time.deltaTime);
+        }
+        else
+        {
+            if (!hpSlider.IsActive()) hpSlider.gameObject.SetActive(true);
+            buildAble = true;
+        }
+    }
 
     private void Start()
     {
@@ -31,22 +52,6 @@ public class MapCube : MonoBehaviour
         turretGo.GetComponent<Turret>().SetMapCubeGo(gameObject);
         GameObject effect = GameObject.Instantiate(buildEffectPrefab, transform.position + new Vector3(0, height, 0), transform.rotation);
         Destroy(effect, 1.5f);
-    }
-
-    private void OnMouseEnter()
-    {
-        // 只有有选中炮塔，才高亮方块
-        if (BuildManager.selectedTurretData == null) return;
-
-        if (turretGo == null && !EventSystem.current.IsPointerOverGameObject())
-        {
-            renderer.material.color = Color.red;
-        }
-    }
-
-    private void OnMouseExit()
-    {
-        renderer.material.color = Color.white;
     }
 
     public void TakeDamage(int damage)
