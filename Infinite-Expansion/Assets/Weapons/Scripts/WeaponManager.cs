@@ -33,6 +33,8 @@ public class WeaponManager : MonoBehaviour
 
     private Slider bulletSlider; // 当前子弹数量UI
 
+    public int update = 0; // 枪械升级
+
     // Start is called before the first frame update
     void Start()
     {
@@ -143,7 +145,7 @@ public class WeaponManager : MonoBehaviour
             float newDamege = maxDamege * currentDemageRatio;
             Vector3 newScale = new Vector3(this.currentDemageRatio * maxScale, this.currentDemageRatio * maxScale, 10);
             gunLine.transform.localScale = newScale;
-            gunLine.GetComponent<Bullet>().currentDamage = newDamege;
+            gunLine.GetComponent<Bullet>().currentDamage = update == 0 ? newDamege : 2 * newDamege;
             Vector3 fixAngle = new Vector3(90f, 0f, 0f);
             GameObject gunLineInstance = Instantiate(gunLine, transform.position, Quaternion.Euler(transform.eulerAngles + fixAngle));
             Debug.Log("current demage is :" + newDamege);

@@ -35,8 +35,6 @@ namespace BigRookGames.Weapons
 
         private bool firstColl = false;
 
-
-
         void Start()
         {
             enemy = GameObject.FindGameObjectWithTag("Enemy");
