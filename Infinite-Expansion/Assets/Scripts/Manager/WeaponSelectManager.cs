@@ -70,7 +70,7 @@ public class WeaponSelectManager : MonoBehaviour
     // switch the current weapon to the k weapon
     public void SwitchWeapon(int k)
     {
-        if (!Unlock(k)) // not unlocked
+        if (!Unlocked(k)) // not unlocked
         {
             return;
         }
