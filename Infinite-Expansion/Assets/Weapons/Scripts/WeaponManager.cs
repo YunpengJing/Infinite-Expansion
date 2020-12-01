@@ -33,7 +33,7 @@ public class WeaponManager : MonoBehaviour
 
     private Slider bulletSlider; // 当前子弹数量UI
 
-    public int update = 0; // 枪械升级
+    private int update = 0; // 枪械升级
 
     // Start is called before the first frame update
     void Start()
@@ -212,4 +212,10 @@ public class WeaponManager : MonoBehaviour
         Debug.Log("launch lazy; ratio: " + currentDemageRatio);
         charingTimer = 0;
     }
+
+    public void updator()
+    {
+        update = 1;
+    }
+
 }

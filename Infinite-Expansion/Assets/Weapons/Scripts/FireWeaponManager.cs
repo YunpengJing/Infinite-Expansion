@@ -7,13 +7,16 @@ using UnityEngine.UI;
 
 public class FireWeaponManager : MonoBehaviour
 {
-    public int update = 0;
+    private int update = 0;
 
     private float timer;
 
+    //喷火的最长时间
+    private float timer2;
+
     private ParticleSystem gunParticles;
 
-    private GameObject fireInstance=null;
+    private GameObject fireInstance = null;
 
     //引用
     public GameObject firePrefab;
@@ -60,25 +63,27 @@ public class FireWeaponManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        timer2 += Time.deltaTime;
 
         float shootButton = heroInput.HeroAction.Shoot.ReadValue<float>();
 
-        if (update==1 && shootButton>0 && timer>1f)
+        if (update == 1 && shootButton > 0 && timer > 1f)
         {
 
             Shoot();
             timer = 0f;
         }
 
-        if (update==0 && shootButton > 0 && fireInstance==null)
+        if (update == 0 && shootButton > 0 && fireInstance == null)
         {
             Shoot();
         }
-        else if(shootButton<=0)
+        else if (shootButton <= 0 || timer2>3f)
         {
             if(fireInstance!=null)
             {
                 Destroy(fireInstance, 0.5f);
+                timer2 = 0;
             }
             
         }
@@ -133,5 +138,10 @@ public class FireWeaponManager : MonoBehaviour
         // 更新UI
         uiTotalAmmo.text = bulletNumberManager.FireTotalAmmo.ToString();
         return true;
+    }
+
+    public void updator()
+    {
+        update = 1;
     }
 }

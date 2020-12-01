@@ -14,7 +14,7 @@ public class BulletWeaponManager : MonoBehaviour
     public float timeBetweenBullet = 0.15f;
 
     //升级 0 单发；1 三散弹
-    public int update = 0;
+    private int update = 0;
 
     private float timer;
 
@@ -137,5 +137,10 @@ public class BulletWeaponManager : MonoBehaviour
         // 更新UI
         uiTotalAmmo.text = bulletNumberManager.bulletGunTotalAmmo.ToString();
         return true;
+    }
+
+    public void updator()
+    {
+        update = 1;
     }
 }
