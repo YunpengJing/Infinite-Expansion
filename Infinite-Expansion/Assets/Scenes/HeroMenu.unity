@@ -573,5 +573,27 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8451218886372165922, guid: 789bed744e03197458163d9209e7a45b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5131947059903866742}
+    - target: {fileID: 8451218886372165922, guid: 789bed744e03197458163d9209e7a45b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: WeaponUpdate
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 789bed744e03197458163d9209e7a45b, type: 3}
+--- !u!114 &5131947059903866742 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9034532117727556112, guid: 789bed744e03197458163d9209e7a45b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5131947059903866741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f213a8262bc2394a91daaa76d3a6edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

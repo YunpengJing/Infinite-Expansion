@@ -18,7 +18,9 @@ public class WeaponSelectManager : MonoBehaviour
     public List<Sprite> weaponImgs;
 
     bool[] weaponsLocked = { false, false, false, true};
+    bool[] weaponsUpdated = { false, false, false, false };
     int[] moneyTOUnlock = { 0, 0, 0, 100 };
+    int[] moneyToUpdate = { 100, 100, 100, 100000 };
 
     public List<int> selectedWeaponIndex;
 
@@ -115,6 +117,27 @@ public class WeaponSelectManager : MonoBehaviour
             Destroy(oldWeapon);
             newWeapon.name = "Weapon";
 
+            // update the weapon
+            if (weaponsUpdated[k])
+            {
+                if (k == 0)
+                {
+                    GameObject head = GameObject.Find("Bullet_Gun_Head");
+                    head.GetComponent<BulletWeaponManager>().updator();
+                }
+                else if (k == 1)
+                {
+                    GameObject head = GameObject.Find("Gun_Head");
+                    head.GetComponent<WeaponManager>().updator();
+                }
+                else if (k == 2)
+                {
+                    GameObject head = GameObject.Find("Fire_Gun_Head");
+                    head.GetComponent<FireWeaponManager>().updator();
+                }
+            }
+            
+
             currentWeaponIndex = k;
 
             GameObject button = GameObject.Find("Weapon Switch");
@@ -144,6 +167,35 @@ public class WeaponSelectManager : MonoBehaviour
                 weaponsLocked[k] = false;
                 return true;
             }
+        }
+    }
+
+    public bool UpdateWeapon(int k)
+    {
+        if (weaponsUpdated[k] == true) return false;
+        bool flag = MoneyManager.Instance.UpdateMoney(-moneyToUpdate[k]);
+        if (!flag) return false;
+        else
+        {
+            weaponsUpdated[k] = true;
+
+            if (k == 0)
+            {
+                GameObject head = GameObject.Find("Bullet_Gun_Head");
+                head.GetComponent<BulletWeaponManager>().updator();
+            }
+            else if (k == 1)
+            {
+                GameObject head = GameObject.Find("Gun_Head");
+                head.GetComponent<WeaponManager>().updator();
+            }
+            else if (k == 2)
+            {
+                GameObject head = GameObject.Find("Fire_Gun_Head");
+                head.GetComponent<FireWeaponManager>().updator();
+            }
+
+            return true;
         }
     }
 }

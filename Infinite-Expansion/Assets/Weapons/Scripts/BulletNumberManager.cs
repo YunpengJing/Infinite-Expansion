@@ -27,4 +27,15 @@ public class BulletNumberManager : MonoBehaviour
     {
         
     }
+
+
+    public void BuyBullet()
+    {
+        bool flag = MoneyManager.Instance.UpdateMoney(-100);
+        if (!flag) return;
+        else
+        {   // succeed buy 
+            
+        }
+    }
 }

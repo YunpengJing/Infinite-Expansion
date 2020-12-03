@@ -165,5 +165,10 @@ public class HeroMessage : MonoBehaviour
             }
         }
     }
+
+    public void WeaponUpdate(int k)
+    {
+        WeaponSelectManager.Instance.UpdateWeapon(k);
+    }
     #endregion
 }
