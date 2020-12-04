@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BulletNumberManager : MonoBehaviour
 {
@@ -17,9 +19,15 @@ public class BulletNumberManager : MonoBehaviour
     public int FireCurrentAmmo = 6;
     public int FireCapacity = 6;
 
+    // UI系统
+    private Text uiCurrentAmmo;
+    private Text uiTotalAmmo;
+
     // Start is called before the first frame update
     void Start()
     {
+        uiCurrentAmmo = GameObject.Find("CurrentAmmo").GetComponent<Text>();
+        uiTotalAmmo = GameObject.Find("TotalAmmo").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -35,7 +43,15 @@ public class BulletNumberManager : MonoBehaviour
         if (!flag) return;
         else
         {   // succeed buy 
-            
+            bulletGunTotalAmmo = 30;
+            RPGTotalAmmo = 30;
+            FireTotalAmmo = 30;
+            UpdateUI();
         }
+    }
+
+    private void UpdateUI()
+    {
+        uiTotalAmmo.text = bulletGunTotalAmmo.ToString();
     }
 }

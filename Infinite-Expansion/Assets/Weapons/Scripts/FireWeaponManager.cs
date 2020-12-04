@@ -78,7 +78,7 @@ public class FireWeaponManager : MonoBehaviour
         {
             Shoot();
         }
-        else if (shootButton <= 0 || timer2>3f)
+        else if (shootButton <= 0 || timer2>2f)
         {
             if(fireInstance!=null)
             {
