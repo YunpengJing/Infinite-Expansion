@@ -19,6 +19,10 @@ public class Enemy : MonoBehaviour
     private float timer = 0;
     public int money = 10;
     NavMeshAgent m_Agent;
+    private string unusualStatus = "";
+
+    // 减速持续事件
+    private float slowDownDuration;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +69,16 @@ public class Enemy : MonoBehaviour
                         Fight();
                     }
                 }
+            }
+        }
+
+        if (unusualStatus == "slowDown")
+        {
+            slowDownDuration -= Time.deltaTime;
+            if (slowDownDuration < 0)
+            {
+                unusualStatus = "";
+                EndSlowDown();
             }
         }
     }
@@ -147,7 +161,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         //call die animation and destroy the object
-        transform.Translate(new Vector3(0, 0, 0));
+        m_Agent.ResetPath();
         anim.Play("Die");
         MoneyManager.Instance.UpdateMoney(this.money);
         status = "die";
@@ -193,6 +207,41 @@ public class Enemy : MonoBehaviour
         } else if (target == "Home")
         {
             EnemyManager.Instance.damageToHome += damage;
+        }
+    }
+
+    public void SlowDown(int duration)
+    {
+        if (unusualStatus != "slowDown")
+        {
+            unusualStatus = "slowDown";
+            speed /= 2;
+            m_Agent.speed = speed;
+            SkinnedMeshRenderer[] smr = this.gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (SkinnedMeshRenderer sss in smr)
+            {
+                //sss.material.color = Color.blue;
+                sss.material.color = new Color(76 / 255.0f, 142 / 255.0f, 195 / 255.0f, 1.0f);
+            }
+            //Invoke("EndSlowDown", (float)duration);
+            slowDownDuration = 2.0f;
+        }
+        else
+        {
+            slowDownDuration = 2.0f;
+        }
+    }
+
+    public void EndSlowDown()
+    {
+        unusualStatus = "";
+        speed *= 2;
+        m_Agent.speed = speed;
+        SkinnedMeshRenderer[] smr = this.gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (SkinnedMeshRenderer sss in smr)
+        {
+            Debug.Log(sss.material.color);
+            sss.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
     }
 }

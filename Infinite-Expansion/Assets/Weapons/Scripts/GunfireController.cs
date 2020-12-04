@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace BigRookGames.Weapons
 {
@@ -40,6 +41,12 @@ namespace BigRookGames.Weapons
         private float timer;
         public float timeBetweenBullet = 0.15f;
 
+        private BulletNumberManager bulletNumberManager;
+
+        // UI系统
+        public Text uiCurrentAmmo;
+        public Text uiTotalAmmo;
+
 
         void Awake()
         {
@@ -61,6 +68,11 @@ namespace BigRookGames.Weapons
             if(source != null) source.clip = GunShotClip;
             timeLastFired = 0;
             lastScopeState = scopeActive;
+            bulletNumberManager = GameObject.Find("WeaponManager").GetComponent<BulletNumberManager>();
+            uiCurrentAmmo = GameObject.Find("CurrentAmmo").GetComponent<Text>();
+            uiTotalAmmo = GameObject.Find("TotalAmmo").GetComponent<Text>();
+            uiCurrentAmmo.text = bulletNumberManager.RPGCurrentAmmo.ToString();
+            uiTotalAmmo.text = bulletNumberManager.RPGTotalAmmo.ToString();
         }
 
         private void Update()
@@ -95,6 +107,21 @@ namespace BigRookGames.Weapons
         /// </summary>
         public void FireWeapon()
         {
+
+            // 更新子弹数量
+            if (--bulletNumberManager.RPGCurrentAmmo < 0)
+            {
+                bool hasAmmo = Reloaded();
+                if (!hasAmmo)
+                {
+                    bulletNumberManager.RPGCurrentAmmo = 0;
+                    return;
+                }
+            }
+
+            //更新UI
+            uiCurrentAmmo.text = bulletNumberManager.RPGCurrentAmmo.ToString();
+
             // --- Keep track of when the weapon is being fired ---
             timeLastFired = Time.time;
             timer = 0;
@@ -151,6 +178,17 @@ namespace BigRookGames.Weapons
         {
             reloadSource.Play();
             projectileToDisableOnFire.SetActive(true);
+        }
+
+        bool Reloaded()
+        {
+            if (bulletNumberManager.RPGTotalAmmo == 0)
+                return false;
+            bulletNumberManager.RPGCurrentAmmo = bulletNumberManager.RPGTotalAmmo - bulletNumberManager.RPGCapacity >= 0 ? bulletNumberManager.RPGCapacity : bulletNumberManager.RPGTotalAmmo;
+            bulletNumberManager.RPGTotalAmmo = bulletNumberManager.RPGTotalAmmo - bulletNumberManager.RPGCurrentAmmo >= 0 ? bulletNumberManager.RPGTotalAmmo - bulletNumberManager.RPGCurrentAmmo : 0;
+            // 更新UI
+            uiTotalAmmo.text = bulletNumberManager.RPGTotalAmmo.ToString();
+            return true;
         }
     }
 }

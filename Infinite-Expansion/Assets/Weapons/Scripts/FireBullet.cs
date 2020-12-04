@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireBullet : MonoBehaviour
 {
 
-    public float damage = 2f;
+    public float damage = 5f;
 
     private AudioSource gunAudio;
 
