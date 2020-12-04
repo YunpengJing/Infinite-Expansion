@@ -168,7 +168,11 @@ public class HeroMessage : MonoBehaviour
 
     public void WeaponUpdate(int k)
     {
-        WeaponSelectManager.Instance.UpdateWeapon(k);
+        bool flag = WeaponSelectManager.Instance.UpdateWeapon(k);
+        if (flag)
+        {
+            GameObject.Find("Update" + k.ToString()).transform.Find("Money").GetComponent<Text>().text = "";
+        }
     }
     #endregion
 }
