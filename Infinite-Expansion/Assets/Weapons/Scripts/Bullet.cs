@@ -37,6 +37,8 @@ public class Bullet : MonoBehaviour
         // 碰撞到物体
         if (other.tag == "Enemy")
         {
+            // 如果怪物没血了，直接穿过
+            if (other.gameObject.GetComponent<Enemy>().hp == 0) return;
             // SFX播放
             // bulletSFX.Play();
             GameObject hero = GameObject.FindWithTag("Hero");

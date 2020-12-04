@@ -45,7 +45,7 @@ public class PhysicalBullet : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("hit enemy");
         }
-        else if(other.tag!="Weapon" && other.tag!="Hero")
+        else if(other.tag!="Weapon" && other.tag!="Hero" && other.tag!="Airwall")
         {
             Destroy(gameObject);
         }

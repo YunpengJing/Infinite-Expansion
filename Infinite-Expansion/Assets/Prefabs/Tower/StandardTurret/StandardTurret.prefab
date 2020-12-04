@@ -133,7 +133,7 @@ MonoBehaviour:
   head: {fileID: 6159149380780681733}
   laserRenderer: {fileID: 0}
   enemys: []
-  attackRateTime: 1
+  attackRateTime: 0.5
   useLaser: 0
   damageRate: 70
 --- !u!135 &616582064961820486

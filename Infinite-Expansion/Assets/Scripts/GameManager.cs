@@ -18,6 +18,16 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void LoadStartMenu()
+    {
+        SceneManager.LoadScene("StartMenu");
+    }
+
+    public void LoadInfiniteMode()
+    {
+        SceneManager.LoadScene("InfiniteMode");
+    }
+
     public void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

@@ -233,6 +233,8 @@ MonoBehaviour:
   inFlightAudioSource: {fileID: 136168842684345051}
   disableOnHit: {fileID: 4361980691020798282}
   currentDamage: 200
+  explosionPrefab: {fileID: 8013073171229110728, guid: 76aed470b75f0fa4d8eb1d81b2f8d593,
+    type: 3}
 --- !u!54 &91128310120046435
 Rigidbody:
   m_ObjectHideFlags: 0
