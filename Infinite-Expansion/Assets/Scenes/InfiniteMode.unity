@@ -37326,6 +37326,28 @@ PrefabInstance:
       propertyPath: missileTurretData.cost
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 6513700124567995280, guid: 644e42fe895784abd9c3e49309455099,
+        type: 3}
+      propertyPath: slowDownTurretImg
+      value: 
+      objectReference: {fileID: 21300000, guid: 43a0847bc66982c45b593ee9ca75234d,
+        type: 3}
+    - target: {fileID: 6513700124567995280, guid: 644e42fe895784abd9c3e49309455099,
+        type: 3}
+      propertyPath: slowDownTurretData.turretPrefab
+      value: 
+      objectReference: {fileID: 8092644756357497416, guid: 3fd3690f1aa1a4dc6a3b0609d8d59fd9,
+        type: 3}
+    - target: {fileID: 6513700124567995280, guid: 644e42fe895784abd9c3e49309455099,
+        type: 3}
+      propertyPath: slowDownTurretData.cost
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513700124567995280, guid: 644e42fe895784abd9c3e49309455099,
+        type: 3}
+      propertyPath: slowDownTurretData.type
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6513700124567995281, guid: 644e42fe895784abd9c3e49309455099,
         type: 3}
       propertyPath: m_LocalPosition.x

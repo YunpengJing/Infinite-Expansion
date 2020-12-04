@@ -9,12 +9,14 @@ public class BuildManager : MonoBehaviour
     public TurretData laserTurretData;
     public TurretData missileTurretData;
     public TurretData standardTurretData;
+    public TurretData slowDownTurretData;
 
     public Sprite laserTurretImg;
     public Sprite missleTurretImg;
     public Sprite standardTurretImg;
+    public Sprite slowDownTurretImg;
 
-    public int totalTurretNumber = 3;
+    public int totalTurretNumber = 4;
     public int bagTurretMaximumNummer = 2;
     public List<int> selectedTurretIndex;
 
@@ -29,6 +31,7 @@ public class BuildManager : MonoBehaviour
     public int standardTurretCnt;
     public int missileTurretCnt;
     public int laserTurretCnt;
+    public int slowDownTurretCnt;
 
     private int mapCubeMoney;
 
@@ -61,6 +64,7 @@ public class BuildManager : MonoBehaviour
         standardTurretCnt = 0;
         missileTurretCnt = 0;
         laserTurretCnt = 0;
+        slowDownTurretCnt = 0;
 
         showBuildRange = false;
         GameObject buildRange = GameObject.Find("Range");
@@ -111,6 +115,10 @@ public class BuildManager : MonoBehaviour
                 {
                     laserTurretCnt += 1;
                 }
+                else if (currentTurretIndex == 3)
+                {
+                    slowDownTurretCnt += 1;
+                }
             }
             else
             {
@@ -146,6 +154,11 @@ public class BuildManager : MonoBehaviour
         {
             selectedTurretData = laserTurretData;
             button.GetComponent<Button>().image.sprite = laserTurretImg;
+        }
+        else if (flag == 3)
+        {
+            selectedTurretData = slowDownTurretData;
+            button.GetComponent<Button>().image.sprite = slowDownTurretImg;
         }
         else if (flag < 0)
         {
@@ -226,6 +239,18 @@ public class BuildManager : MonoBehaviour
         if (selectedTurretData != standardTurretData)
         {
             selectedTurretData = standardTurretData;
+        }
+        else
+        {
+            selectedTurretData = null;
+        }
+    }
+
+    public void OnSlowDownSelected(bool isOn)
+    {
+        if (selectedTurretData != slowDownTurretData)
+        {
+            selectedTurretData = slowDownTurretData;
         }
         else
         {
