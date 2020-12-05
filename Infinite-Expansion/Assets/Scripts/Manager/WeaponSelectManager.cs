@@ -18,7 +18,7 @@ public class WeaponSelectManager : MonoBehaviour
     public List<Sprite> weaponImgs;
 
     bool[] weaponsLocked = { false, false, false, true};
-    bool[] weaponsUpdated = { false, false, false, false };
+    public bool[] weaponsUpdated = { false, false, false, false };
     int[] moneyTOUnlock = { 0, 0, 0, 100 };
     int[] moneyToUpdate = { 100, 100, 100, 100000 };
 
@@ -182,17 +182,20 @@ public class WeaponSelectManager : MonoBehaviour
             if (k == 0)
             {
                 GameObject head = GameObject.Find("Bullet_Gun_Head");
-                head.GetComponent<BulletWeaponManager>().updator();
+                if (head)
+                    head.GetComponent<BulletWeaponManager>().updator();
             }
             else if (k == 1)
             {
                 GameObject head = GameObject.Find("Gun_Head");
-                head.GetComponent<WeaponManager>().updator();
+                if (head)
+                    head.GetComponent<WeaponManager>().updator();
             }
             else if (k == 2)
             {
                 GameObject head = GameObject.Find("Fire_Gun_Head");
-                head.GetComponent<FireWeaponManager>().updator();
+                if (head)
+                    head.GetComponent<FireWeaponManager>().updator();
             }
 
             return true;

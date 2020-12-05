@@ -107,6 +107,16 @@ public class HeroMessage : MonoBehaviour
         {
             GameObject.Find("Weapon" + i.ToString()).GetComponent<Image>().color = Color.green;
         }
+
+        // update show
+        for (int i = 0; i < WeaponSelectManager.Instance.totalWeaponNumber-1; i++)
+        {
+            if (WeaponSelectManager.Instance.weaponsUpdated[i])
+            {
+                GameObject.Find("Update" + i.ToString()).transform.Find("Money").GetComponent<Text>().text = "";
+            }
+        }
+
     }
 
     public void WeaponSwap(int k)
@@ -169,10 +179,6 @@ public class HeroMessage : MonoBehaviour
     public void WeaponUpdate(int k)
     {
         bool flag = WeaponSelectManager.Instance.UpdateWeapon(k);
-        if (flag)
-        {
-            GameObject.Find("Update" + k.ToString()).transform.Find("Money").GetComponent<Text>().text = "";
-        }
     }
     #endregion
 }
