@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 7862205661993282311}
   - component: {fileID: 7862205661994319971}
   - component: {fileID: 7862205662003951803}
+  - component: {fileID: 5499247449634201861}
   m_Layer: 0
-  m_Name: Tree_Orange_02
+  m_Name: Tree4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,3 +96,15 @@ CapsuleCollider:
   m_Height: 8.596125
   m_Direction: 1
   m_Center: {x: 0.027060986, y: 2.15, z: -0.23}
+--- !u!114 &5499247449634201861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7862205661992255653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5726dafd28e5d494cafe7c49a0020480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
