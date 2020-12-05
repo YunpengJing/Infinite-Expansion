@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 30
   maxDamage: 500
-  currentDamage: 500
+  currentDamage: 1000
 --- !u!54 &2304768308728598423
 Rigidbody:
   m_ObjectHideFlags: 0
