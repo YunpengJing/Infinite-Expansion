@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5536792105187043577}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 100
   damage: 30
+  lifeTimer: 0

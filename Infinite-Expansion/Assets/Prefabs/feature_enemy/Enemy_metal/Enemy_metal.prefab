@@ -504,10 +504,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: anonymous
-  speed: 5
+  speed: 7
   hp: 200
   attackDistance: 5
-  attackPower: 50
+  attackPower: 20
   attackRate: 1
   money: 10
 --- !u!135 &230336418029188369

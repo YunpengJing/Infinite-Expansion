@@ -79,6 +79,7 @@ public class BuildManager : MonoBehaviour
         bool flag = MoneyManager.Instance.UpdateMoney(-mapCubeMoney);
         if (!flag) return;
 
+        v.y -= 4;
         GameObject newCube = GameObject.Instantiate(mapCubePrefab, v, Quaternion.identity);
         mapCubeCnt += 1;
     }
@@ -86,6 +87,8 @@ public class BuildManager : MonoBehaviour
     // 在 mapcube 上造塔
     public void BuildTurret(MapCube mapCube)
     {
+        if (!mapCube.buildAble) return;
+
         Debug.Log(selectedTurretData.type);
         if (mapCube)
         {

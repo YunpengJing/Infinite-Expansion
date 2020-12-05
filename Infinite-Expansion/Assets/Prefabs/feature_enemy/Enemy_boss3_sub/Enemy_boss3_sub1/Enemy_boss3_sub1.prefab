@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 696129526318479965}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 36.6, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 15, y: 15, z: 1.5}
   m_Children: []
   m_Father: {fileID: 6814633960879838400}
   m_RootOrder: 3
@@ -324,8 +324,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 8}
+  m_AnchoredPosition: {x: 0, y: -0.6}
+  m_SizeDelta: {x: 60, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8070956071538082518
 MonoBehaviour:
@@ -1417,8 +1417,8 @@ MonoBehaviour:
   name: anonymous
   speed: 10
   hp: 250
-  attackDistance: 100
-  attackPower: 10
+  attackDistance: 5
+  attackPower: 8
   attackRate: 1
   money: 10
 --- !u!195 &9178078845749273336

@@ -255,6 +255,10 @@ MonoBehaviour:
   projectileToDisableOnFire: {fileID: 1802767607664207933}
   timeLastFired: 0
   timeBetweenBullet: 1
+  currentAmmo: 30
+  totalAmmo: 30
+  uiCurrentAmmo: {fileID: 0}
+  uiTotalAmmo: {fileID: 0}
 --- !u!82 &4490302565791019162
 AudioSource:
   m_ObjectHideFlags: 0
@@ -267,7 +271,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 587aedb20bbaf494eb496195f38a8ab6,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 40e71b0f7bd610849b40f150553f4702, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -364,7 +368,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 587aedb20bbaf494eb496195f38a8ab6,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: c3430338b7987524d96ce1f63db280cd, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

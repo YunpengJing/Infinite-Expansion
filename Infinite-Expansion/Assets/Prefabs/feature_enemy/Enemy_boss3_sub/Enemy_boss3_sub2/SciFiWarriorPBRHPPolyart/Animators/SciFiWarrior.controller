@@ -413,7 +413,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shoot_Autoshot_AR
+  m_Name: Attack02
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -467,7 +467,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WalkFront_Shoot_AR
+  m_Name: WalkFWD
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -601,7 +601,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle_Guard_AR
+  m_Name: IdleBattle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -655,7 +655,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shoot_BurstShot_AR
+  m_Name: Attack01
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -682,7 +682,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle_Ducking_AR
+  m_Name: GetHit
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -815,13 +815,13 @@ AnimatorStateMachine:
     m_Position: {x: 528, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102901032506865742}
-    m_Position: {x: 768, y: 444, z: 0}
+    m_Position: {x: 770, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102949299928912516}
     m_Position: {x: 528, y: 108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102642198119822076}
-    m_Position: {x: 528, y: 168, z: 0}
+    m_Position: {x: 530, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102106218193099826}
     m_Position: {x: 528, y: 228, z: 0}
@@ -830,7 +830,7 @@ AnimatorStateMachine:
     m_Position: {x: 768, y: 108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102525727787806748}
-    m_Position: {x: 768, y: 168, z: 0}
+    m_Position: {x: 770, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102361151154106906}
     m_Position: {x: 768, y: 228, z: 0}
