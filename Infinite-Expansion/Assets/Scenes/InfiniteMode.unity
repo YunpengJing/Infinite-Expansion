@@ -31998,7 +31998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f2e4782c34d9848a2ea7f9eb88786a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletGunTotalAmmo: 30
+  bulletGunTotalAmmo: 60
   bulletGunCurrentAmmo: 30
   bulletCapacity: 30
   RPGTotalAmmo: 30
@@ -32029,6 +32029,7 @@ MonoBehaviour:
   weapon2Img: {fileID: 21300000, guid: 3d78f651aaafe7c4cb6437e3ed0321c5, type: 3}
   weapon3Img: {fileID: 21300000, guid: a891e54f1a43b6c43adc60965eec36fd, type: 3}
   weaponImgs: []
+  weaponsUpdated: 00000000
   selectedWeaponIndex: 
   totalWeaponNumber: 4
   bagWeaponMaximumNummer: 3
