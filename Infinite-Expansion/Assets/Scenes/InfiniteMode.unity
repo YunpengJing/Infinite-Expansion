@@ -31998,7 +31998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f2e4782c34d9848a2ea7f9eb88786a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletGunTotalAmmo: 60
+  bulletGunTotalAmmo: 30
   bulletGunCurrentAmmo: 30
   bulletCapacity: 30
   RPGTotalAmmo: 30
@@ -44526,7 +44526,7 @@ PrefabInstance:
     - target: {fileID: 3378057835522591008, guid: 5c123a220ef5b4aae9d82a8f22db2176,
         type: 3}
       propertyPath: initialMoney
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3378057835522591009, guid: 5c123a220ef5b4aae9d82a8f22db2176,
         type: 3}

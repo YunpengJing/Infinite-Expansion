@@ -29,10 +29,14 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalScale: {x: 0, y: 0, z: 10}
 =======
   m_LocalScale: {x: 2.1885173, y: 2.1885173, z: 10}
 >>>>>>> ae6ecc693cfc2621fead58c4022bc8082e87839f
+=======
+  m_LocalScale: {x: 2.1794016, y: 2.1794016, z: 10}
+>>>>>>> parent of 891f8c65... weapon change
   m_Children:
   - {fileID: 8402172112652589804}
   m_Father: {fileID: 0}
@@ -53,10 +57,14 @@ MonoBehaviour:
   moveSpeed: 30
   maxDamage: 500
 <<<<<<< HEAD
+<<<<<<< HEAD
   currentDamage: 0
 =======
   currentDamage: 218.85173
 >>>>>>> ae6ecc693cfc2621fead58c4022bc8082e87839f
+=======
+  currentDamage: 435.88034
+>>>>>>> parent of 891f8c65... weapon change
 --- !u!54 &4179521169266357974
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -76,7 +76,7 @@ public class BulletWeaponManager : MonoBehaviour
     void Shoot()
     {
         // 更新子弹数量
-        bulletNumberManager.bulletGunCurrentAmmo = update == 0 ? bulletNumberManager.bulletGunCurrentAmmo - 1 : bulletNumberManager.bulletGunCurrentAmmo - 1;
+        bulletNumberManager.bulletGunCurrentAmmo = update == 0 ? bulletNumberManager.bulletGunCurrentAmmo - 1 : bulletNumberManager.bulletGunCurrentAmmo - 3;
         if (bulletNumberManager.bulletGunCurrentAmmo < 0)
         {
             bool hasAmmo = Reloaded();

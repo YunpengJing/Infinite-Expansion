@@ -43,7 +43,7 @@ public class BulletNumberManager : MonoBehaviour
         if (!flag) return;
         else
         {   // succeed buy 
-            bulletGunTotalAmmo = 60;
+            bulletGunTotalAmmo = 30;
             RPGTotalAmmo = 30;
             FireTotalAmmo = 30;
             UpdateUI();
