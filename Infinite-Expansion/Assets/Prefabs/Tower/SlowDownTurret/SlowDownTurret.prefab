@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f20d4f1e19244cdaaad80a8c41d57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 520112119851713495, guid: 43e7f025655fa47bfaff73b0fbb81a05,
+  bulletPrefab: {fileID: 2163173037376451863, guid: fc2b2488ac97343cb8f05ef754abb9c6,
     type: 3}
   firePosition: {fileID: 8020183124765347215}
   head: {fileID: 6970898436318174409}
