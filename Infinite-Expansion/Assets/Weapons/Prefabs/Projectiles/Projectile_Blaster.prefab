@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3659995153115176983}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4773213, y: 1.4773213, z: 10}
+  m_LocalScale: {x: 1.1566434, y: 1.1566434, z: 10}
   m_Children:
   - {fileID: 8402172112652589804}
   m_Father: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 30
   maxDamage: 500
-  currentDamage: 147.73212
+  currentDamage: 115.66434
 --- !u!136 &3421165211153525857
 CapsuleCollider:
   m_ObjectHideFlags: 0
