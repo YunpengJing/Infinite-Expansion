@@ -58,7 +58,7 @@ public class TowerBullet : MonoBehaviour
             if (isSlowDown) other.GetComponent<Enemy>().SlowDown(2);
             Die();
         }
-        else if (other.tag == "Airwall")
+        else if (other.tag == "Airwall" || other.tag == "Hero")
         {
             // 空气墙直接穿过
         }
